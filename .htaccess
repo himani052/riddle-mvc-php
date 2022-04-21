@@ -1,0 +1,12 @@
+#Activer reecriture d'url
+RewriteEngine On
+
+#Réécriture de Condition => si un fichier est trouvé l'utilisateur ne sera pas redirigé vers la page index
+#RewriteCond %{REQUEST_FILENAME}% !-f     (erreur dans la ligne)
+RewriteCond %{REQUEST_FILENAME} !-f
+
+#Réécriture de règle
+#Tout se que je renvoie à mon navigateur se trouve dans le dossier public à l'interieur du fichier index.php
+#Récupération de paramètres
+RewriteRule ^(.*)$ public/index.php?url=$1 [QSA,L]
+

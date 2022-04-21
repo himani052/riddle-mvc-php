@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>Riddle - Parcours & Enigmes</title>
+
+        <!-- Loading of gobal stylesheet  -->
+        <link href="/public/assets/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="/public/assets/css/style.css" rel="stylesheet"/>
+
+
+        <!-- Loading of fontawesome stylesheet  -->
+        <link href="/public/assets/fontawesome/css/all.css" rel="stylesheet"/>
+
+    </head>
+
+    <body class="bg-light">
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow">
+
+        <a class="navbar-brand" href="{{ route('home.index') }}"><img src="/public/assets/img/logo-riddle.png" width="100"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse mt-1" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Jeux/Parcours<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">À propos</a>
+                </li>
+            </ul>
+
+            <a href="" class="btn btn-black-line float-right">Connexion</a>
+        </div>
+    </nav>
+
+
+
+
+
+        {{ block('content') }}
+
+    </body>
+
+</html>

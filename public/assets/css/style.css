@@ -1,0 +1,162 @@
+/***************** General settings *****************************/
+
+.btn-yellow{
+    padding: 0.3em 1.4em;
+    background-color: #FFA626;
+    border-radius: 50px;
+    font-weight: 600;
+    color: black;
+}
+
+.btn-black-line{
+    padding: 0.3em 1.4em;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 50px;
+    font-weight: 600;
+    color: black;
+}
+
+.play-btn-white{
+    border: 1px solid white;
+    border-radius: 50px 50px;
+    padding: 0.6em 1em;
+    color: white;
+    text-decoration: none;
+}
+
+.play-btn-white:hover{
+    color: white;
+    background-color: rgba(255,255,255,0.2);
+}
+
+.filter-image{
+    background-color: rgba(0,0,0,0.5);
+    position: absolute;
+    width: 100%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 0;
+}
+
+.filter-image:hover{
+    background-color: rgba(0,0,0,0.8);
+    position: absolute;
+    width: 100%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 0;
+}
+
+
+/*********************** Home page ***************************************/
+
+.home-page-container{
+    margin-top: 5em;
+}
+
+/********************** Parcours ***************************************/
+
+.box-parcours{
+    background-size: cover;
+    background-position: 50% 50%;
+    width: 100%;
+    height: 300px;
+    color: white;
+}
+
+.box-parcours h1{
+    text-align: center;
+    font-size: 1.2em;
+    color: black;
+    background-color: #FFA626;
+    padding: 0.3em 1.5em;
+    border-radius: 5px;
+    font-weight: 700;
+}
+
+.box-parcours p{
+    font-size: 0.8em;
+}
+
+.box-parcours span{
+    margin: 1em auto 1em auto;
+    font-size: 0.8em;
+    padding: 0.3em 1.5em;
+    border: 1px solid white;
+    border-radius: 50px;
+}
+
+.box-parcours ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box-parcours li{
+    font-size: 0.8em;
+    font-weight: 600;
+    background-color: white;
+    color: black;
+    padding:0.3em 1.2em;
+    margin: 0em 0.5em 0.5em 0;
+    border-radius: 50px;
+}
+
+/****************** Parcours show *********************************************************/
+
+.box-parcours-show{
+    height: 43vw;
+}
+
+.ranking-comments{
+    padding: 4% 6% 4% 6%;
+}
+
+.ranking-comments h2{
+    font-size: 1.2em;
+    font-weight: 700;
+    margin-bottom: 1.2em;
+}
+
+.players-ranking th,.players-ranking td {
+ padding: 0.5em;
+}
+
+.players-ranking img{
+    width: 50px;
+    border-radius: 50px;
+
+}
+
+.players-ranking h3{
+    font-size: 1em;
+    margin-bottom: 0.2em;
+}
+
+.players-ranking h4{
+    font-size: 0.8em;
+    font-weight: 400;
+}
+
+/*** comments ****/
+
+.box-comment{
+    padding: 1.8em;
+    border-radius: 15px;
+    background-color: lightgrey;
+    font-size: 0.8em;
+}
+
+.box-comment p{
+    margin: 0;
+}
+
+.parcours-comments img{
+    width: 50px;
+    border-radius: 50px;
+}
