@@ -13,3 +13,13 @@ Route::get('/parcours', 'App\controllers\ParcoursController@index')->name('parco
 Route::get('/parcours/show/{id}', 'App\controllers\ParcoursController@show')->name('parcours.show');
 
 
+//Admin
+
+Route::get('/admin','App\controllers\Admin\SecurityController@connect')->name('admin.connect') ;
+Route::post('/admin/login','App\controllers\Admin\SecurityController@login')->name('admin.login') ;
+
+Route::get('/admin/dashboard','App\controllers\Admin\DashboardController@index')->name('admin.dashboard') ;
+
+
+
+Route::post('/admin/test','App\controllers\DefaultController@traitement')->name('home.test') ;

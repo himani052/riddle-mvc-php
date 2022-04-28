@@ -160,3 +160,11 @@
     width: 50px;
     border-radius: 50px;
 }
+
+
+
+/*********** formulaires ****************************/
+
+.input-error{
+    border: 2px solid #dc3545;
+}

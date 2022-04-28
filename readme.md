@@ -35,3 +35,6 @@
 
 limiter le text avec twig 
 {{ var.content[0:200]|striptags}}
+
+
+//implémenter autoloader css pour charger img plus rapidement 
