@@ -15,8 +15,8 @@ class HomeController extends Controller
         $user = new User($this->getDB());
         $users = $user->all();
 
-        //$req = $this->db->getPDO()->query('SELECT * FROM user');
-        //$users = $req->fetchAll();
+        //$user = new User($this->getDB());
+        //$user = $user->where('emailUser', '=','houssam.imani@gmail.com');
 
         //appel de la vue avec twig
         return $this->view('home/index.twig', compact('users'));

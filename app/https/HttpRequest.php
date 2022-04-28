@@ -22,10 +22,24 @@ class HttpRequest{
         return $_POST[$field];
     }
 
+    public function session($name, $data = null){
+        if(!empty($data) | $data != null){
+            $_SESSION[$name] = $data;
+        }else{
+            return isset($_SESSION[$name]) ? $_SESSION[$name] : "";
+        }
+    }
+
     //récupérer la dernière URL
     public function lastUrl(){
         return $_SERVER['HTTP_REFERER'];
     }
+
+    public function lastRedirect(){
+        return header('Location: '.$this->lastUrl());
+    }
+
+
 
     //traiter formulaires
     //Fonction qui permet de traiter les éléments post des formulaires et ajouter des contraintes

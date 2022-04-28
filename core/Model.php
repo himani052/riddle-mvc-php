@@ -23,4 +23,19 @@ abstract class Model{
     }
 
 
+    //Gère les résultats uniques à voir pour les autres
+    public function where($condition,$sign, $value){
+        $stmt = $this->db->getPDO()->prepare("SELECT * FROM {$this->table}  WHERE {$condition} {$sign} ? ");
+        $stmt->execute([$value]);
+
+        return $stmt->fetch();
+
+        /*if( count(get_object_vars($stmt->fetch())) == 1){
+            return $stmt->fetch()->$element ;
+        }else{
+            return $stmt->fetch();
+        }*/
+    }
+
+
 }
