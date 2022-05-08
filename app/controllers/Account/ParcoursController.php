@@ -1,6 +1,6 @@
 <?php
 
-namespace App\controllers;
+namespace App\controllers\Account;
 
 use App\https\HttpRequest;
 use App\models\Parcours;
@@ -17,32 +17,32 @@ class ParcoursController extends Controller
         $parc = new Parcours($this->getDB());
         $parcours = $parc->all();
 
-        return $this->view('parcours/index.twig', compact('parcours'));
+        return $this->view('account/parcours/index.twig', compact('parcours'));
 
     }
+
+    public function list(){
+
+        $parc = new Parcours($this->getDB());
+        $parcours = $parc->all();
+
+        return $this->view('account/parcours/list.twig', compact('parcours'));
+
+    }
+
+
+
 
     public function show($id){
 
+        /*
         $parc = new Parcours($this->getDB());
         $parc = $parc->findById($id);
 
         $req = $this->db->getPDO()->query("SELECT * FROM user LIMIT 3");
         $users =  $req->fetchAll();
 
-        return $this->view('parcours/show.twig', compact('parc', 'users'));
-
-
-    }
-
-    public function scroll($id){
-
-        $parc = new Parcours($this->getDB());
-        $parc = $parc->findById($id);
-
-        $req = $this->db->getPDO()->query("SELECT * FROM user LIMIT 3");
-        $users =  $req->fetchAll();
-
-        return $this->view('parcours/show-scroll.twig', compact('parc', 'users'));
+        return $this->view('parcours/show.twig', compact('parc', 'users'));*/
 
 
     }

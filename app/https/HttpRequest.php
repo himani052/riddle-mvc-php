@@ -106,11 +106,21 @@ class HttpRequest{
     //être redirigé sur la même page en cas d'erreurs
     //Afficher les erreurs dans la sessions et les détruires en relançant le bouton submit
     public function getErrors(){
+
+        if($this->errors !== null){
+            $this->session('errors', $this->errors);
+            return ($this->session('errors') !== null) ? $this->session('errors') : [];
+        }else{
+            return ($this->session('errors') !== null ) ? null : [];
+        }
+
+        /*
         if(!empty($this->errors)){
             $_SESSION['errors'] = $this->errors;
         }else{
             session_destroy();
         }
         return isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
+        */
     }
 }

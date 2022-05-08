@@ -1,0 +1,32 @@
+{% extends 'layouts/no-header.twig' %}
+
+
+{% block content %}
+
+    <div class="row">
+    {% for parc in parcours %}
+
+        <div class="account-parcours-box col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card border-0 shadow-sm mb-2" style="width: 18rem;">
+                    <img class="card-img-top" src="{{ parc.image }}" alt="Card image cap" style="max-height: 200px">
+                    <div class="card-body">
+                        <h3>{{ parc.titre }}</h3>
+                        <p class="card-text">{{ parc.description[0:200]|striptags }}</p>
+                    </div>
+                    <div class="card-footer bg-white float-right">
+                       <div class="row">
+                           <div class="col-8">
+                               <i class="fa-solid fa-user"></i> 12
+                           </div>
+                           <div class="col-4">
+                               <a href="#" class="text-black-50"><i class="fa-solid fa-pen-to-square"></i></a>
+                               <a href="#" class="text-danger "><i class="fa-solid fa-trash-can"></i></a>
+                           </div>
+                       </div>
+                    </div>
+                </div>
+        </div>
+
+    {% endfor %}
+    </div>
+{% endblock %}

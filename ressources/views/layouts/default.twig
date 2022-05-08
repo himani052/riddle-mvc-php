@@ -5,9 +5,14 @@
     <head>
         <title>Riddle - Parcours & Enigmes</title>
 
+        <!-- viewport  -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
+
         <!-- Loading of gobal stylesheet  -->
         <link href="/public/assets/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="/public/assets/css/style.css" rel="stylesheet"/>
+        <link href="/public/assets/css/drawer.css" rel="stylesheet"/>
 
 
         <!-- Loading of fontawesome stylesheet  -->
@@ -18,34 +23,13 @@
     <body class="bg-light">
 
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow">
-
-        <a class="navbar-brand" href="{{ route('home.index') }}"><img src="/public/assets/img/logo-riddle.png" width="100"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse mt-1" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Jeux/Parcours<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">À propos</a>
-                </li>
-            </ul>
-
-            <a href="" class="btn btn-black-line float-right">Inscription</a>
-        </div>
-    </nav>
+        {% include 'layouts/navbar.twig' %}
 
 
         {{ block('content') }}
 
+        <script src="/public/assets/js/jquery.slim.min.js"></script>
+        <script src="/public/assets/js/bootstrap.bundle.js"></script>
     </body>
 
 </html>

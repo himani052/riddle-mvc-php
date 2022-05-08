@@ -1,0 +1,30 @@
+{% extends "layouts/default.twig" %}
+
+{% block content %}
+
+    <section id="parcours-account-box">
+        <div class="container-fluid h-100">
+            <div class="row h-100">
+                <div class="col-5 col-md-3 collapse width m-0 p-0 h-100 bg-white shadow" id="collapseExample">
+                    <hr>
+                    fhyyyyyyy
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col-12">
+                            <button class="btn sticky-top" data-toggle="collapse" href="#collapseExample" role="button">
+                                <i class="fa-solid fa-bars"></i>
+                            </button>
+                        </div>
+                        <div class="col-12">
+                            {% block parcours %}
+
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

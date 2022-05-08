@@ -1,16 +1,15 @@
 <?php
 
-namespace App\controllers\Admin;
+namespace App\controllers;
 
 use App\https\HttpRequest;
 use App\models\User;
 use Controller;
 
-class SecurityController extends Controller {
+class UserController extends Controller {
 
-    /*
     public function connect(){
-        return $this->view('admin/security/login.twig');
+        return $this->view('security/login.twig');
     }
 
     public function login(HttpRequest $request){
@@ -22,8 +21,6 @@ class SecurityController extends Controller {
             'password' => ['required']
         ]);
 
-        //var_dump($value);
-        //die();
 
         $user = new User($this->getDB());
         $user = $user->where('emailUser', '=',$request->name('email'));
@@ -54,5 +51,9 @@ class SecurityController extends Controller {
         session_destroy();
         return redirect('home.index');
     }
-    */
+
+    public function register(){
+        return $this->view('security/registration.twig');
+    }
+
 }

@@ -1,0 +1,46 @@
+{% extends 'layouts/no-header.twig' %}
+
+
+{% block content %}
+    <div class="players-ranking">
+        <h2>Classement des joueurs sur ce parcours</h2>
+        <table class="table">
+            <tbody>
+
+
+            {% for user in users %}
+                <tr>
+                    <th scope="row">
+                        <img alt="player-1" src="{{ user.photo }}"/>
+                    </th>
+                    <td>
+                        <h3>{{ user.pseudo }}</h3>
+                        <h4>Joueur de niveau 4</h4>
+                    </td>
+                    <td>1657 pts</td>
+                    <td><i class="fa-regular fa-clock"></i> 5:02:34</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="parcours-comments">
+        <h2>Commentaire des joueurs</h2>
+
+        <div class="row">
+            <div class="col-2">
+                <img alt="player-1" src="/public/assets/img/jpg/users/portrait-1.jpg"/>
+            </div>
+            <div class="col-10">
+                <div class="box-comment">
+                    <p>
+                        Libero iaculis, a dignissim lacus blandit. Praesent lacinia ligula dui, suscipit posuere felis convallis non. Suspendisse bibendum feugiat ultricies.  Ejectae !!
+                    </p>
+                </div>
+                <span>26/03:2022 23:42:00</span>
+            </div>
+        </div>
+    </div>
+{% endblock %}

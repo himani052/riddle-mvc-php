@@ -4,22 +4,27 @@
         <section id="parcours-show">
                 <div class="row">
 
-                     <div class="box-parcours  box-parcours-show position-relative col-12 col-md-6 col-lg-6 bg-light" style="background-image: url('{{ parc.image }}')" >
-                          <div class="filter-image">
-                             <div class="m-5">
-                                <h1>{{ parc.titre }}</h1>
-                                <span class="mt-3"><i class="fa-solid fa-location-dot mr-2"></i>{{ parc.lieu }} - {{ parc.ville }}, {{ parc.pays }}</span>
-                                <p class="mt-3">{{ parc.description[0:1000]|striptags}}</p>
-                                <ul>
-                                   <li>#tag1</li>
-                                   <li>#tag2</li>
-                                </ul>
-                                <a href="{{ route('parcours.show',{'id' : parc.id}) }}" class="btn play-btn-white float-right"><i class="fa-solid fa-play"></i></a>
-                             </div>
+                    <div class="col-12 col-md-12 col-lg-6 position-relative dark-bg">
+                        <div class="box-parcours-show box-parcours parcours-fixed " style="background-image: url('{{ parc.image }}')">
+                            <div class="bg-light " >
+                                <div class="filter-image">
+                                    <div class="content-parcours-show m-5">
+                                        <h1>{{ parc.titre }}</h1>
+                                        <span class="mt-3"><i class="fa-solid fa-location-dot mr-2"></i>{{ parc.lieu }} - {{ parc.ville }}, {{ parc.pays }}</span>
+                                        <p class="mt-3">{{ parc.description[0:1000]|striptags}}</p>
+                                        <ul>
+                                            <li>#tag1</li>
+                                            <li>#tag2</li>
+                                        </ul>
+                                        <a href="{{ route('parcours.show',{'id' : parc.id}) }}" class="btn play-btn-white float-right"><i class="fa-solid fa-play"></i></a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="ranking-comments col-12 col-md-6 col-lg-6">
+
+                    <div class="ranking-comments col-12 col-md-12 col-lg-6">
                         <div class="players-ranking">
                             <h2>Classement des joueurs sur ce parcours</h2>
                             <table class="table">
@@ -61,10 +66,20 @@
                                 </div>
                             </div>
                         </div>
+
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ultricies dui nec lacinia maximus. Donec sed enim pellentesque justo faucibus pulvinar. Pellentesque consequat libero ut augue ornare suscipit. Donec tincidunt nulla eget sem vehicula, et facilisis quam volutpat. In consectetur laoreet risus a gravida. Fusce maximus vehicula libero, ac ornare nulla scelerisque nec. Cras lobortis quis lectus sed pretium. Vivamus sit amet urna efficitur, egestas erat lacinia, venenatis orci. Proin tellus libero, laoreet non augue ut, hendrerit varius mi. Nullam posuere, lacus quis ornare eleifend, ex purus pretium leo, a congue elit quam ac eros. Proin arcu arcu, maximus in urna eu, ullamcorper commodo ligula. Phasellus cursus iaculis mollis. Fusce vehicula ultricies libero sit amet viverra. In ultricies, lorem eu sodales accumsan, nulla nunc bibendum lacus, nec tempor arcu magna vel ligula. Mauris nec tincidunt purus, quis rutrum neque.
+
+                        Sed ac sem in turpis venenatis efficitur quis in felis. Vivamus sollicitudin est quis consequat rhoncus. Sed non lacinia ante. Proin porta iaculis lectus, a feugiat dolor consequat eget. Morbi sit amet diam sapien. Suspendisse tempus mattis tempor. Praesent suscipit tempus eros, eget posuere lacus porttitor vel. Morbi finibus et quam vel gravida. Ut gravida et sapien vitae eleifend.
+
+                        Aenean sit amet metus ligula. Phasellus semper felis nulla, hendrerit aliquam magna convallis vel. Vivamus bibendum, tortor nec luctus convallis, arcu nisi sodales ipsum, ut ultrices ipsum erat a metus. Suspendisse potenti. Etiam id facilisis leo, ac feugiat turpis. Integer et dolor et nulla ullamcorper laoreet. Aenean consectetur tellus ligula, eu rutrum nisi maximus eget. Sed dictum odio ac arcu rutrum, in molestie magna efficitur.
+
+                        Sed dui ipsum, sollicitudin a ante vel, ornare laoreet nibh. Mauris iaculis ac ligula a viverra. Donec vehicula vel nibh in consectetur. Aenean turpis ex, eleifend nec ex id, ultricies molestie dolor. Curabitur a tortor orci. Nunc rhoncus neque eget lacinia imperdiet. Sed commodo nunc nec lacus posuere sagittis. Nullam a lacinia sem, at bibendum diam. In nec tempus ligula. Duis finibus ligula ut urna iaculis, sit amet sagittis dolor hendrerit. Ut condimentum pharetra lectus sit amet consequat. Sed massa elit, luctus eu rhoncus elementum, consectetur placerat eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec imperdiet tempus justo, eu tincidunt lectus venenatis eget. Duis nibh ligula, viverra vel feugiat id, luctus quis nisi. Aliquam lacus dui, ullamcorper non mollis nec, lobortis sit amet augue.
                     </div>
-
-
                 </div>
         </section>
+
+
+
+
 
 {% endblock %}

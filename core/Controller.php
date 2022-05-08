@@ -32,6 +32,8 @@ abstract class Controller{
         }));
 
         $twig->addGlobal('error', Errors());
+        $twig->addGlobal('auth', Auth());
+
 
         echo $twig->render($path,$datas);
     }
