@@ -54,6 +54,7 @@ function Auth(){
     return array(
         'status' => $request->session('auth'),
         'username' => $request->session('username'),
+        'email' => $request->session('email'),
         'photo' => $request->session('photo')
     );
 }

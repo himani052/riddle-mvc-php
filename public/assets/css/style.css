@@ -1,4 +1,10 @@
 /***************** General settings *****************************/
+
+.cache-image-loader{
+    display: none;
+}
+
+
 .dark-bg{
     background-color: #1b1e21;
 }
@@ -108,6 +114,10 @@ iframe{
 
 /********************** Parcours ***************************************/
 
+#parcours-list{
+    margin-top: 5%;
+}
+
 .box-parcours{
     background-size: cover;
     background-position: 50% 50%;
@@ -213,7 +223,7 @@ iframe{
 .box-comment{
     padding: 1.8em;
     border-radius: 15px;
-    background-color: lightgrey;
+    background-color: #E5E8E8;
     font-size: 0.8em;
 }
 
@@ -226,7 +236,30 @@ iframe{
     border-radius: 50px;
 }
 
+.bubble-comment{
+    margin: 2% 0;
+}
 
+.bubble-comment span{
+    font-size: 0.7em;
+    color: #4e555b;
+    float: right;
+    margin-right: 5%;
+}
+
+.bubble-comment em{
+    font-size: 0.9em;
+    color: #4e555b;
+}
+
+.bubble-comment hr{
+    margin-bottom: 0.1em;
+}
+
+.bubble-comment a{
+    text-decoration: none;
+    font-size: 0.8em;
+}
 
 /*********** Login/logout ****************************/
 
@@ -312,7 +345,7 @@ iframe{
 @media (min-width: 995px) {
 
 
-    .box-parcours{
+    .box-parcours-show{
         min-width: 500px;
     }
 

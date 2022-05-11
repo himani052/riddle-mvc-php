@@ -35,6 +35,7 @@ class UserController extends Controller {
                 //Declaration variables de sessions
                 $request->session('auth', (int) $user->role);
                 $request->session('username', $user->pseudo);
+                $request->session('email', $user->emailUser);
                 $request->session('photo', $user->photo);
                 var_dump($user->photo);
                 header('Location: /?success=true');

@@ -11,7 +11,11 @@ Route::post('/home/create', 'App\controllers\HomeController@create')->name('home
 //Parcours
 Route::get('/parcours', 'App\controllers\ParcoursController@index')->name('parcours.index');
 Route::get('/parcours/show/{id}', 'App\controllers\ParcoursController@show')->name('parcours.show');
-Route::get('/parcours/show-scroll/{id}', 'App\controllers\ParcoursController@scroll')->name('parcours.scroll');
+
+
+//Commentaires Parcours
+Route::post('/parcours/comment/create', 'App\controllers\CommentController@create')->name('parcours.comment.create');
+Route::get('/parcours/comment/delete/{id}/{parcoursID}', 'App\controllers\CommentController@delete')->name('parcours.comment.delete');
 
 
 

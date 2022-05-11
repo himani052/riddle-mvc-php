@@ -22,7 +22,7 @@
 
     <body class="bg-light">
 
-
+        {% include 'layouts/image-loader.twig' %}
         {% include 'layouts/navbar.twig' %}
 
 
@@ -30,6 +30,7 @@
 
         <script src="/public/assets/js/jquery.slim.min.js"></script>
         <script src="/public/assets/js/bootstrap.bundle.js"></script>
+        {% block js %}{% endblock %}
     </body>
 
 </html>

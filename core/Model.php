@@ -38,4 +38,28 @@ abstract class Model{
     }
 
 
+    public function removeById($id) {
+        $stmt = $this->db->getPDO()->prepare("DELETE FROM {$this->table}  WHERE id = ? ");
+        return $stmt->execute([$id]);
+    }
+
+    /*
+    //Ajouter des éléments dans les tables
+    public function create(array $data, ?array $relations = null)
+    {
+        $firstParenthesis = "";
+        $secondParenthesis = "";
+        $i = 1;
+
+        foreach ($data as $key => $value){
+            $comma = $i === count($data) ? "" : ", ";
+            $firstParenthesis .= "{$key}{$comma}";
+            $secondParenthesis .= ";{$key}{$comma}";
+            $i++;
+        }
+
+        return $this->db->getPDO()->query("INSERT INTO {$this->table} ($firstParenthesis) VALUE ($secondParenthesis)", $data);
+    }
+    */
+
 }

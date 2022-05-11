@@ -3,6 +3,7 @@
 namespace App\controllers;
 
 use App\https\HttpRequest;
+use App\models\Comment;
 use App\models\Parcours;
 use App\models\User;
 use Controller;
@@ -23,32 +24,33 @@ class ParcoursController extends Controller
 
     public function show($id){
 
+        //parcours
         $parc = new Parcours($this->getDB());
         $parc = $parc->findById($id);
 
+        //users
         $req = $this->db->getPDO()->query("SELECT * FROM user LIMIT 3");
         $users =  $req->fetchAll();
 
-        return $this->view('parcours/show.twig', compact('parc', 'users'));
+        //comments
+        $req = $this->db->getPDO()->prepare("SELECT * FROM comment WHERE parcours_id = ? ");
+        $req->execute([$id]);
+        $comments = $req->fetchAll();
+
+
+        return $this->view('parcours/show.twig', compact('parc', 'users', 'comments'));
 
 
     }
 
-    public function scroll($id){
-
-        $parc = new Parcours($this->getDB());
-        $parc = $parc->findById($id);
-
-        $req = $this->db->getPDO()->query("SELECT * FROM user LIMIT 3");
-        $users =  $req->fetchAll();
-
-        return $this->view('parcours/show-scroll.twig', compact('parc', 'users'));
-
-
-    }
 
     public function create(HttpRequest $request){
         //$request->all()
         //donne l'accès au methode post
     }
+
+
+
+
+
 }

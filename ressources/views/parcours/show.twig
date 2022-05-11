@@ -50,36 +50,62 @@
                         </div>
 
                         <div class="parcours-comments">
-                            <h2>Commentaire des joueurs</h2>
+                            <h2>Commentaires des joueurs</h2>
 
-                            <div class="row">
+                            {% for comment in comments %}
+                            <div class="bubble-comment row">
                                 <div class="col-2">
                                     <img alt="player-1" src="/public/assets/img/jpg/users/portrait-1.jpg"/>
+
                                 </div>
                                 <div class="col-10">
                                     <div class="box-comment">
                                         <p>
-                                            Libero iaculis, a dignissim lacus blandit. Praesent lacinia ligula dui, suscipit posuere felis convallis non. Suspendisse bibendum feugiat ultricies.  Ejectae !!
+                                            {{ comment.description|raw}}
                                         </p>
+                                        <hr>
+                                        <em>Hortalia - Membre depuis le 12/04/22 </em>
+
+                                        {{ comment.user.pseudo|raw}}
                                     </div>
-                                    <span>26/03:2022 23:42:00</span>
+                                    <span>{{ comment.creationDate }}</span>
+                                    <a href="{{ route('parcours.comment.delete', {'id':comment.id ,'parcoursID':parc.id})}}" class="text-black-50">Supprimer</a>
                                 </div>
                             </div>
+                            {% endfor %}
+
                         </div>
 
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ultricies dui nec lacinia maximus. Donec sed enim pellentesque justo faucibus pulvinar. Pellentesque consequat libero ut augue ornare suscipit. Donec tincidunt nulla eget sem vehicula, et facilisis quam volutpat. In consectetur laoreet risus a gravida. Fusce maximus vehicula libero, ac ornare nulla scelerisque nec. Cras lobortis quis lectus sed pretium. Vivamus sit amet urna efficitur, egestas erat lacinia, venenatis orci. Proin tellus libero, laoreet non augue ut, hendrerit varius mi. Nullam posuere, lacus quis ornare eleifend, ex purus pretium leo, a congue elit quam ac eros. Proin arcu arcu, maximus in urna eu, ullamcorper commodo ligula. Phasellus cursus iaculis mollis. Fusce vehicula ultricies libero sit amet viverra. In ultricies, lorem eu sodales accumsan, nulla nunc bibendum lacus, nec tempor arcu magna vel ligula. Mauris nec tincidunt purus, quis rutrum neque.
+                        <br>
+                        <div class="add-comment-parcours">
+                            <h2>Ajouter un commentaire</h2>
 
-                        Sed ac sem in turpis venenatis efficitur quis in felis. Vivamus sollicitudin est quis consequat rhoncus. Sed non lacinia ante. Proin porta iaculis lectus, a feugiat dolor consequat eget. Morbi sit amet diam sapien. Suspendisse tempus mattis tempor. Praesent suscipit tempus eros, eget posuere lacus porttitor vel. Morbi finibus et quam vel gravida. Ut gravida et sapien vitae eleifend.
-
-                        Aenean sit amet metus ligula. Phasellus semper felis nulla, hendrerit aliquam magna convallis vel. Vivamus bibendum, tortor nec luctus convallis, arcu nisi sodales ipsum, ut ultrices ipsum erat a metus. Suspendisse potenti. Etiam id facilisis leo, ac feugiat turpis. Integer et dolor et nulla ullamcorper laoreet. Aenean consectetur tellus ligula, eu rutrum nisi maximus eget. Sed dictum odio ac arcu rutrum, in molestie magna efficitur.
-
-                        Sed dui ipsum, sollicitudin a ante vel, ornare laoreet nibh. Mauris iaculis ac ligula a viverra. Donec vehicula vel nibh in consectetur. Aenean turpis ex, eleifend nec ex id, ultricies molestie dolor. Curabitur a tortor orci. Nunc rhoncus neque eget lacinia imperdiet. Sed commodo nunc nec lacus posuere sagittis. Nullam a lacinia sem, at bibendum diam. In nec tempus ligula. Duis finibus ligula ut urna iaculis, sit amet sagittis dolor hendrerit. Ut condimentum pharetra lectus sit amet consequat. Sed massa elit, luctus eu rhoncus elementum, consectetur placerat eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec imperdiet tempus justo, eu tincidunt lectus venenatis eget. Duis nibh ligula, viverra vel feugiat id, luctus quis nisi. Aliquam lacus dui, ullamcorper non mollis nec, lobortis sit amet augue.
+                            <form method="post" action="{{ route('parcours.comment.create') }}">
+                                <div class="form-group">
+                                    <label for="pseudo">Pseudo</label>
+                                    <input type="pseudo" class="form-control" id="pseudo" name="pseudo" placeholder="Entrez votre pseudo">
+                                    <input type="hidden" class="form-control" id="idparcours" name="idparcours" value="{{ parc.id }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ckeditor">Password</label>
+                                    <textarea class="form-control" name="ckeditor"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-yellow-square">Envoyer</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
         </section>
 
+{% endblock %}
 
 
-
-
+{% block js %}
+    <script src="/public/assets/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('ckeditor', {
+            uiColor: '#FFA626',
+            removeButtons: 'PasteFromWord'
+        });
+    </script>
 {% endblock %}
