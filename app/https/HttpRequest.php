@@ -5,21 +5,24 @@ namespace App\https;
 class HttpRequest{
 
 
-    protected $posts;
-    protected $errors;
+    protected $posts = [];
+    protected $errors = [];
 
     public function __construct(){
-        $this->posts = $this->all() ;
+        $this->posts = $this->name($name = null) ;
     }
 
     //Permet de récupéré les valeurs posté par formulaire
-    public function all(){
-        return $_POST;
-    }
-
     //prend le nom des champs
-    public function name($field){
-        return $_POST[$field];
+    public function name($name = null){
+
+        //Sécurisation
+        if($name == null){
+            return $_POST;
+        }else{
+            return $_POST[$name];
+        }
+
     }
 
     public function session($name, $data = null){
@@ -30,6 +33,7 @@ class HttpRequest{
         }
     }
 
+
     //récupérer la dernière URL
     public function lastUrl(){
         return $_SERVER['HTTP_REFERER'];
@@ -39,7 +43,41 @@ class HttpRequest{
         return header('Location: '.$this->lastUrl());
     }
 
+    /* File loaders -------------------------------------------------------------------------------------- */
 
+    // name = post name
+    public function loaderFiles($name, $file_dest, array $data){
+
+        //récupération nom du fichier
+        $file_name = $_FILES[$name]['name'];
+
+        //récupération des chaînes de charactères à partir du point
+       $file_extension = strrchr($file_name,".");
+
+        //récupération stockage temporel
+       $file_temp = $_FILES[$name]['tmp_name'];
+
+        //Gestion chemin de destination du fichier
+        $file_dest = $file_dest.$file_name;
+
+        //Tester si l'extention du fichier post envoyé correspond aux extensions renseignés en paramètre de la méthode
+        if(in_array($file_extension, $data)){
+            //Si l'extension est valide
+            //Le fichier de la machine local est copier dans le serveur
+
+            if(move_uploaded_file($file_temp, $file_dest)){
+                return $file_dest;
+            }else{
+                echo "Erreur survenue lors du chargement des fichiers";
+            }
+        }else{
+            echo "L'extension n'existe pas";
+        }
+
+    }
+
+
+    /* Validator ---------------------------------------------------------------------------------------- */
 
     //traiter formulaires
     //Fonction qui permet de traiter les éléments post des formulaires et ajouter des contraintes
@@ -62,14 +100,17 @@ class HttpRequest{
                         default:
                             break;
                     }
+
+                    $this->session('input', $this->posts);
                 }
             }
         }
-        if($this->getErrors() != null){
+        if(!empty($this->getErrors())){
             //var_dump(isset($_SESSION['errors']) ? $_SESSION['errors'] : []);
             header('Location: '.$this->lastUrl());
         }else{
-            return $this->all();
+            unset($_SESSION['errors']);
+            return $this->name();
         }
     }
 
@@ -107,7 +148,8 @@ class HttpRequest{
     //Afficher les erreurs dans la sessions et les détruires en relançant le bouton submit
     public function getErrors(){
 
-        if($this->errors !== null){
+
+        if(!empty($this->errors)){
             $this->session('errors', $this->errors);
             return ($this->session('errors') !== null) ? $this->session('errors') : [];
         }else{
@@ -122,5 +164,6 @@ class HttpRequest{
         }
         return isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
         */
+
     }
 }

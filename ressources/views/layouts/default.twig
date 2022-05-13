@@ -25,8 +25,10 @@
         {% include 'layouts/image-loader.twig' %}
         {% include 'layouts/navbar.twig' %}
 
+        <div class="content-margin-top">
+            {{ block('content') }}
+        </div>
 
-        {{ block('content') }}
 
         <script src="/public/assets/js/jquery.slim.min.js"></script>
         <script src="/public/assets/js/bootstrap.bundle.js"></script>

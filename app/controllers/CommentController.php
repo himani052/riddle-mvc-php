@@ -20,10 +20,14 @@ class CommentController extends Controller {
         var_dump($idParcours);
 
         //Valeurs post récupérées
-        //$feilds = $request->all();
+        $feilds = $request->validator(
+            [
+                'ckeditor' => ['required']
+            ]
+        );
 
         $comment = new Comment($this->getDB());
-        $comment->create($_POST['ckeditor'],$request->session('email'),$idParcours);
+        $comment->create($feilds['ckeditor'],$request->session('email'),$idParcours);
 
         return redirect('parcours.show', ['id' => $idParcours]);
 
@@ -31,7 +35,7 @@ class CommentController extends Controller {
 
     public function delete($id, $parcoursID){
 
-        var_dump($parcoursID);
+
 
         $comment = new Comment($this->getDB());
         $comment->removeById($id);

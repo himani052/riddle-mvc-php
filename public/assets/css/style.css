@@ -101,9 +101,12 @@ iframe{
     top: 0;
     right: 0;
     left: 0;
-    z-index: 10;
+    z-index: 100;
 }
 
+.content-margin-top{
+    margin-top: 5.5%;
+}
 
 
 /*********************** Home page ***************************************/
@@ -270,7 +273,7 @@ iframe{
 
 .form-box{
     width: 60%;
-    margin: 4% auto 2% auto;
+    margin: 8% auto 2% auto;
     padding: 3% 4% 1% 4%;
 }
 
@@ -320,14 +323,45 @@ iframe{
 
 
 
-/** account **/
+/*************************************** Account - Parcours *********************************************/
 
 .account-parcours-box h3{
     font-size: 1.2em;
 }
 
+.sticky-top{
+    z-index: 0;
+}
 
 
+.menu-account-parcours ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    min-width: 250px;
+}
+
+.menu-account-parcours li{
+    padding: 3% 3% 3% 5%;
+    margin: 1%;
+    border-radius: 5px;
+}
+
+.menu-account-parcours i{
+    margin-right: 1.5em;
+}
+
+.menu-account-parcours a{
+    color: #1b1e21;
+    text-decoration: none;
+}
+
+.menu-account-parcours li:hover{
+    background-color: #FFA626;
+}
+.menu-account-parcours li:hover a{
+    font-weight: 600;
+}
 
 
 /************************************* Responsive *****************************************/

@@ -38,3 +38,14 @@ limiter le text avec twig
 
 
 //implémenter autoloader css pour charger img plus rapidement 
+
+
+## Sécurisation
+
+Lorsque l'utilisateur cherche à supprimer un parcours en étant non connecté via
+l'url 'http://riddle-2/account/parcours/delete/7', il est automatiquement renvoyé vers 
+la page de connection. 
+
+
+Insérer images dans formulaires
+``enctype="multipart/form-data"``

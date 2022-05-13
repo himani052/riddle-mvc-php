@@ -23,19 +23,29 @@ function route($name, $params = [])
 
 function redirect($name, $params = []){
     //supprimer les variables de sessions
-    unset($_SESSION['errors']);
-    unset($_SESSION['input']);
+    //unset($_SESSION['errors']);
+    //unset($_SESSION['input']);
     $path = Route::url($name, $params);
     header('Location:'.$path);
 }
 
 
+//Garder en mémoire les input saisi après l'envoie du formulaire en cas d'erreur
+function setpost(){
+    return isset($_SESSION['input']) ? $_SESSION['input'] : "";
+}
+
+
+function session($val){
+    return isset($_SESSION[$val]) ? $_SESSION[$val] : "";
+}
+
+
 //Erreurs formulaires
 function Errors(){
-    $request = new HttpRequest();
 
     //getErrors retourne un tableau d'erreurs
-    $errors = $request->getErrors();
+    $errors = session('errors');
     $dataErrors = [];
 
     if(!empty($errors)){

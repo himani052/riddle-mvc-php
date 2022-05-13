@@ -90,6 +90,12 @@
                                     <label for="ckeditor">Password</label>
                                     <textarea class="form-control" name="ckeditor"></textarea>
                                 </div>
+                                {% if error.ckeditor %}
+                                    <span class="text-danger">
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ error.ckeditor }}<br><br>
+                                </span>
+                                {% endif %}
                                 <button type="submit" class="btn btn-yellow-square">Envoyer</button>
                             </form>
                         </div>

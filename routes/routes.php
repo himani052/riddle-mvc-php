@@ -33,12 +33,16 @@ Route::get('/connection','App\controllers\UserController@connect')->name('user.c
 Route::post('/login','App\controllers\UserController@login')->name('user.login') ;
 Route::get('/logout','App\controllers\UserController@logout')->name('user.logout') ;
 
-Route::get('/inscription','App\controllers\UserController@register')->name('user.register') ;
+Route::get('/register','App\controllers\UserController@register')->name('user.register') ;
 
 
 //User:account:parcours
-Route::get('/account/parcours/','App\controllers\Account\ParcoursController@index')->name('account.parcours.index') ;
-Route::get('/account/parcours/list/','App\controllers\Account\ParcoursController@list')->name('account.parcours.list') ;
+Route::get('/account/parcours/','App\controllers\Account\AccountParcoursController@index')->name('account.parcours.index') ;
+Route::get('/account/parcours/list/','App\controllers\Account\AccountParcoursController@list')->name('account.parcours.list') ;
+Route::get('/account/parcours/delete/{id}','App\controllers\Account\AccountParcoursController@delete')->name('account.parcours.delete') ;
+Route::get('/account/parcours/create','App\controllers\Account\AccountParcoursController@createForm')->name('account.parcours.create') ;
+Route::post('/account/parcours/new','App\controllers\Account\AccountParcoursController@create')->name('account.parcours.new') ;
+
 
 
 

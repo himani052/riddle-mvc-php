@@ -33,7 +33,7 @@ abstract class Controller{
 
         $twig->addGlobal('error', Errors());
         $twig->addGlobal('auth', Auth());
-
+        $twig->addGlobal('post',setpost());
 
         echo $twig->render($path,$datas);
     }

@@ -5,7 +5,15 @@
 
 
 
-        <iframe src="{{ route('account.parcours.list') }}" height="500px" width="100%" title="Iframe Example"></iframe>
+        <div class="overflow-hidden">
+            <a class="btn btn-yellow-square mb-3 float-right">
+                <i class="fa-solid fa-plus"></i>
+                Nouveau parcours
+            </a>
+            <div class="embed-responsive embed-responsive-4by3">
+                <iframe class="embed-responsive-item" src="{{ route('account.parcours.list') }}" height="800px" width="100%" title="Iframe Example"></iframe>
+            </div>
+        </div>
 
 
 {% endblock %}
