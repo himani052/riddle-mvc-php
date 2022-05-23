@@ -10,34 +10,34 @@
                     <h2>Cela prend que quelques secondes et promis tes données personnelles sont entre de bonnes mains  ;)</h2>
                 </div>
                 <div class="card-texte">
-                    <form id="loginForm" method="POST" action="">
+                    <form id="loginForm" method="POST" action="{{ route('user.create') }}">
 
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Pseudo</label>
-                                    <input type="text" name="pseudo" id="pseudo" class="form-control  {% if error.name %}input-error{% endif %}" placeholder="Comment veux-tu être appelé ?">
+                                    <label for="pseudoUser">Pseudo</label>
+                                    <input type="text" name="pseudoUser" id="pseudo" value="{{ post.pseudoUser }}" class="form-control {% if error.pseudoUser %}input-error{% endif %}" placeholder="Comment veux-tu être appelé ?">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Date de naissance</label>
-                                    <input type="date" name="birthdate" id="birthdate" class="form-control  {% if error.birthdate %}input-error{% endif %}" placeholder="Quand est-tu né ?">
+                                    <label for="birthdateUser">Date de naissance</label>
+                                    <input type="date" name="birthdateUser" id="birthdateUser" value="{{ post.birthdateUser }}"  class="form-control{% if error.birthdateUser %}input-error{% endif %}" placeholder="Quand est-tu né ?">
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Addresse mail</label>
-                            <input type="email" name="email" id="email" class="form-control  {% if error.email %}input-error{% endif %}" placeholder="Quelle est ton addresse mail ?">
+                            <label for="emailUser">Addresse mail</label>
+                            <input type="email" name="emailUser" id="emailUser" value="{{ post.emailUser }}" class="form-control {% if error.emailUser %}input-error{% endif %}" placeholder="Quelle est ton addresse mail ?">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Mot de passe</label>
-                            <input type="password" name="password" id="password" class="form-control {% if error.password %}input-error{% endif %}" placeholder="Choisis un mot de passe pour sécuriser ton compte">
+                            <label for="passwordUser">Mot de passe</label>
+                            <input type="password" name="passwordUser" id="passwordUser" value="{{ post.passwordUser }}" class="form-control {% if error.passwordUser %}input-error{% endif %}" placeholder="Choisis un mot de passe pour sécuriser ton compte">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Confirmation de mot de passe</label>
-                            <input type="password" name="password2" id="password2" class="form-control {% if error.password2 %}input-error{% endif %}" placeholder="Confirme ton mot de passe">
+                            <label for="passwordUserConfirmation">Confirmation de mot de passe</label>
+                            <input type="password" name="passwordUserConfirmation" id="passwordUserConfirmation" value="{{ post.passwordUserConfirmation }}" class="form-control {% if error.passwordUserConfirmation %}input-error{% endif %}" placeholder="Confirme ton mot de passe">
                         </div>
                         <div class="mt-4 submit-box">
                             <button type="submit" class="btn btn-yellow-square mx-auto d-block">C'est parti !</button>

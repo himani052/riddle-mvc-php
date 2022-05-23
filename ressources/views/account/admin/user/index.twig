@@ -1,0 +1,43 @@
+{% extends "account/layouts/default.twig" %}
+
+
+{% block account %}
+
+
+    <div class="container">
+        <div class="card card-account">
+            <div class="card-title p-4">
+               <h1 class="m-0"> <i class="fa fa-users mr-4"></i> Liste des utilisateurs</h1>
+            </div>
+            <hr class="text-black-50">
+            <div class="card-body p-4">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Email</th>
+                        <th scope="col">Pseudo</th>
+                        <th scope="col">Birthdate</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <th scope="row">{{ user.emailUser }}</th>
+                            <td>{{ user.pseudoUser }}</td>
+                            <td>{{ user.birthdateUser }}</td>
+                            <td>
+                                <a href="#" class="text-black-50"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="{{ route('account.course.delete', {'id':course.idCourse}) }}" class="text-danger "><i class="fa-solid fa-trash-can"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

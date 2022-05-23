@@ -3,18 +3,18 @@
 namespace App\controllers\Account;
 
 use App\https\HttpRequest;
-use App\models\Parcours;
+use App\models\Course;
 use App\models\User;
 use Controller;
 use Database\DBConnection;
 
 
-class AccountParcoursController extends Controller
+class AccountCourseController extends Controller
 {
 
     public function index(){
 
-        $course = new Parcours($this->getDB());
+        $course = new Course($this->getDB());
         $courses = $course->all();
 
         return $this->view('account/course/index.twig', compact('courses'));
@@ -23,17 +23,17 @@ class AccountParcoursController extends Controller
 
     public function list(){
 
-        $course = new Parcours($this->getDB());
+        $course = new Course($this->getDB());
         $courses = $course->all();
 
-        return $this->view('account/course/list.twig', compact('course'));
+        return $this->view('account/course/list.twig', compact('courses'));
 
     }
 
     public function show($id){
 
         /*
-        $parc = new Parcours($this->getDB());
+        $parc = new Course($this->getDB());
         $parc = $parc->findById($id);
 
         $req = $this->db->getPDO()->query("SELECT * FROM user LIMIT 3");
@@ -54,16 +54,13 @@ class AccountParcoursController extends Controller
 
         //Télécharger l'image
         //LoaderFile prendre en paramètre : nom de l'imput + addresse de destination + type de fichier
-        $image = $request->loaderFiles('parcoursImage', 'assets/img/loaders/', ['.png', '.PNG', '.jpg', '.JPG', '.jpeg', '.JPEG'] );
+        $image = $request->loaderFiles('courseImage', 'assets/img/loaders/', ['.png', '.PNG', '.jpg', '.JPG', '.jpeg', '.JPEG'] );
 
         //Récupération de nos champs
         $value = $request->validator([
-           'parcoursTitle' => ['required'],
-            'parcoursLieu' => ['required'],
-            'parcoursVille' => ['required'],
-            'parcoursPays'  => ['required'],
-            'ckeditor' => ['required'],
-            'parcoursImage' => ['required'],
+            'courseTitle' => ['required'],
+            'courseDescription' => ['required'],
+            'courseDistance' => ['required'],
         ]);
 
         //fusionner tableau de valeur et images
@@ -71,11 +68,11 @@ class AccountParcoursController extends Controller
         $data = array_merge_recursive($value, ['image' => '/public/'.$image]);
 
         //Insérer les données dans la table course
-        //var_dump($data);
+        var_dump($data);
 
-        $parcours = new Parcours($this->getDB());
+        $new_course = new Course($this->getDB());
 
-        $parcours->create($data['parcoursTitle'],$data['parcoursLieu'], $data['parcoursVille'],$data['parcoursPays'],$data['ckeditor'],$data['image']);
+        $new_course->create($data['courseTitle'],$data['courseDescription'], $data['image'],$data['courseDistance']);
 
         return redirect('account.course.index');
 
@@ -85,15 +82,13 @@ class AccountParcoursController extends Controller
 
         if(isAdmin()){
             //Si administrateur supprimer course
-            $parcours = new Parcours($this->getDB());
-            $parcours->removeById($id);
+            $course = new Course($this->getDB());
+            $course->removeById($id);
             return redirect('account.course.list');
         }else{
             //Sinon renvoyer vers la page de login
             return redirect('user.connect');
         }
-
-
 
     }
 

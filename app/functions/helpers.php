@@ -62,17 +62,18 @@ function Errors(){
 function Auth(){
     $request = request();
     return array(
-        'status' => $request->session('auth'),
-        'username' => $request->session('username'),
+        'admin' => $request->session('admin'),
+        'pseudo' => $request->session('pseudo'),
         'email' => $request->session('email'),
-        'photo' => $request->session('photo')
+        'photo' => $request->session('photo'),
+        'registrationDate' => $request->session('registrationDate'),
     );
 }
 
 //Fonction qui verifie s'il s'agit d'un administrateur
 function isAdmin(){
     $request = request();
-    if($request->session('auth') == 1){
+    if($request->session('admin') == 1){
         return true;
     }else{
         return redirect('home.index');

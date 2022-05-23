@@ -6,18 +6,22 @@ use Model;
 
 class Comment extends Model {
 
-    protected $table = 'comment';
+    protected $table = '`COMMENT`';
+    protected $id = '`idComment`';
 
-    public function create($description,$userEmailUser,$parcoursId)
+    public function create($descriptionComment,$userEmail,$courseId,$pseudoUserNotRegistered)
     {
-        $req = $this->db->getPDO()->prepare('INSERT INTO comment (description, user_emailUser, parcours_id) VALUES (:description, :user_emailUser, :parcours_id)');
+        $req = $this->db->getPDO()->prepare("INSERT INTO COMMENT (descriptionComment,user_emailUser,course_idCourse, pseudoUserNotRegistered) VALUES (:descriptionComment,:user_emailUser,:course_idCourse, :pseudoUserNotRegistered )");
 
         return $req->execute(array(
-            'description' => $description,
-            'user_emailUser' => $userEmailUser,
-            'parcours_id' => $parcoursId,
+            'descriptionComment' => $descriptionComment,
+            'user_emailUser' => $userEmail,
+            'course_idCourse' => $courseId,
+            'pseudoUserNotRegistered' => $pseudoUserNotRegistered
         ));
 
     }
+
+
 }
 

@@ -3,53 +3,76 @@
 class Route
 {
 
-    //variable stockant les routes post et get
+
+    /**
+     * @var
+     * Stocke les routes post "POST" "GET"
+     */
     private static $request;
 
-    public static function get($path,$action)
+
+    /**
+     * @param $path
+     * @param $action
+     * @return Request
+     * Gère le traitement des routes avec la méthode "GET" {Affichages}
+     * Stockage des routes de GET - chaînage
+     */
+    public static function get($path, $action)
     {
-        //stockage des routes de GET - chaînage
         $routes = new Request($path,$action);
         self::$request['GET'][] = $routes;
         return $routes;
     }
 
-    public static function post($path,$action)
+    /**
+     * @param $path
+     * @param $action
+     * @return Request
+     * Gère le traitement des routes avec la méthode "POST" {formulaires, actions}
+     * Stockage des routes de GET - chaînage
+     */
+    public static function post($path, $action)
     {
-        //stockage des routes de POST - chaînage
+
         $routes = new Request($path,$action);
         self::$request['POST'][] = $routes;
         return $routes;
     }
 
 
+    /**
+     * Méthode d'exécution des routes
+     * 1. Parcourir les routes stockées dans la variable request avec le 'foreach'
+     * 2. Compare l'URL saisi par l'utilisateur avec les URL prédéfinis dans le fichier Route/routes.php avec la méthode 'match'
+     *      => La variable url de '$_GET['url']' provient du fichier htaccees
+     *      => la méthode trim permet ici de retirer les '/' de l'url
+     * 3. '$route->execute()' est une méthode d'exécution afin d'obtenir le résultat (renvoie vers le bon controlleur)
+     * 4. Si la route saisi par l'utilisateur est trouvé arrêter le processus => die();
+     * 5. Si la route saisi par l'utilisateur n'est pas trouvé => afficher une page d'erreur
+     */
     public static function run()
     {
-        //parcourir routes stockées dans la variable request
+        foreach (self::$request[$_SERVER['REQUEST_METHOD']] as $route){
 
-    foreach (self::$request[$_SERVER['REQUEST_METHOD']] as $route){
+            if($route->match(trim($_GET['url']), '/' )){
 
-        //méthode qui va comparer l'url de l'utilisateur et celle existantes
-        //la vaviable url provient du htacess
-        //On enlève les / de début et de fin avec trim
-        if($route->match(trim($_GET['url']), '/' )){
+                $route->execute();
+                die();
+            }
 
-            //méthode d'exécussion => obtenir le résultat
-            $route->execute();
+            header('HTTP/1.0 404 Not found');
 
-            //si la route est trouvé j'arrêtre le processus
-            die();
         }
-
-        //Si la route n'existe pas afficher une page d'erreur
-        header('HTTP/1.0 404 Not found');
-
-    }
-
     }
 
 
-    //fonction qui va traiter la fonction name dans la classe Request
+    /**
+     * @param $name
+     * @param array $parameters
+     * @return string
+     * fonction qui va traiter la fonction name dans la classe Request
+     */
     public static function url($name, $parameters = []){
 
         //parcourir toutes les routes (post ou get)
@@ -57,21 +80,24 @@ class Route
             foreach (self::$request[$key] as $routes){
                 //si la cle existe (ex: home.show existe ?)
                 if(array_key_exists($name, $routes->name())){
-                    //recuperation de la route
 
+                    //récupération de la route
                     $route = $routes->name();
-                    //transformer la valeur du tableau en chaine de charactere
+
+                    //transformer la valeur du tableau en chaine de charactères
                     $path = implode($route[$name]);
 
-                    //tester si le parametre est vide
+                    //tester si le paramètre est vide
                     if(!empty($parameters)){
+
                         //parcourir tableau
                         foreach ($parameters as $key => $value){
-                            //je remplace le parametre id par la valeur dans le path
+                            //je remplace le parametre id par la valeur dans le 'path' (chemin)
                             $path = str_replace("{{$key}}", $value, $path);
+
                         }return '/'.$path;
                     }else{
-                        //si le parametre est vide retourner un slash
+                        //si le paramètre est vide retourner un slash
                         return "/".$path;
                     }
                 }

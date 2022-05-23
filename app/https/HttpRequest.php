@@ -52,13 +52,14 @@ class HttpRequest{
         $file_name = $_FILES[$name]['name'];
 
         //récupération des chaînes de charactères à partir du point
-       $file_extension = strrchr($file_name,".");
+        $file_extension = strrchr($file_name,".");
 
         //récupération stockage temporel
        $file_temp = $_FILES[$name]['tmp_name'];
 
         //Gestion chemin de destination du fichier
         $file_dest = $file_dest.$file_name;
+
 
         //Tester si l'extention du fichier post envoyé correspond aux extensions renseignés en paramètre de la méthode
         if(in_array($file_extension, $data)){

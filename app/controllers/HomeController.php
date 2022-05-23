@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function show($id){
         //echo "Je suis la page show ".$id;
 
-        $req = $this->db->getPDO()->query('SELECT * FROM user');
+        $req = $this->db->getPDO()->query('SELECT * FROM `USER`');
         $users = $req->fetchAll();
 
         return $this->view('home/show.twig', ['id' => $id] );

@@ -5,8 +5,8 @@
                 <div class="row">
 
                     <div class="col-12 col-md-12 col-lg-6 position-relative dark-bg">
-                        <div class="box-parcours-show box-parcours parcours-fixed " style="background-image: url('/public/assets/img/jpg/parcours/{{ parc.imageCourse }}')">
-                            <div class="bg-light " >
+                        <div class="box-parcours-show box-parcours parcours-fixed " style="background-image: url('{{ parc.imageCourse }}')">
+                            <div class="bg-light">
                                 <div class="filter-image">
                                     <div class="content-parcours-show m-5">
                                         <h1>{{ parc.titleCourse}}</h1>
@@ -16,7 +16,7 @@
                                             <li>#tag1</li>
                                             <li>#tag2</li>
                                         </ul>
-                                        <a href="{{ route('parcours.show',{'id' : parc.idCourse}) }}" class="btn play-btn-white float-right"><i class="fa-solid fa-play"></i></a>
+                                        <a href="{{ route('course.show',{'id' : parc.idCourse}) }}" class="btn play-btn-white float-right"><i class="fa-solid fa-play"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
 
                                     </div>
                                     <span>{{ comment.creationDate }}</span>
-                                    <a href="{{ route('parcours.comment.delete', {'idComment':comment.idComment ,'idCourse':parc.idCourse})}}" class="text-black-50">Supprimer</a>
+                                    <a href="{{ route('course.comment.delete', {'idComment':comment.idComment ,'idCourse':parc.idCourse})}}" class="text-black-50">Supprimer</a>
                                 </div>
                             </div>
                             {% endfor %}
@@ -87,7 +87,7 @@
                         <div class="add-comment-parcours">
                             <h2>Ajouter un commentaire</h2>
 
-                            <form method="post" action="{{ route('parcours.comment.create') }}">
+                            <form method="post" action="{{ route('course.comment.create') }}">
                                 <div class="form-group">
                                     <label for="pseudo">Pseudo</label>
                                     <input type="pseudo" class="form-control" id="pseudo" name="pseudo" {% if auth.status == null %}placeholder="Entrez votre pseudo" {% else %}  placeholder="{{ auth.pseudo }}"  disabled{% endif %}  >

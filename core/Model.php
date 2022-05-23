@@ -6,6 +6,7 @@ abstract class Model{
 
     protected $db;
     protected $table;
+    protected $id;
 
     public function __construct(DBConnection $db){
         $this->db = $db;
@@ -16,8 +17,14 @@ abstract class Model{
         return $stmt->fetchAll();
     }
 
+    public function findBy($element) {
+        $stmt = $this->db->getPDO()->prepare("SELECT * FROM {$this->table}  WHERE {$this->element} = ? ");
+        $stmt->execute([$element]);
+        return $stmt->fetch();
+    }
+
     public function findById(int $id) {
-        $stmt = $this->db->getPDO()->prepare("SELECT * FROM {$this->table}  WHERE id = ? ");
+        $stmt = $this->db->getPDO()->prepare("SELECT * FROM {$this->table}  WHERE {$this->id} = ? ");
         $stmt->execute([$id]);
         return $stmt->fetch();
     }
@@ -39,7 +46,7 @@ abstract class Model{
 
 
     public function removeById($id) {
-        $stmt = $this->db->getPDO()->prepare("DELETE FROM {$this->table}  WHERE id = ? ");
+        $stmt = $this->db->getPDO()->prepare("DELETE FROM {$this->table}  WHERE {$this->id} = ? ");
         return $stmt->execute([$id]);
     }
 

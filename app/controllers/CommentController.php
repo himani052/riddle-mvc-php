@@ -4,6 +4,7 @@ namespace App\controllers;
 
 use App\https\HttpRequest;
 use App\models\Comment;
+use App\models\User;
 use Controller;
 
 class CommentController extends Controller {
@@ -15,34 +16,48 @@ class CommentController extends Controller {
     public function create(HttpRequest $request){
 
         //récupération du champ post idparcours
-        $idParcours = $request->name('idparcours');
+        $idCourse = $request->name('idCourse');
 
-        var_dump($idParcours);
 
-        //Valeurs post récupérées
+        //Valeurs post récupérées traités par la méthode validator
         $feilds = $request->validator(
             [
-                'ckeditor' => ['required']
+                'usercomment' => ['required']
             ]
         );
 
+        //Insertion des commentaires dans la base
         $comment = new Comment($this->getDB());
-        $comment->create($feilds['ckeditor'],$request->session('email'),$idParcours);
+        if(!empty($request->session('email'))){
+            //Si l'utilisateur a un compte, utiliser son pseudo pour le commentaire
+            $comment->create($feilds['usercomment'], $request->session('email'), $idCourse, NULL);
 
-        return redirect('parcours.show', ['id' => $idParcours]);
+            //Récupérer les informations de l'utilisateur ayant inscris un commentaire
+            $user = new User($this->getDB());
+            $user = $user->findUserCommentByCourse($idCourse, $request->session('email'));
+
+
+
+        }else{
+            //Si l'utilisateur n'a pas de compte, utiliser le pseudo qu'il a renseigné
+            $comment->create($feilds['usercomment'], NULL, $idCourse, $feilds['pseudo']);
+        }
+
+
+
+        return redirect('course.show', ['id' => $idCourse]);
 
     }
 
-    public function delete($id, $parcoursID){
-
-
+    public function delete($idComment, $idCourse){
 
         $comment = new Comment($this->getDB());
-        $comment->removeById($id);
+        $comment->removeById($idComment);
 
-        return redirect('parcours.show', ['id' => $parcoursID]);
+        return redirect('course.show', ['id' => $idCourse]);
 
     }
+
 
 
 }

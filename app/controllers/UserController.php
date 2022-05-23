@@ -30,14 +30,16 @@ class UserController extends Controller {
         if($user !== FALSE ){
 
             //on vérifie le mot de passe
-            if($request->name('password') === $user->password){
+            if($request->name('password') === $user->passwordUser){
                 //stocker la session
                 //Declaration variables de sessions
-                $request->session('auth', (int) $user->role);
-                $request->session('username', $user->pseudo);
+
+                $request->session('admin', (int) $user->admin);
+                $request->session('pseudo', $user->pseudoUser);
                 $request->session('email', $user->emailUser);
-                $request->session('photo', $user->photo);
-                var_dump($user->photo);
+                $request->session('photo', $user->photoUser);
+                $request->session('registrationDate', $user->registrationDateUser);
+
                 header('Location: /?success=true');
             }else{
                 echo "mot de passe incorrect";
@@ -56,5 +58,30 @@ class UserController extends Controller {
     public function register(){
         return $this->view('security/registration.twig');
     }
+
+    public function create(HttpRequest $request){
+
+        //Récupération des valeus POST
+        //Traitement des valeurs POST par la méthode validator
+        $values = $request->validator(
+            [
+                'pseudoUser'  => ['requiered'],
+                'birthdateUser'  => ['requiered'],
+                'emailUser' =>  ['requiered'],
+                'passwordUser' => ['requiered'],
+                'passwordUserConfirmation' => ['requiered'],
+            ]
+        );
+
+        //Insertion des valeurs dans la base de donnée
+        $user = new User($this->getDB());
+        $user = $user->create($values['emailUser'],$values['pseudoUser'],$values['passwordUser'],$values['birthdateUser'],0 );
+
+        return redirect('user.connect');
+    }
+
+
+
+
 
 }
