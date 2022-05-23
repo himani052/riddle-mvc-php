@@ -5,18 +5,18 @@
                 <div class="row">
 
                     <div class="col-12 col-md-12 col-lg-6 position-relative dark-bg">
-                        <div class="box-parcours-show box-parcours parcours-fixed " style="background-image: url('{{ parc.image }}')">
+                        <div class="box-parcours-show box-parcours parcours-fixed " style="background-image: url('/public/assets/img/jpg/parcours/{{ parc.imageCourse }}')">
                             <div class="bg-light " >
                                 <div class="filter-image">
                                     <div class="content-parcours-show m-5">
-                                        <h1>{{ parc.titre }}</h1>
-                                        <span class="mt-3"><i class="fa-solid fa-location-dot mr-2"></i>{{ parc.lieu }} - {{ parc.ville }}, {{ parc.pays }}</span>
-                                        <p class="mt-3">{{ parc.description[0:1000]|striptags}}</p>
+                                        <h1>{{ parc.titleCourse}}</h1>
+                                        <span class="mt-3"><i class="fa-solid fa-location-dot mr-2"></i>Lieu - ville , pays</span>
+                                        <p class="mt-3">{{ parc.descriptionCourse[0:1000]|striptags}}</p>
                                         <ul>
                                             <li>#tag1</li>
                                             <li>#tag2</li>
                                         </ul>
-                                        <a href="{{ route('parcours.show',{'id' : parc.id}) }}" class="btn play-btn-white float-right"><i class="fa-solid fa-play"></i></a>
+                                        <a href="{{ route('parcours.show',{'id' : parc.idCourse}) }}" class="btn play-btn-white float-right"><i class="fa-solid fa-play"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -34,10 +34,10 @@
                                 {% for user in users %}
                                 <tr>
                                     <th scope="row">
-                                        <img alt="player-1" src="{{ user.photo }}"/>
+                                        <img alt="player-1" src="/public/assets/img/jpg/users/{{ user.photoUser }}"/>
                                     </th>
                                     <td>
-                                        <h3>{{ user.pseudo }}</h3>
+                                        <h3>{{ user.pseudoUser }}</h3>
                                         <h4>Joueur de niveau 4</h4>
                                     </td>
                                     <td>1657 pts</td>
@@ -55,21 +55,28 @@
                             {% for comment in comments %}
                             <div class="bubble-comment row">
                                 <div class="col-2">
-                                    <img alt="player-1" src="/public/assets/img/jpg/users/portrait-1.jpg"/>
-
+                                    {% if comment.user_emailUser == null %}
+                                        <img alt="player-1" src="/public/assets/img/jpg/users/default.png"/>
+                                    {% else %}
+                                        <img alt="player-1" src="/public/assets/img/jpg/users/portrait-1.jpg"/>
+                                    {% endif %}
                                 </div>
                                 <div class="col-10">
                                     <div class="box-comment">
                                         <p>
-                                            {{ comment.description|raw}}
+                                            {{ comment.descriptionComment|raw}}
+
                                         </p>
                                         <hr>
-                                        <em>Hortalia - Membre depuis le 12/04/22 </em>
+                                        {% if comment.user_emailUser == null %}
+                                             <em>{{ comment.pseudoUserNotRegistered }} - Non membre du site </em>
+                                        {% else %}
+                                            <em>{{ comment.user_emailUser }} - Membre depuis le {{ auth.registrationDate |date("d/m/Y") }} </em>
+                                        {% endif %}
 
-                                        {{ comment.user.pseudo|raw}}
                                     </div>
                                     <span>{{ comment.creationDate }}</span>
-                                    <a href="{{ route('parcours.comment.delete', {'id':comment.id ,'parcoursID':parc.id})}}" class="text-black-50">Supprimer</a>
+                                    <a href="{{ route('parcours.comment.delete', {'idComment':comment.idComment ,'idCourse':parc.idCourse})}}" class="text-black-50">Supprimer</a>
                                 </div>
                             </div>
                             {% endfor %}
@@ -83,17 +90,17 @@
                             <form method="post" action="{{ route('parcours.comment.create') }}">
                                 <div class="form-group">
                                     <label for="pseudo">Pseudo</label>
-                                    <input type="pseudo" class="form-control" id="pseudo" name="pseudo" placeholder="Entrez votre pseudo">
-                                    <input type="hidden" class="form-control" id="idparcours" name="idparcours" value="{{ parc.id }}">
+                                    <input type="pseudo" class="form-control" id="pseudo" name="pseudo" {% if auth.status == null %}placeholder="Entrez votre pseudo" {% else %}  placeholder="{{ auth.pseudo }}"  disabled{% endif %}  >
+                                    <input type="hidden" class="form-control" id="idCourse" name="idCourse" value="{{ parc.idCourse }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="ckeditor">Password</label>
-                                    <textarea class="form-control" name="ckeditor"></textarea>
+                                    <label for="usercomment">Commentaire</label>
+                                    <textarea id="description" class="form-control" name="usercomment"></textarea>
                                 </div>
-                                {% if error.ckeditor %}
+                                {% if error.usercomment %}
                                     <span class="text-danger">
                                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                                    {{ error.ckeditor }}<br><br>
+                                    {{ error.usercomment }}<br><br>
                                 </span>
                                 {% endif %}
                                 <button type="submit" class="btn btn-yellow-square">Envoyer</button>
@@ -105,13 +112,18 @@
 
 {% endblock %}
 
-
 {% block js %}
     <script src="/public/assets/ckeditor/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace('ckeditor', {
-            uiColor: '#FFA626',
-            removeButtons: 'PasteFromWord'
-        });
-    </script>
+<script>
+
+        tinymce.init({
+        selector: "#description",
+        plugins: "emoticons",
+        toolbar: "emoticons",
+        toolbar_location: "bottom",
+        menubar: false
+    });
+</script>
+
+
 {% endblock %}

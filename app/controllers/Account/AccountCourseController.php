@@ -14,19 +14,19 @@ class AccountParcoursController extends Controller
 
     public function index(){
 
-        $parc = new Parcours($this->getDB());
-        $parcours = $parc->all();
+        $course = new Parcours($this->getDB());
+        $courses = $course->all();
 
-        return $this->view('account/parcours/index.twig', compact('parcours'));
+        return $this->view('account/course/index.twig', compact('courses'));
 
     }
 
     public function list(){
 
-        $parc = new Parcours($this->getDB());
-        $parcours = $parc->all();
+        $course = new Parcours($this->getDB());
+        $courses = $course->all();
 
-        return $this->view('account/parcours/list.twig', compact('parcours'));
+        return $this->view('account/course/list.twig', compact('course'));
 
     }
 
@@ -39,14 +39,14 @@ class AccountParcoursController extends Controller
         $req = $this->db->getPDO()->query("SELECT * FROM user LIMIT 3");
         $users =  $req->fetchAll();
 
-        return $this->view('parcours/show.twig', compact('parc', 'users'));*/
+        return $this->view('course/show.twig', compact('parc', 'users'));*/
 
 
     }
 
     public function createForm(){
 
-        return $this->view('account/parcours/create.twig');
+        return $this->view('account/course/create.twig');
 
     }
 
@@ -70,24 +70,24 @@ class AccountParcoursController extends Controller
         //image => champs img bdd
         $data = array_merge_recursive($value, ['image' => '/public/'.$image]);
 
-        //Insérer les données dans la table parcours
+        //Insérer les données dans la table course
         //var_dump($data);
 
         $parcours = new Parcours($this->getDB());
 
         $parcours->create($data['parcoursTitle'],$data['parcoursLieu'], $data['parcoursVille'],$data['parcoursPays'],$data['ckeditor'],$data['image']);
 
-        return redirect('account.parcours.index');
+        return redirect('account.course.index');
 
     }
 
     public function delete($id){
 
         if(isAdmin()){
-            //Si administrateur supprimer parcours
+            //Si administrateur supprimer course
             $parcours = new Parcours($this->getDB());
             $parcours->removeById($id);
-            return redirect('account.parcours.list');
+            return redirect('account.course.list');
         }else{
             //Sinon renvoyer vers la page de login
             return redirect('user.connect');

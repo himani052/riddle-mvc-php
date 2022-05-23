@@ -18,13 +18,13 @@ class ParcoursController extends Controller
         $parc = new Parcours($this->getDB());
         $parcours = $parc->all();
 
-        return $this->view('parcours/index.twig', compact('parcours'));
+        return $this->view('course/index.twig', compact('parcours'));
 
     }
 
     public function show($id){
 
-        //parcours
+        //course
         $parc = new Parcours($this->getDB());
         $parc = $parc->findById($id);
 
@@ -33,12 +33,12 @@ class ParcoursController extends Controller
         $users =  $req->fetchAll();
 
         //comments
-        $req = $this->db->getPDO()->prepare("SELECT * FROM comment WHERE parcours_id = ? ");
+        $req = $this->db->getPDO()->prepare("SELECT * FROM comment WHERE course_idCourse = ? ");
         $req->execute([$id]);
         $comments = $req->fetchAll();
 
 
-        return $this->view('parcours/show.twig', compact('parc', 'users', 'comments'));
+        return $this->view('course/show.twig', compact('parc', 'users', 'comments'));
 
 
     }
