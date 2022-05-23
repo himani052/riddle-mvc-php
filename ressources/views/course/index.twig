@@ -1,0 +1,31 @@
+{% extends "layouts/default.twig" %}
+
+{% block content %}
+
+
+    <section id="parcours-list">
+        <div class="row">
+
+                {% for parc in parcours  %}
+                    <div class="box-parcours position-relative col-12 col-md-6 col-lg-4 bg-light" style="background-image: url('/public/assets/img/jpg/parcours/{{ parc.imageCourse }}')" >
+                        <div class="filter-image">
+                            <div class="m-5">
+                                <h1>{{ parc.titleCourse }}</h1>
+                                <span class="mt-3"><i class="fa-solid fa-location-dot mr-2"></i>Lieu - Ville , FR</span>
+                                <p class="mt-3">{{ parc.descriptionCourse[0:200]|striptags}} ...</p>
+                                <ul>
+                                    <li>#tag1</li>
+                                    <li>#tag2</li>
+                                </ul>
+                                <a href="{{ route('parcours.show',{'id' : parc.idCourse}) }}" class="btn play-btn-white float-right"><i class="fa-solid fa-play"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+        </div>
+
+    </section>
+
+{% endblock %}

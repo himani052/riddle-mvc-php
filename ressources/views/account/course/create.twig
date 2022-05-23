@@ -1,0 +1,81 @@
+{% extends "account/layouts/default.twig" %}
+
+
+{% block course %}
+    <div class="m-5">
+        <form id="loginForm" method="POST" action="{{ route('account.course.new') }}" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="courseTitle">Titre</label>
+                <input type="text" name="courseTitle" id="courseTitle"
+                       class="form-control  {% if error.courseTitle %}input-error{% endif %}"
+                       placeholder="Quelle est le titre du parcours ?"
+                       value="{{ post.courseTitle }}"
+                >
+                {% if error.courseTitle %}
+                    <span class="text-danger">
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ error.courseTitle }}
+                    </span>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="courseDescription">Description</label>
+                <textarea
+                        name="courseDescription"
+                        id="courseDescription"
+                        class="form-control {% if error.password %}input-error{% endif %}">
+                        {{ post.courseDescription }}
+                </textarea>
+                {% if error.courseDescription %}
+                    <span class="text-danger">
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ error.courseDescription }}
+                    </span>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="courseImage">Image</label>
+                <input type="file" name="courseImage" id="courseImage"
+                       class="form-control {% if error.password %}input-error{% endif %}"
+                       placeholder="Image d'illustration du parcours"
+                       value="{{ post.courseImage }}"
+                >
+                {% if error.courseImage %}
+                    <span class="text-danger">
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ error.courseImage }}
+                    </span>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="courseTitle">Titre</label>
+                <input type="number" name="courseTitle" id="courseTitle"
+                       class="form-control  {% if error.courseDistance %}input-error{% endif %}"
+                       placeholder="Quelle est la distance total du parcours ?"
+                       value="{{ post.courseDistance }}"
+                >
+                {% if error.courseDistance %}
+                    <span class="text-danger">
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ error.courseDistance }}
+                    </span>
+                {% endif %}
+            </div>
+            <div class="mt-4 submit-box">
+                <button type="submit" class="btn btn-yellow-square mx-auto d-block">C'est parti !</button>
+            </div>
+        </form>
+    </div>
+
+{%endblock %}
+
+
+{% block js %}
+    <script src="/public/assets/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('courseDescription', {
+            uiColor: '#FFA626',
+            removeButtons: 'PasteFromWord'
+        });
+    </script>
+{% endblock %}

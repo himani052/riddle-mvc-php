@@ -68,9 +68,8 @@ class Route
                         //parcourir tableau
                         foreach ($parameters as $key => $value){
                             //je remplace le parametre id par la valeur dans le path
-                            $url = str_replace("{{$key}}", $value, $path);
-                            return '/'.$url;
-                        }
+                            $path = str_replace("{{$key}}", $value, $path);
+                        }return '/'.$path;
                     }else{
                         //si le parametre est vide retourner un slash
                         return "/".$path;

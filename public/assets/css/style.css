@@ -1,11 +1,35 @@
 /***************** General settings *****************************/
 
+.cache-image-loader{
+    display: none;
+}
+
+
+.dark-bg{
+    background-color: #1b1e21;
+}
+
 .btn-yellow{
     padding: 0.3em 1.4em;
     background-color: #FFA626;
     border-radius: 50px;
     font-weight: 600;
     color: black;
+}
+
+.btn-yellow-square{
+    padding: 0.4em 1.4em;
+    background-color: #FFA626;
+    font-weight: 600;
+    color: black;
+}
+
+.bg-yellow{
+    background-color: #FFA626;
+}
+
+.text-yellow{
+    color: #FFA626;
 }
 
 .btn-black-line{
@@ -51,6 +75,40 @@
 }
 
 
+.profile-pic{
+    border: 2px solid #FFA626;
+}
+
+.button-none {
+    all: unset;
+    cursor: pointer;
+
+}
+
+.button-none:focus{
+    outline: none;
+}
+
+iframe{
+    border: none;
+}
+
+
+/******* navbar *********************************************************/
+
+.navbar{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.content-margin-top{
+    margin-top: 5.5%;
+}
+
+
 /*********************** Home page ***************************************/
 
 .home-page-container{
@@ -58,6 +116,10 @@
 }
 
 /********************** Parcours ***************************************/
+
+#parcours-list{
+    margin-top: 5%;
+}
 
 .box-parcours{
     background-size: cover;
@@ -110,10 +172,26 @@
 /****************** Parcours show *********************************************************/
 
 .box-parcours-show{
-    height: 43vw;
+    height: 100%;
+    min-height: 400px;
+    width: 50%;
+}
+
+.content-parcours-show{
+    padding-top: 6em;
+}
+
+
+.parcours-fixed{
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    background-color: #1b1e21;
 }
 
 .ranking-comments{
+    margin-top: 5%;
     padding: 4% 6% 4% 6%;
 }
 
@@ -148,7 +226,7 @@
 .box-comment{
     padding: 1.8em;
     border-radius: 15px;
-    background-color: lightgrey;
+    background-color: #E5E8E8;
     font-size: 0.8em;
 }
 
@@ -160,3 +238,158 @@
     width: 50px;
     border-radius: 50px;
 }
+
+.bubble-comment{
+    margin: 2% 0;
+}
+
+.bubble-comment span{
+    font-size: 0.7em;
+    color: #4e555b;
+    float: right;
+    margin-right: 5%;
+}
+
+.bubble-comment em{
+    font-size: 0.9em;
+    color: #4e555b;
+}
+
+.bubble-comment hr{
+    margin-bottom: 0.1em;
+}
+
+.bubble-comment a{
+    text-decoration: none;
+    font-size: 0.8em;
+}
+
+/*********** Login/logout ****************************/
+
+/** general **/
+.input-error{
+    border: 2px solid #dc3545;
+}
+
+.form-box{
+    width: 60%;
+    margin: 8% auto 2% auto;
+    padding: 3% 4% 1% 4%;
+}
+
+.form-box h1{
+    font-size: 1.5em;
+}
+
+.form-box h2{
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.form-box label{
+    font-weight: 500;
+    font-size: 0.9em;
+}
+
+.form-box input::placeholder{
+    font-size: 0.8em;
+}
+
+.submit-box{
+    width: 48%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.submit-box a:hover{
+   color: #FFA626;
+}
+
+/**** Login *****/
+
+#website-connection{
+    background-position: 7% 60%;
+    background-size: 15%;
+    background-repeat: no-repeat;
+}
+
+/*** Registration ***/
+
+#website-registration{
+    background-position: 130% 60%;
+    background-size: 50%;
+    background-repeat: no-repeat;
+}
+
+
+
+/*************************************** Account - Parcours *********************************************/
+
+.account-parcours-box h3{
+    font-size: 1.2em;
+}
+
+.sticky-top{
+    z-index: 0;
+}
+
+
+.menu-account-parcours ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    min-width: 250px;
+}
+
+.menu-account-parcours li{
+    padding: 3% 3% 3% 5%;
+    margin: 1%;
+    border-radius: 5px;
+}
+
+.menu-account-parcours i{
+    margin-right: 1.5em;
+}
+
+.menu-account-parcours a{
+    color: #1b1e21;
+    text-decoration: none;
+}
+
+.menu-account-parcours li:hover{
+    background-color: #FFA626;
+}
+.menu-account-parcours li:hover a{
+    font-weight: 600;
+}
+
+
+/************************************* Responsive *****************************************/
+
+
+@media (max-width: 995px) {
+
+    .parcours-fixed{
+        width: 100%;
+        position: static;
+    }
+
+}
+
+@media (min-width: 995px) {
+
+
+    .box-parcours-show{
+        min-width: 500px;
+    }
+
+}
+
+@media (max-width: 900px) and (min-width: 800px){
+
+    body{
+        background-color: red;
+    }
+
+}
+

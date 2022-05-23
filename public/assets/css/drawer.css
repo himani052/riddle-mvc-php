@@ -1,0 +1,30 @@
+#parcours-account-box {
+    height: 100vh;
+    z-index: -1;
+}
+
+#parcours-account-box hr{
+    margin-top: 0;
+    border: 0.5px solid lightgray;
+}
+
+
+.vh-100 {
+min-height: 100vh;
+}
+
+.sidebar.collapse.show,
+.sidebar.collapse.show + .col {
+transition: .18s ease;
+transform: translate(0,0,0);
+left: 0;
+}
+
+.sidebar.collapse,
+.sidebar.collapsing,
+.sidebar.collapsing + .col {
+transition: .18s ease;
+transform: translate(-25%,0,0);
+z-index: 1050;
+left: -25%;
+}

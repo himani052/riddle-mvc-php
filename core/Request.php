@@ -87,7 +87,8 @@ class Request{
             $controller = $action[0];
             $controller = new $controller(new DBConnection('riddle-test', 'localhost', 'root', ''));
             $method = $action[1];
-            return isset($this->params) ? $controller->$method(implode($this->params)) : $controller->$method(); isset($this->params) ? $controller->method(implode($this->params)) : $controller->method();
+            call_user_func_array([$controller, $method], $this->params);
+            //return isset($this->params) ? $controller->$method(implode($this->params)) : $controller->$method(); isset($this->params) ? $controller->method(implode($this->params)) : $controller->method();
         }else{
             call_user_func_array($this->action, $this->params);
         }
@@ -100,7 +101,10 @@ class Request{
             $controller = $action[0];
             $controller = new $controller(new DBConnection('riddle-test', 'localhost', 'root', ''));
             $method = $action[1];
-            return isset($this->params) ? $controller->$method($this->request, implode($this->params)) : $controller->$method($this->request);
+            //on ajoute l'object request dans le tableau de paramètres
+            array_unshift($this->params, $this->request);
+            call_user_func_array([$controller, $method], $this->params);
+            //return isset($this->params) ? $controller->$method($this->request, implode($this->params)) : $controller->$method($this->request);
         }else{
             call_user_func_array($this->action, $this->params);
         }

@@ -1,0 +1,35 @@
+{% extends "layouts/default.twig" %}
+
+{% block content %}
+
+    <section id="parcours-account-box">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-5 col-md-3 collapse show width m-0 p-0 h-100 bg-white shadow" id="collapseExample" style="min-height: 200vh">
+                   <div class="menu-account-parcours m-4 position-fixed">
+                       <ul>
+                           <li><a href="{{ route('account.parcours.create') }}"><i class="fa-solid fa-plus"></i> Créer un parcours</a></li>
+                           <li><a href="{{ route('account.parcours.index') }}"><i class="fa-solid fa-list"></i>Liste de mes parcours</a></li>
+                           <li><a href="#"><i class="fa-solid fa-chart-area"></i>Statistiques</a></li>
+                       </ul>
+                   </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col-12">
+                            <button class="btn sticky-top" data-toggle="collapse" href="#collapseExample" role="button">
+                                <i class="fa-solid fa-bars"></i>
+                            </button>
+                        </div>
+                        <div class="col-12">
+                            {% block parcours %}
+
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
