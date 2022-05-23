@@ -16,11 +16,11 @@ class Request{
      * @param $path
      * @param $action
      * @param $request
+     * Fontion 'trim' => Supprimer les '/' de l'url récupérée
      */
     public function __construct($path, $action)
     {
         $this->request = new HttpRequest();
-        //On enlève les / de l'url récupéré
         $this->path = trim($path, '/');
         $this->action = $action;
     }
@@ -29,12 +29,11 @@ class Request{
     /**
      * Méthode permettant d'appeler les routes et leurs paramètres
      * @param $name
+     * Tableau avec indices
+     * A chaque 'name' de la route correspond un path
+     * la fonction retourne un tableau avec une clé indexée
      */
     public function name($name = null){
-
-        //tableau avec indice
-        //A chaque name de la route correspond un path
-        //la fonction retourne un tableau avec une clé indexée
         $this->routename[$name][] = $this->path ;
         return $this->routename;
     }
@@ -45,7 +44,7 @@ class Request{
      */
     public function match($url){
 
-        //remplacer tous les caractères alpha numériques par tout sauf des /
+        //remplacer tous les caractères alphanumériques par tout sauf des /
         $path = preg_replace('#({[\w]+})#', '([^/]+)', $this->path );
 
         //passer le chemin complet dans une exp regulière
@@ -85,7 +84,7 @@ class Request{
         if(is_string($this->action)){
             $action = explode('@', $this->action);
             $controller = $action[0];
-            $controller = new $controller(new DBConnection('riddle-test', 'localhost', 'root', ''));
+            $controller = new $controller(new DBConnection('test', 'localhost', 'root', ''));
             $method = $action[1];
             call_user_func_array([$controller, $method], $this->params);
             //return isset($this->params) ? $controller->$method(implode($this->params)) : $controller->$method(); isset($this->params) ? $controller->method(implode($this->params)) : $controller->method();
@@ -99,7 +98,7 @@ class Request{
         if(is_string($this->action)) {
             $action = explode('@', $this->action);
             $controller = $action[0];
-            $controller = new $controller(new DBConnection('riddle-test', 'localhost', 'root', ''));
+            $controller = new $controller(new DBConnection('test', 'localhost', 'root', ''));
             $method = $action[1];
             //on ajoute l'object request dans le tableau de paramètres
             array_unshift($this->params, $this->request);

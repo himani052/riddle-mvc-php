@@ -23,13 +23,13 @@ class DBConnection{
 
         if($this->pdo === null){
 
-            $this->pdo = new \PDO("mysql:dbname={$this->dbname};host={$this->host}", $this->username, $this->password,
+            $this->pdo = new \PDO("mysql:dbname={$this->dbname};host={$this->host};charset=utf8mb4", $this->username, $this->password,
                 [
                     //Thoose options transform it into object/
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
                     //UTF-8 characters
-                    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET CHARACTER SET UTF8'
+                    PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"
                 ]
             );
 

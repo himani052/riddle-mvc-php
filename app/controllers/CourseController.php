@@ -4,28 +4,28 @@ namespace App\controllers;
 
 use App\https\HttpRequest;
 use App\models\Comment;
-use App\models\Parcours;
+use App\models\Course;
 use App\models\User;
 use Controller;
 use Database\DBConnection;
 
 
-class ParcoursController extends Controller
+class CourseController extends Controller
 {
 
     public function index(){
 
-        $parc = new Parcours($this->getDB());
-        $parcours = $parc->all();
+        $course = new Course($this->getDB());
+        $courses = $course->all();
 
-        return $this->view('course/index.twig', compact('parcours'));
+        return $this->view('course/index.twig', compact('courses'));
 
     }
 
     public function show($id){
 
         //course
-        $parc = new Parcours($this->getDB());
+        $parc = new Course($this->getDB());
         $parc = $parc->findById($id);
 
         //users

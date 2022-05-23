@@ -1,7 +1,7 @@
 {% extends "account/layouts/default.twig" %}
 
 
-{% block course %}
+{% block account %}
     <div class="m-5">
         <form id="loginForm" method="POST" action="{{ route('account.course.new') }}" enctype="multipart/form-data">
             <div class="form-group">
@@ -48,8 +48,8 @@
                 {% endif %}
             </div>
             <div class="form-group">
-                <label for="courseTitle">Titre</label>
-                <input type="number" name="courseTitle" id="courseTitle"
+                <label for="courseDistance">Distance du parcours</label>
+                <input type="number" name="courseDistance" id="courseDistance"
                        class="form-control  {% if error.courseDistance %}input-error{% endif %}"
                        placeholder="Quelle est la distance total du parcours ?"
                        value="{{ post.courseDistance }}"
