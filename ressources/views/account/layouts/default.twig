@@ -13,6 +13,7 @@
                            <li><a href="#"><i class="fa-solid fa-chart-area"></i>Statistiques</a></li>
                            {% if auth.admin == 1 %}
                                <li><a href="{{ route('admin.user.index') }}"><i class="fa-solid fa-users"></i>Utilisateurs</a></li>
+                               <li><a href="{{ route('admin.course.index') }}"><i class="fa-solid fa-map"></i>Tous les parcours</a></li>
                            {% endif %}
                        </ul>
                    </div>

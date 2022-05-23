@@ -43,10 +43,18 @@ Route::get('/account/course/create','App\controllers\Account\AccountCourseContro
 Route::post('/account/course/new','App\controllers\Account\AccountCourseController@create')->name('account.course.new') ;
 
 
-//User:account:admin:users
+//Admin:account:admin:user
 Route::get('/account/admin/users/','App\controllers\Account\Admin\AdminUserController@index')->name('admin.user.index') ;
+Route::get('/account/admin/users/show/{emailUser}','App\controllers\Account\Admin\AdminUserController@show')->name('admin.user.show') ;
+Route::get('/account/admin/users/delete/{emailUser}','App\controllers\Account\Admin\AdminUserController@delete')->name('admin.user.delete') ;
+Route::post('/account/admin/users/edit/{emailUser}','App\controllers\Account\Admin\AdminUserController@edit')->name('admin.user.edit') ;
 
 
+//Admin:account:admin:course
+Route::get('/account/admin/courses/','App\controllers\Account\Admin\AdminCourseController@index')->name('admin.course.index') ;
+Route::get('/account/admin/courses/show/{id}','App\controllers\Account\Admin\AdminCourseController@index')->name('admin.course.show') ;
+Route::get('/account/admin/courses/delete/{id}','App\controllers\Account\Admin\AdminCourseController@index')->name('admin.course.delete') ;
+Route::get('/account/admin/courses/edit/{id}','App\controllers\Account\Admin\AdminCourseController@index')->name('admin.course.edit') ;
 
 
 

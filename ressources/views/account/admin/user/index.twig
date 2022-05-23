@@ -7,28 +7,30 @@
     <div class="container">
         <div class="card card-account">
             <div class="card-title p-4">
-               <h1 class="m-0"> <i class="fa fa-users mr-4"></i> Liste des utilisateurs</h1>
+               <h2 class="m-0"> <i class="fa fa-users mr-4"></i> Liste des utilisateurs</h2>
             </div>
             <hr class="text-black-50">
-            <div class="card-body p-4">
+            <div class="card-body table-responsive p-4">
                 <table class="table">
                     <thead>
                     <tr>
                         <th scope="col">Email</th>
-                        <th scope="col">Pseudo</th>
-                        <th scope="col">Birthdate</th>
+                        <th scope="col">Pseudonyme</th>
+                        <th scope="col">Roles</th>
+                        <th scope="col">Date de naissance</th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for user in users %}
                         <tr>
-                            <th scope="row">{{ user.emailUser }}</th>
+                            <th scope="row"><a href="{{ route('admin.user.show',{'emailUser' : user.emailUser}) }}" >{{ user.emailUser }}</a></th>
                             <td>{{ user.pseudoUser }}</td>
+                            <td> {% if user.admin == 1 %}ADMINISTRATEUR{% else %}UTILISATEUR{% endif %}</td>
                             <td>{{ user.birthdateUser }}</td>
                             <td>
-                                <a href="#" class="text-black-50"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <a href="{{ route('account.course.delete', {'id':course.idCourse}) }}" class="text-danger "><i class="fa-solid fa-trash-can"></i></a>
+                                <a href="{{ route('admin.user.edit') }}" class="text-black-50"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="{{ route('admin.user.delete', {'emailUser':user.emailUser}) }}" class="text-danger "><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         </tr>
                     {% endfor %}

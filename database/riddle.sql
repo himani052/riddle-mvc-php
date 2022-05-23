@@ -36,6 +36,7 @@ set global character_set_server='utf8mb4';
 
 DROP TABLE IF EXISTS `SCORE_USER_COURSE`, `USER`,`COMMENT`, `CLUE`, `RIDDLE`,`LOCATION`,`DEPARTMENT`,`CITY`,`COURSE` ;
 
+DROP VIEW IF EXISTS `COURSE_INFORMATIONS`;
 
 -- ---------------------------------------------------------------------------
 -- Table DEPARTMENT
@@ -82,7 +83,7 @@ CREATE TABLE `LOCATION` (
 
 
 CREATE TABLE `SCORE_USER_COURSE` (
-                                     scoreUser INT NOT NULL,
+                                     scoreUser INT DEFAULT 0,
                                      user_emailUser VARCHAR(255) NOT NULL,
                                      course_idCourse INT NOT NULL,
                                      PRIMARY KEY (user_emailUser,course_idCourse)
@@ -214,7 +215,6 @@ ALTER TABLE `CLUE` ADD CONSTRAINT fk_riddle FOREIGN KEY(riddle_idRiddle)  REFERE
 
 
 
-
 -- ---------------------------------------------------------------------------
 -- Insertion des données de test
 -- ---------------------------------------------------------------------------
@@ -282,4 +282,45 @@ INSERT INTO `LOCATION` (`idLocation`,`titleLocation`, `descriptionLocation`,imag
             (4, 'Fac de biologie - Universitaire Aix-Marseille', 'Campus de Lumini', 'location-1-course-4.jpg','163 Av, de Luminy', 13, 13000,  1);
 
 
+
+INSERT INTO `SCORE_USER_COURSE` (user_emailUser, course_idCourse)
+VALUES  ('houssam.imani@gmail.com', 1),
+        ('houssam.imani@gmail.com', 2),
+        ('hissani.imani@gmail.com', 3),
+        ('tom.orhon@gmail.com', 4),
+        ('tom.orhon@gmail.com', 5),
+        ('tom.orhon@gmail.com', 6)
+;
+
+
+
+
+-- ---------------------------------------------------------------------------
+-- Création de vues regroupant les données
+-- ---------------------------------------------------------------------------
+
+
+
+CREATE VIEW `COURSE_INFORMATIONS` AS
+SELECT *
+FROM `SCORE_USER_COURSE`
+         INNER JOIN `USER`
+                    ON user.emailUser = SCORE_USER_COURSE.user_emailUser
+         INNER JOIN `COURSE`
+                    ON course.idCourse = SCORE_USER_COURSE.course_idCourse
+/*GROUP BY `user`.emailUser*/
+ORDER BY course.idCourse ASC
+
+
+/*
+CREATE VIEW locations AS
+SELECT location.*, group_concat(facilities.FacilityName separator ',') AS facility_name
+FROM location_facility
+         INNER JOIN location
+                    ON location.LocationID = location_facility.LocationID
+         INNER JOIN facilities
+                    ON facilities.FacilitiesID = location_facility.FacilitiesID
+GROUP BY location.LocationName
+ORDER BY location.LocationID ASC
+*/
 
