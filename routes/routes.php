@@ -46,6 +46,9 @@ Route::post('/account/course/new','App\controllers\Account\AccountCourseControll
 //User:account:admin:users
 Route::get('/account/admin/users/','App\controllers\Account\Admin\AdminUserController@index')->name('admin.user.index') ;
 
+//About
+Route::get('/about','App\controllers\AboutController@index')->name('about.index') ;
+
 
 
 

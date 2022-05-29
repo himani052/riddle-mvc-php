@@ -20,7 +20,7 @@
 
     </head>
 
-    <body class="bg-light">
+    <body class="bg-light d-flex flex-column min-vh-100">
 
         {% include 'layouts/image-loader.twig' %}
         {% include 'layouts/navbar.twig' %}
@@ -37,5 +37,14 @@
         {% block js %}{% endblock %}
     </body>
 
-</html>
+    <footer class="bg-light text-center text-white mt-auto">
 
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(255, 166, 38);">
+            © 2022 Copyright:
+            <a class="text-white"> Riddle.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+
+</html>
