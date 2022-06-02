@@ -1,0 +1,55 @@
+{% extends "account/layouts/default.twig" %}
+
+
+{% block account %}
+    <div class="container">
+        <a href="{{ route('admin.user.index') }}" class="btn btn-yellow-square text-decoration-none"><i class="fa fa-arrow-left"></i> Retour</a>
+        <div class="card card-account mt-4">
+            <div class="card-title p-4">
+
+                <div class="row">
+                    <div class="col-1">
+                        <img class="rounded-circle profile-pic mr-2 " width="50px" alt="100x100" src="{{ user.photoUser }}" data-holder-rendered="true">
+                    </div>
+                    <div class="col-11 m-auto">
+                        <h2 class="m-0">{{ user.emailUser }}</h2>
+                    </div>
+                </div>
+            </div>
+            <hr class="text-black-50">
+            <div class="card-body table-responsive p-4">
+                <ul>
+                    <li><span class="font-weight-bold">Email : </span>{{ user.emailUser }}</li>
+                    <li><span class="font-weight-bold">Pseudonyme : </span>{{ user.pseudoUser }}</li>
+                    <li><span class="font-weight-bold">Date d'anniversaire : </span>{{ user.birthdateUser | date("d/m/Y") }}</li>
+                    <li><span class="font-weight-bold">Rôle : </span>{% if user.admin == 1 %}ADMINISTRATEUR{% else %}UTILISATEUR{% endif %}</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- edit -->
+        <div class="card card-account mt-4">
+            <div class="card-title p-4 pb-0">
+                <h2 class="m-0"><i class="fa fa-edit"></i> Modifier le rôle de l'utilisateur</h2>
+            </div>
+            <hr class="text-black-50">
+            <div class="card-body table-responsive p-4">
+                <form id="loginForm" method="POST" action="{{ route('admin.user.edit') }}">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="emailUser" name="emailUser" value="{{ user.emailUser }}">
+                        <select name="roleUser"  class="form-select" aria-label="Choisir un rôle pour l'utilisateur">
+                            <option selected>Choisir un rôle pour l'utilisateur</option>
+                            <option value="1">ADMINISTRATEUR</option>
+                            <option value="0">UTILISATEUR</option>
+                        </select>
+                        <br><br>
+                        <input type="submit" class="btn btn-yellow-square" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- /edit -->
+    </div>
+{% endblock %}

@@ -24,13 +24,28 @@ class User extends Model {
         ));
     }
 
+    public function changeRole($emailUser, int $role){
 
+        $req = $this->db->getPDO()->prepare("UPDATE `user` SET admin = :role WHERE emailUser = :emailUser");
+
+        return $req->execute(array(
+            'role' => $role,
+            'emailUser' => $emailUser
+        ));
+    }
+
+    public function findByEmail($emailUser) {
+        $stmt = $this->db->getPDO()->prepare("SELECT * FROM `USER` WHERE `emailUser` = :emailUser ");
+        $stmt->execute(array(
+            'emailUser' => $emailUser
+        ));
+        return $stmt->fetch();
+    }
 
 
     //Trouver les commentaires d'un utilisateur par course
 
     public function findUserCommentByCourse($idCourse, $emailUser) {
-
 
         $stmt = $this->db->getPDO()->prepare("
         SELECT * FROM `USER`,`COMMENT`, `COURSE` 
@@ -47,10 +62,15 @@ class User extends Model {
             'emailUser' => $emailUser,
             'emailUser2' => $emailUser
         ));
-
-
-
     }
+
+
+    public function removeByEmail($email){
+        $stmt = $this->db->getPDO()->prepare("DELETE FROM {$this->table}  WHERE {$email} = ? ");
+        return $stmt->execute([$email]);
+    }
+
+
 
 }
 

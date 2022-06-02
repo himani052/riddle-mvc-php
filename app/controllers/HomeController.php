@@ -32,8 +32,5 @@ class HomeController extends Controller
 
     }
 
-    public function create(HttpRequest $request){
-        //$request->all()
-        //donne l'accès au methode post
-    }
+
 }

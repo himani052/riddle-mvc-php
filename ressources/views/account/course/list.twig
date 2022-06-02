@@ -4,7 +4,9 @@
 {% block content %}
 
     <div class="row">
+
     {% for course in courses %}
+
 
         <div class="account-parcours-box col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card border-0 shadow-sm mb-2 " style="width: 16.5rem;">
@@ -20,11 +22,12 @@
                     <div class="card-footer bg-white float-right">
                        <div class="row">
                            <div class="col-8">
-                               <i class="fa-solid fa-user"></i> 12
+                               <a class="text-yellow" href="{{ route('account.course.show', {'id':course.idCourse}) }}" target="_parent"><i class="fa-solid fa-eye"></i></a>
+                               <i class="fa-solid fa-user text-black-50"></i> <span class="text-black-50">12</span>
                            </div>
                            <div class="col-4">
-                               <a href="#" class="text-black-50"><i class="fa-solid fa-pen-to-square"></i></a>
-                               <a href="{{ route('account.course.delete', {'id':course.idCourse}) }}" class="text-danger "><i class="fa-solid fa-trash-can"></i></a>
+                               <a href="#" class="text-black-50" target="_parent"><i class="fa-solid fa-pen-to-square"></i></a>
+                               <a href="{{ route('account.course.delete', {'id':course.idCourse}) }}" class="text-danger " ><i class="fa-solid fa-trash-can"></i></a>
                            </div>
                        </div>
                     </div>

@@ -4,6 +4,7 @@ namespace App\controllers\Account;
 
 use App\https\HttpRequest;
 use App\models\Course;
+use App\models\Location;
 use App\models\User;
 use Controller;
 use Database\DBConnection;
@@ -15,7 +16,7 @@ class AccountCourseController extends Controller
     public function index(){
 
         $course = new Course($this->getDB());
-        $courses = $course->all();
+        $courses = $course->findCourseByUser($_SESSION['email']);
 
         return $this->view('account/course/index.twig', compact('courses'));
 
@@ -24,7 +25,8 @@ class AccountCourseController extends Controller
     public function list(){
 
         $course = new Course($this->getDB());
-        $courses = $course->all();
+        $courses = $course->findCourseByUser($_SESSION['email']);
+
 
         return $this->view('account/course/list.twig', compact('courses'));
 
@@ -32,15 +34,26 @@ class AccountCourseController extends Controller
 
     public function show($id){
 
-        /*
-        $parc = new Course($this->getDB());
-        $parc = $parc->findById($id);
 
-        $req = $this->db->getPDO()->query("SELECT * FROM user LIMIT 3");
-        $users =  $req->fetchAll();
+        $courseGeneral = new Course($this->getDB());
+        $courseGeneral = $courseGeneral->findById($id);
 
-        return $this->view('course/show.twig', compact('parc', 'users'));*/
+        $courseLocations = new Course($this->getDB());
+        $courseLocations = $courseLocations->findCourseLocations($id);
 
+        $arraytempo=array();
+
+
+        foreach ($courseLocations as $courseLocation){
+
+            $locationRiddle = new Location($this->getDB());
+            $courseLocation->riddles = $locationRiddle->findLocationRiddle($courseLocation->idLocation);
+            //$arraytempo[] = $locationRiddle;
+        }
+
+
+
+        return $this->view('account/course/show.twig', compact('courseGeneral', 'courseLocations'));
 
     }
 
@@ -65,14 +78,19 @@ class AccountCourseController extends Controller
 
         //fusionner tableau de valeur et images
         //image => champs img bdd
-        $data = array_merge_recursive($value, ['image' => '/public/'.$image]);
+        if(!empty($image)){
+            $data = array_merge_recursive($value, ['image' => '/public/'.$image]);
+        }else{
+            $data = array_merge_recursive($value, ['image' => '/public/assets/img/jpg/courses/default.png']);
+        }
 
         //Insérer les données dans la table course
         var_dump($data);
 
         $new_course = new Course($this->getDB());
 
-        $new_course->create($data['courseTitle'],$data['courseDescription'], $data['image'],$data['courseDistance']);
+        $new_course->create($data['courseTitle'],$data['courseDescription'], $data['image'],$data['courseDistance'],$_SESSION['email']);
+        //$new_course->joinCreatedCourseWithUser($_SESSION['email']);
 
         return redirect('account.course.index');
 
