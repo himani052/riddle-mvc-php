@@ -64,24 +64,13 @@ class User extends Model {
         ));
     }
 
-    //Trouver utilisateurs dont
-    public function findCourseByUser($emailUser, $idCourse){
-        $stmt = $this->db->getPDO()->prepare("
-        SELECT * FROM `score_user_course`, `USER`, `COURSE`
-        WHERE course_idCourse = :idCourse 
-        AND idCourse = :idCourse2 
-        AND user_emailUser = :emailUser
-        AND emailUser = :emailUser2
-        
-        ");
 
-        return $stmt->execute(array(
-            'idCourse' => $idCourse,
-            'idCourse2' => $idCourse,
-            'emailUser' => $emailUser,
-            'emailUser2' => $emailUser
-        ));
+    public function removeByEmail($email){
+        $stmt = $this->db->getPDO()->prepare("DELETE FROM {$this->table}  WHERE {$email} = ? ");
+        return $stmt->execute([$email]);
     }
+
+
 
 }
 

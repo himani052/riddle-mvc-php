@@ -29,7 +29,7 @@
                             <td> {% if user.admin == 1 %}ADMINISTRATEUR{% else %}UTILISATEUR{% endif %}</td>
                             <td>{{ user.birthdateUser }}</td>
                             <td>
-                                <a href="{{ route('admin.user.edit') }}" class="text-black-50"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="{{ route('admin.user.show') }}" class="text-black-50"><i class="fa-solid fa-pen-to-square"></i></a>
                                 <a href="{{ route('admin.user.delete', {'emailUser':user.emailUser}) }}" class="text-danger "><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         </tr>

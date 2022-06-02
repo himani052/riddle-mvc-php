@@ -60,10 +60,8 @@ class Route
                 $route->execute();
                 die();
             }
-
-            header('HTTP/1.0 404 Not found');
-
         }
+        header('HTTP/1.0 404 Not found');
     }
 
 

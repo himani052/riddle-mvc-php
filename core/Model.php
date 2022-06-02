@@ -34,11 +34,12 @@ abstract class Model{
         return $stmt->fetch();
     }
 
-    public function findByFromView($filter, $viewName) {
-        $stmt = $this->db->getPDO()->prepare("SELECT * FROM {$viewName}  WHERE {$filter} = ? ");
+    public function findByFromView($view, $columnName, $columnValue) {
+        $stmt = $this->db->getPDO()->prepare("SELECT * FROM :view  WHERE  :column_name = :column_value;");
         $stmt->execute(array(
-            'filter' => $filter,
-            'viewName' => $viewName,
+            'view' => $view,
+            'column_name' => $columnName,
+            'column_value' => $columnValue,
         ));
         return $stmt->fetch();
     }

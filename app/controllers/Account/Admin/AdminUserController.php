@@ -37,5 +37,16 @@ class AdminUserController extends Controller {
         return redirect('admin.user.show', ['emailUser' => $emailUser]);
     }
 
+    public function delete($email){
+        if(isAdmin()){
+            //Si administrateur supprimer course
+            $user = new User($this->getDB());
+            $user->removeByEmail($email);
+            return redirect('admin.user.index');
+        }else{
+            //Sinon renvoyer vers la page de login
+            return redirect('user.connect');
+        }
+    }
 
 }
