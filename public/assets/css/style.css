@@ -24,12 +24,21 @@
     color: black;
 }
 
+
+a:hover{
+    text-decoration: none;
+}
+
 .bg-yellow{
     background-color: #FFA626;
 }
 
 .text-yellow{
     color: #FFA626;
+}
+
+.text-black{
+    color: black;
 }
 
 .btn-black-line{
@@ -330,7 +339,7 @@ iframe{
 
 /****** card *****/
 
-.card-account h1{
+.card-account h2{
     font-size: 1.2em;
     font-weight: bold;
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\models\Location;
 use Database\DBConnection;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -30,6 +31,7 @@ abstract class Controller{
         $twig->addFunction(new TwigFunction('route', function ($name, $params = []) {
             return route($name, $params);
         }));
+
 
         $twig->addGlobal('error', Errors());
         $twig->addGlobal('auth', Auth());

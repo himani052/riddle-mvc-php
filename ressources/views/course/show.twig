@@ -34,7 +34,7 @@
                                 {% for user in users %}
                                 <tr>
                                     <th scope="row">
-                                        <img alt="player-1" src="/public/assets/img/jpg/users/{{ user.photoUser }}"/>
+                                        <img alt="player-1" src="{{ user.photoUser }}"/>
                                     </th>
                                     <td>
                                         <h3>{{ user.pseudoUser }}</h3>

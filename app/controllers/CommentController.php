@@ -17,7 +17,7 @@ class CommentController extends Controller {
 
         //récupération du champ post idparcours
         $idCourse = $request->name('idCourse');
-
+        
 
         //Valeurs post récupérées traités par la méthode validator
         $feilds = $request->validator(

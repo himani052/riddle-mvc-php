@@ -17,15 +17,30 @@ abstract class Model{
         return $stmt->fetchAll();
     }
 
-    public function findBy($element) {
-        $stmt = $this->db->getPDO()->prepare("SELECT * FROM {$this->table}  WHERE {$this->element} = ? ");
-        $stmt->execute([$element]);
+    public function allFromView($view){
+        $stmt = $this->db->getPDO()->query("SELECT * FROM {$view}");
+        return $stmt->fetchAll();
+    }
+
+    public function findBy($element, $value) {
+        $stmt = $this->db->getPDO()->prepare("SELECT * FROM {$this->table}  WHERE {$element} = {$value} ");
+        $stmt->execute([$value]);
         return $stmt->fetch();
     }
 
     public function findById(int $id) {
         $stmt = $this->db->getPDO()->prepare("SELECT * FROM {$this->table}  WHERE {$this->id} = ? ");
         $stmt->execute([$id]);
+        return $stmt->fetch();
+    }
+
+    public function findByFromView($view, $columnName, $columnValue) {
+        $stmt = $this->db->getPDO()->prepare("SELECT * FROM :view  WHERE  :column_name = :column_value;");
+        $stmt->execute(array(
+            'view' => $view,
+            'column_name' => $columnName,
+            'column_value' => $columnValue,
+        ));
         return $stmt->fetch();
     }
 

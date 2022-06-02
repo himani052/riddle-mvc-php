@@ -1,0 +1,42 @@
+{% extends "account/layouts/default.twig" %}
+
+
+{% block account %}
+
+    <div class="container">
+        <div class="card card-account">
+            <div class="card-title p-4">
+                <h2 class="m-0"> <i class="fa fa-map mr-4"></i> Liste des parcours</h2>
+            </div>
+            <hr class="text-black-50">
+            <div class="card-body table-responsive p-4">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Identifiant</th>
+                        <th scope="col">Titre du parcours</th>
+                        <th scope="col">Créateur du parcours</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for course in courses %}
+                        <tr>
+                            <th scope="row">{{ course.idCourse }}</th>
+                            <td>{{ course.titleCourse }}</td>
+                            <td>{{ course.user_emailUser }}</td>
+                            <td>
+                                <a href="#" class="text-black-50"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="{{ route('admin.course.delete', {'id':course.idCourse}) }}" class="text-danger "><i class="fa-solid fa-trash-can"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
