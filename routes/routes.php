@@ -46,6 +46,10 @@ Route::post('/account/course/new','App\controllers\Account\AccountCourseControll
 //User:account:admin:users
 Route::get('/account/admin/users/','App\controllers\Account\Admin\AdminUserController@index')->name('admin.user.index') ;
 
+//contact
+Route::get('/contact', 'App\controllers\ContactController@index')->name('contact.index');
+Route::post('/contact/post', 'App\controllers\ContactController@send')->name('contact.send');
+
 
 
 
