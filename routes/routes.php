@@ -53,6 +53,11 @@ Route::get('/account/admin/courses/delete/{id}','App\controllers\Account\Admin\A
 Route::get('/account/admin/courses/edit/{id}','App\controllers\Account\Admin\AdminCourseController@edit')->name('admin.course.edit') ;
 
 
+//contact
+Route::get('/contact', 'App\controllers\ContactController@index')->name('contact.index');
+Route::post('/contact/post', 'App\controllers\ContactController@send')->name('contact.send');
+
+
 //About
 Route::get('/about', 'App\controllers\AboutController@index')->name('about.index');
 //StopWatch test
