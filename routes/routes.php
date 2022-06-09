@@ -12,7 +12,7 @@ Route::get('/course/show/{id}', 'App\controllers\CourseController@show')->name('
 
 //Course play
 Route::post('/course/play/post', 'App\controllers\CourseController@play')->name('course.play');
-Route::get('/course/play', 'App\controllers\CourseController@playshow')->name('course.show.play');
+Route::get('/course/play/course/{id}', 'App\controllers\CourseController@playshow')->name('course.show.play');
 
 
 

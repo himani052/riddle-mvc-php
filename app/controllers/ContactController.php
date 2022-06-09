@@ -26,10 +26,10 @@ class ContactController extends Controller
         $expediteur = $values['mail'];
         $copie = 'adresse@fai.com';
         $copie_cachee = 'adresse@fai.com';
-        $objet = 'Test'; // Objet du message
+        $objet = 'Contact Riddle'; // Objet du message
         $headers  = 'MIME-Version: 1.0' . "\n"; // Version MIME
         $headers .= 'Reply-To: '.$expediteur."\n"; // Mail de reponse
-        $headers .= 'From: "Nom_de_expediteur"<'.$expediteur.'>'."\n"; // Expediteur
+        $headers .= 'From: "<'.$expediteur.'>"'."\n"; // Expediteur
         $headers .= 'Delivered-to: '.$destinataire."\n"; // Destinataire
         $headers .= 'Cc: '.$copie."\n"; // Copie Cc
         $headers .= 'Bcc: '.$copie_cachee."\n\n"; // Copie cachée Bcc        
