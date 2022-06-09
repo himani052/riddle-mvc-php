@@ -4,7 +4,8 @@ namespace Database;
 
 use PDO;
 
-class DBConnection{
+class DBConnection
+{
 
     private $dbname;
     private $host;
@@ -12,18 +13,20 @@ class DBConnection{
     private $password;
     private $pdo;
 
-    public function __construct($dbname, $host, $username, $password){
+    public function __construct($dbname, $host, $username, $password)
+    {
         $this->dbname = $dbname;
         $this->host = $host;
         $this->username = $username;
         $this->password = $password;
     }
 
-    public function getPDO(){
+    public function getPDO()
+    {
 
-        if($this->pdo === null){
+        if ($this->pdo === null) {
 
-            $this->pdo = new \PDO("mysql:dbname={$this->dbname};host={$this->host};charset=utf8mb4", $this->username, $this->password,
+            $this->pdo = new PDO("mysql:dbname={$this->dbname};host={$this->host};charset=utf8mb4", $this->username, $this->password,
                 [
                     //Thoose options transform it into object/
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,

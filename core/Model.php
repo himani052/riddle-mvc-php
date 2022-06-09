@@ -2,39 +2,46 @@
 
 use Database\DBConnection;
 
-abstract class Model{
+abstract class Model
+{
 
     protected $db;
     protected $table;
     protected $id;
 
-    public function __construct(DBConnection $db){
+    public function __construct(DBConnection $db)
+    {
         $this->db = $db;
     }
 
-    public function all(){
+    public function all()
+    {
         $stmt = $this->db->getPDO()->query("SELECT * FROM {$this->table}");
         return $stmt->fetchAll();
     }
 
-    public function allFromView($view){
+    public function allFromView($view)
+    {
         $stmt = $this->db->getPDO()->query("SELECT * FROM {$view}");
         return $stmt->fetchAll();
     }
 
-    public function findBy($element, $value) {
+    public function findBy($element, $value)
+    {
         $stmt = $this->db->getPDO()->prepare("SELECT * FROM {$this->table}  WHERE {$element} = {$value} ");
         $stmt->execute([$value]);
         return $stmt->fetch();
     }
 
-    public function findById(int $id) {
+    public function findById(int $id)
+    {
         $stmt = $this->db->getPDO()->prepare("SELECT * FROM {$this->table}  WHERE {$this->id} = ? ");
         $stmt->execute([$id]);
         return $stmt->fetch();
     }
 
-    public function findByFromView($view, $columnName, $columnValue) {
+    public function findByFromView($view, $columnName, $columnValue)
+    {
         $stmt = $this->db->getPDO()->prepare("SELECT * FROM :view  WHERE  :column_name = :column_value;");
         $stmt->execute(array(
             'view' => $view,
@@ -46,7 +53,8 @@ abstract class Model{
 
 
     //Gère les résultats uniques à voir pour les autres
-    public function where($condition,$sign, $value){
+    public function where($condition, $sign, $value)
+    {
         $stmt = $this->db->getPDO()->prepare("SELECT * FROM {$this->table}  WHERE {$condition} {$sign} ? ");
         $stmt->execute([$value]);
 
@@ -60,7 +68,8 @@ abstract class Model{
     }
 
 
-    public function removeById($id) {
+    public function removeById($id)
+    {
         $stmt = $this->db->getPDO()->prepare("DELETE FROM {$this->table}  WHERE {$this->id} = ? ");
         return $stmt->execute([$id]);
     }

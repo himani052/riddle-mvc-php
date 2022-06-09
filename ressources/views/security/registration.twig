@@ -2,12 +2,14 @@
 
 {% block content %}
 
-    <section id="website-registration" class="bg-light" style="background-image: url('/public/assets/img/svg/skate-ride.svg')">
+    <section id="website-registration" class="bg-light"
+             style="background-image: url('/public/assets/img/svg/skate-ride.svg')">
         <div class="card shadow form-box border-0">
             <div class="card-body">
                 <div class="card-title mb-4">
-                    <h1>Crée un compte ou connecte toi  pour pouvoir accéder au parcours ! </h1>
-                    <h2>Cela prend que quelques secondes et promis tes données personnelles sont entre de bonnes mains  ;)</h2>
+                    <h1>Crée un compte ou connecte toi pour pouvoir accéder au parcours ! </h1>
+                    <h2>Cela prend que quelques secondes et promis tes données personnelles sont entre de bonnes mains
+                        ;)</h2>
                 </div>
                 <div class="card-texte">
                     <form id="loginForm" method="POST" action="{{ route('user.create') }}">
@@ -16,32 +18,45 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="pseudoUser">Pseudo</label>
-                                    <input type="text" name="pseudoUser" id="pseudo" value="{{ post.pseudoUser }}" class="form-control {% if error.pseudoUser %}input-error{% endif %}" placeholder="Comment veux-tu être appelé ?">
+                                    <input type="text" name="pseudoUser" id="pseudo" value="{{ post.pseudoUser }}"
+                                           class="form-control {% if error.pseudoUser %}input-error{% endif %}"
+                                           placeholder="Comment veux-tu être appelé ?">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="birthdateUser">Date de naissance</label>
-                                    <input type="date" name="birthdateUser" id="birthdateUser" value="{{ post.birthdateUser }}"  class="form-control{% if error.birthdateUser %}input-error{% endif %}" placeholder="Quand est-tu né ?">
+                                    <input type="date" name="birthdateUser" id="birthdateUser"
+                                           value="{{ post.birthdateUser }}"
+                                           class="form-control{% if error.birthdateUser %}input-error{% endif %}"
+                                           placeholder="Quand est-tu né ?">
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="emailUser">Addresse mail</label>
-                            <input type="email" name="emailUser" id="emailUser" value="{{ post.emailUser }}" class="form-control {% if error.emailUser %}input-error{% endif %}" placeholder="Quelle est ton addresse mail ?">
+                            <input type="email" name="emailUser" id="emailUser" value="{{ post.emailUser }}"
+                                   class="form-control {% if error.emailUser %}input-error{% endif %}"
+                                   placeholder="Quelle est ton addresse mail ?">
                         </div>
                         <div class="form-group">
                             <label for="passwordUser">Mot de passe</label>
-                            <input type="password" name="passwordUser" id="passwordUser" value="{{ post.passwordUser }}" class="form-control {% if error.passwordUser %}input-error{% endif %}" placeholder="Choisis un mot de passe pour sécuriser ton compte">
+                            <input type="password" name="passwordUser" id="passwordUser" value="{{ post.passwordUser }}"
+                                   class="form-control {% if error.passwordUser %}input-error{% endif %}"
+                                   placeholder="Choisis un mot de passe pour sécuriser ton compte">
                         </div>
                         <div class="form-group">
                             <label for="passwordUserConfirmation">Confirmation de mot de passe</label>
-                            <input type="password" name="passwordUserConfirmation" id="passwordUserConfirmation" value="{{ post.passwordUserConfirmation }}" class="form-control {% if error.passwordUserConfirmation %}input-error{% endif %}" placeholder="Confirme ton mot de passe">
+                            <input type="password" name="passwordUserConfirmation" id="passwordUserConfirmation"
+                                   value="{{ post.passwordUserConfirmation }}"
+                                   class="form-control {% if error.passwordUserConfirmation %}input-error{% endif %}"
+                                   placeholder="Confirme ton mot de passe">
                         </div>
                         <div class="mt-4 submit-box">
                             <button type="submit" class="btn btn-yellow-square mx-auto d-block">C'est parti !</button>
-                            <small id="emailHelp" class="form-text text-muted">Déjà un compte ? Accède à la page de <a href="{{ route('user.connect') }}" class="text-yellow">connection</a></small>
+                            <small id="emailHelp" class="form-text text-muted">Déjà un compte ? Accède à la page de <a
+                                        href="{{ route('user.connect') }}" class="text-yellow">connection</a></small>
                         </div>
                     </form>
                 </div>
@@ -52,5 +67,5 @@
 {% endblock %}
 
 {% block js %}
-<script src="JS.js"></script>
+    <script src="JS.js"></script>
 {% endblock %}

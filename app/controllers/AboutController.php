@@ -6,7 +6,8 @@ use Controller;
 
 class AboutController extends Controller
 {
-    function index(){
+    function index()
+    {
         return $this->view('about/index.twig');
     }
 }

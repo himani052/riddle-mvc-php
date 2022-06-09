@@ -4,33 +4,35 @@
 {% block account %}
 
     <div class="container">
-        <a href="{{ route('account.course.index') }}" class="btn btn-yellow-square text-decoration-none"><i class="fa fa-arrow-left"></i> Retour</a>
+        <a href="{{ route('account.course.index') }}" class="btn btn-yellow-square text-decoration-none"><i
+                    class="fa fa-arrow-left"></i> Retour</a>
         <div class="card card-account mt-4">
             <div class="card-title p-4">
-               <div class="row">
-                   <div class="col-8">
-                       <h2 class="m-0"><span class="font-weight-bold">ID : {{ courseGeneral.idCourse }}</span> - {{ courseGeneral.titleCourse }}</h2>
-                   </div>
-                   <div class="col-4">
-                       <em><i class="fa fa-calendar mr-2"></i> Parcours créé le {{ courseGeneral.creationDateCourse | date('d-m-y')}}</em>
-                   </div>
-               </div>
+                <div class="row">
+                    <div class="col-8">
+                        <h2 class="m-0"><span class="font-weight-bold">ID : {{ courseGeneral.idCourse }}</span>
+                            - {{ courseGeneral.titleCourse }}</h2>
+                    </div>
+                    <div class="col-4">
+                        <em><i class="fa fa-calendar mr-2"></i> Parcours créé
+                            le {{ courseGeneral.creationDateCourse | date('d-m-y') }}</em>
+                    </div>
+                </div>
             </div>
             <hr class="text-black-50">
             <div class="card-body mr-4 ml-4 mb-4">
 
-                    {% if courseGeneral.distanceCourse == NULL %}
-                        <span class="text-danger">Distance : ( valeur nulle )</span>
-                    {% else %}
-                        <em class="">{{ courseGeneral.distanceCourse }}</em>
-                    {% endif %}
-                    <br><br>
+                {% if courseGeneral.distanceCourse == NULL %}
+                    <span class="text-danger">Distance : ( valeur nulle )</span>
+                {% else %}
+                    <em class="">{{ courseGeneral.distanceCourse }}</em>
+                {% endif %}
+                <br><br>
 
-                    <em class="font-weight-bold">Description du parcours</em><br><br>
-                    {{ courseGeneral.descriptionCourse | raw }}
-                </div>
+                <em class="font-weight-bold">Description du parcours</em><br><br>
+                {{ courseGeneral.descriptionCourse | raw }}
             </div>
-
+        </div>
 
 
         {% for location in courseLocations %}
@@ -38,7 +40,8 @@
                 <!-- Ajouter un lieu -->
                 <div class="card card-account mt-4">
                     <div class="card-title p-4 pb-0">
-                        <h2 class="m-0"><i class="fa fa-map"></i> {{ location.idLocation }} - {{ location.titleLocation }}</h2>
+                        <h2 class="m-0"><i class="fa fa-map"></i> {{ location.idLocation }}
+                            - {{ location.titleLocation }}</h2>
                     </div>
                     <hr class="text-black-50">
                     <div class="card-body mr-4 ml-4 mb-4">
@@ -46,22 +49,25 @@
 
                         <br><br>
                         <div class="accordion" id="accordionExample">
-                                <div class="card">
-                                    {% for riddle in location.riddles  %}
-                                        <div class="card-header" id="headingThree">
-                                            <h2 class="mb-0">
-                                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                    {{ riddle.idRiddle }} - {{ riddle.titleRiddle }}
-                                                </button>
-                                            </h2>
+                            <div class="card">
+                                {% for riddle in location.riddles %}
+                                    <div class="card-header" id="headingThree">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                                    data-toggle="collapse" data-target="#collapseThree"
+                                                    aria-expanded="false" aria-controls="collapseThree">
+                                                {{ riddle.idRiddle }} - {{ riddle.titleRiddle }}
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                         data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            {{ riddle.descriptionRiddle }}
                                         </div>
-                                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                            <div class="card-body">
-                                                {{ riddle.descriptionRiddle }}
-                                            </div>
-                                        </div>
+                                    </div>
                                 {% endfor %}
-                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -72,7 +78,6 @@
             {% endif %}
 
         {% endfor %}
-
 
 
         <!-- /edit -->

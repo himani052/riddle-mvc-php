@@ -7,28 +7,28 @@
 
 1. Click `Export to PDF` button in the first editor.
 
-  **Expected:**
+**Expected:**
 
-  * Warning notification with `Error occured.` message appeared.
-  * Button is clickable.
-  * File wasn't downloaded.
+* Warning notification with `Error occured.` message appeared.
+* Button is clickable.
+* File wasn't downloaded.
 
-  **Unexpected:**
+**Unexpected:**
 
-  * Notification didn't show up.
-  * Button wasn't reenabled.
-  * File was downloaded.
+* Notification didn't show up.
+* Button wasn't reenabled.
+* File was downloaded.
 
 2. Click `Export to PDF` button in the second editor.
 
-  **Expected:**
+**Expected:**
 
-  * Alert appeared instead of notification.
-  * Button is clickable.
-  * File wasn't downloaded.
+* Alert appeared instead of notification.
+* Button is clickable.
+* File wasn't downloaded.
 
-  **Unexpected:**
+**Unexpected:**
 
-  * Notification didn't show up.
-  * Button wasn't reenabled.
-  * File was downloaded.
+* Notification didn't show up.
+* Button wasn't reenabled.
+* File was downloaded.

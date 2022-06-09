@@ -2,40 +2,41 @@
 
 <html>
 
-    <head>
-        <title>Riddle - Parcours & Enigmes</title>
+<head>
+    <title>Riddle - Parcours & Enigmes</title>
 
-        <!-- viewport  -->
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-
-
-        <!-- Loading of gobal stylesheet  -->
-        <link href="/public/assets/css/bootstrap.min.css" rel="stylesheet"/>
-        <link href="/public/assets/css/style.css" rel="stylesheet"/>
-        <link href="/public/assets/css/drawer.css" rel="stylesheet"/>
+    <!-- viewport  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"/>
 
 
-        <!-- Loading of fontawesome stylesheet  -->
-        <link href="/public/assets/fontawesome/css/all.css" rel="stylesheet"/>
-
-    </head>
-
-    <body class="bg-light d-flex flex-column min-vh-100">
-
-        {% include 'layouts/image-loader.twig' %}
-        {% include 'layouts/navbar.twig' %}
-
-        <div class="content-margin-top">
-            {{ block('content') }}
-        </div>
+    <!-- Loading of gobal stylesheet  -->
+    <link href="/public/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/public/assets/css/style.css" rel="stylesheet"/>
+    <link href="/public/assets/css/drawer.css" rel="stylesheet"/>
 
 
-        <script src="/public/assets/js/jquery.slim.min.js"></script>
-        <script src="/public/assets/js/bootstrap.bundle.js"></script>
+    <!-- Loading of fontawesome stylesheet  -->
+    <link href="/public/assets/fontawesome/css/all.css" rel="stylesheet"/>
 
-        <!-- emoji -->
-        <script src="https://cdn.tiny.cloud/1/o29ppj25d69t0rdjkporsa1buuczojsh0g75r2uimk79bmpg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-        {% block js %}{% endblock %}
-    </body>
+</head>
+
+<body class="bg-light d-flex flex-column min-vh-100">
+
+{% include 'layouts/image-loader.twig' %}
+{% include 'layouts/navbar.twig' %}
+
+<div class="content-margin-top">
+    {{ block('content') }}
+</div>
+
+
+<script src="/public/assets/js/jquery.slim.min.js"></script>
+<script src="/public/assets/js/bootstrap.bundle.js"></script>
+
+<!-- emoji -->
+<script src="https://cdn.tiny.cloud/1/o29ppj25d69t0rdjkporsa1buuczojsh0g75r2uimk79bmpg/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin"></script>
+{% block js %}{% endblock %}
+</body>
 
 </html>

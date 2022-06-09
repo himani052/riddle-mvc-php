@@ -7,7 +7,7 @@
     <div class="container">
         <div class="card card-account">
             <div class="card-title p-4">
-               <h2 class="m-0"> <i class="fa fa-users mr-4"></i> Liste des utilisateurs</h2>
+                <h2 class="m-0"><i class="fa fa-users mr-4"></i> Liste des utilisateurs</h2>
             </div>
             <hr class="text-black-50">
             <div class="card-body table-responsive p-4">
@@ -24,13 +24,17 @@
                     <tbody>
                     {% for user in users %}
                         <tr>
-                            <th scope="row"><a href="{{ route('admin.user.show',{'emailUser' : user.emailUser}) }}" >{{ user.emailUser }}</a></th>
+                            <th scope="row"><a
+                                        href="{{ route('admin.user.show',{'emailUser' : user.emailUser}) }}">{{ user.emailUser }}</a>
+                            </th>
                             <td>{{ user.pseudoUser }}</td>
                             <td> {% if user.admin == 1 %}ADMINISTRATEUR{% else %}UTILISATEUR{% endif %}</td>
                             <td>{{ user.birthdateUser }}</td>
                             <td>
-                                <a href="{{ route('admin.user.show') }}" class="text-black-50"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <a href="{{ route('admin.user.delete', {'emailUser':user.emailUser}) }}" class="text-danger "><i class="fa-solid fa-trash-can"></i></a>
+                                <a href="{{ route('admin.user.show') }}" class="text-black-50"><i
+                                            class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="{{ route('admin.user.delete', {'emailUser':user.emailUser}) }}"
+                                   class="text-danger "><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         </tr>
                     {% endfor %}

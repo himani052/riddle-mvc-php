@@ -5,24 +5,24 @@
 
 1. Examine `Export to PDF` button (the one next to the `Source` button).
 
-  **Expected:**
+**Expected:**
 
-  Button is clickable.
+Button is clickable.
 
-  **Unexpected:**
+**Unexpected:**
 
-  Button is inactive.
+Button is inactive.
 
 1. Click the button.
 1. Wait for the file to download.
 
-  **Expected:**
+**Expected:**
 
-  File with correct content was downloaded.
+File with correct content was downloaded.
 
-  **Unexpected:**
+**Unexpected:**
 
-  File was not downloaded or its content is incorrect.
+File was not downloaded or its content is incorrect.
 
 1. Click `Toggle read-only mode` button.
 1. Repeat steps 1-3.

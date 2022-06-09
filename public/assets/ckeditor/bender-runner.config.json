@@ -10,7 +10,12 @@
     "runner": "./src/runner.html"
   },
   "browsers": {
-    "linux": [ "chrome", "firefox" ],
-    "macos": [ "safari" ]
+    "linux": [
+      "chrome",
+      "firefox"
+    ],
+    "macos": [
+      "safari"
+    ]
   }
 }
