@@ -4,20 +4,39 @@
 
     <script src="/public/assets/js/stopwatch/stopWatch.js"></script>
 
-    <h1>
-        <span id="hour">00</span> :
-        <span id="min">00</span> :
-        <span id="sec">00</span> :
-        <span id="milisec">00</span>
-    </h1>
+    <div class="home-page-container container text-center">
 
-    <form action="{{ route('course.play') }}" method="post">
-        <input type="hidden" class="form-control" id="idCourse" name="idCourse" value="{{ id }}">
-        <input type="button" name="commencer" value="start" id="start" onclick="start()">Start Counter</input>
-        <button onclick="start()" id="start">Start</button>
-        <button onclick="stop()" id="stop">Stop</button>
+        <div class="row">
+            <div class="col-sm-6">
+                <h1> Répondez aux énigmes ! </h1>
+                <span>Vous pouvez vous aider avec les indices.</span>
+            </div>
+            <div class="col-sm-6">
+                <h1>Chronomètre</h1>
+                <h3>
+                    <span id="hour">00</span> :
+                    <span id="min">00</span> :
+                    <span id="sec">00</span> :
+                    <span id="milisec">00</span>
+                </h3>
+                <form action="{{ route('course.play') }}" method="post">
+                    <input type="hidden" class="form-control" id="idCourse" name="idCourse" value="{{ id }}">
+                    <button onclick="start()" id="start">Start</button>
+                    <button onclick="stop()" id="stop">Stop</button>
+                </form>
+            </div>
+        </div>
 
-    </form>
+        <div class="row">
+            <div class="col-sm-12">
+                <form action="{{ route('course.play') }}" method="post">
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+
 {% endblock %}
 
 

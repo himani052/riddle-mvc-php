@@ -56,8 +56,10 @@ New Features:
 Other Changes:
 
 *
+
 Improved [plugin API documentation](https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-exportPdf_fileName)
 .
+
 * Updated Export to PDF plugin npm readme to link to
   the [official plugin documentation](https://ckeditor.com/docs/ckeditor4/latest/features/exporttopdf.html).
 
