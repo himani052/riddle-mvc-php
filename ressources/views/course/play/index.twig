@@ -1,18 +1,23 @@
 {% extends "layouts/default.twig" %}
 
 {% block content %}
+
     <script src="/public/assets/js/stopwatch/stopWatch.js"></script>
+
+    <h1>
+        <span id="hour">00</span> :
+        <span id="min">00</span> :
+        <span id="sec">00</span> :
+        <span id="milisec">00</span>
+    </h1>
+
     <form action="{{ route('course.play') }}" method="post">
         <input type="hidden" class="form-control" id="idCourse" name="idCourse" value="{{ id }}">
-        <div id="container">
-            <span id="counter">
+        <input type="button" name="commencer" value="start" id="start" onclick="start()">Start Counter</input>
+        <button onclick="start()" id="start">Start</button>
+        <button onclick="stop()" id="stop">Stop</button>
 
-            </span>
-            <button type="submit" name="commencer" value="start" id="start">Start Counter</button>
-            <input type="text" name="reponse"/>
-            <input type="submit" name="envoyer" value="envoyer"/>
-            <button type="submit" name="terminer" value="stop" id="stop">Stop Counter</button>
     </form>
-
 {% endblock %}
+
 
