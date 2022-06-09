@@ -7,7 +7,7 @@ function startStop() { /* Toggle StartStop */
 
     if (startstop === 1) {
         start();
-        document.getElementById("start").innerHTML = "Stop";
+        document.getElementById("terminer").innerHTML = "Stop";
     } else if (startstop === 2) {
         document.getElementById("start").innerHTML = "Start";
         startstop = 0;

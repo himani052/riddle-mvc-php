@@ -68,9 +68,9 @@ CREATE TABLE `CITY` (
 
 CREATE TABLE `LOCATION` (
                             idLocation INT NOT NULL AUTO_INCREMENT,
-                            titleLocation VARCHAR(255) NOT NULL,
+                            titleLocation VARCHAR(249) NOT NULL,
                             descriptionLocation TEXT NOT NULL,
-                            imageLocation VARCHAR(255),
+                            imageLocation VARCHAR(249),
                             addressLocation TEXT NOT NULL,
                             department_codeDepartment INT NOT NULL,
                             city_codeCity INT NOT NULL,
@@ -86,8 +86,10 @@ CREATE TABLE `LOCATION` (
 
 CREATE TABLE `SCORE_USER_COURSE` (
                                      scoreUser INT DEFAULT 0,
-                                     user_emailUser VARCHAR(255) NOT NULL,
+                                     user_emailUser VARCHAR(249) NOT NULL,
                                      course_idCourse INT NOT NULL,
+                                     timeStartCourseUser TIME DEFAULT NULL ,
+                                     timeEndCourseUser TIME DEFAULT NULL,
                                      PRIMARY KEY (user_emailUser,course_idCourse)
 );
 
@@ -97,11 +99,11 @@ CREATE TABLE `SCORE_USER_COURSE` (
 
 
 CREATE TABLE `USER` (
-                        emailUser VARCHAR(255) NOT NULL,
-                        pseudoUser VARCHAR(255) NOT NULL,
-                        passwordUser VARCHAR(255) NOT NULL,
+                        emailUser VARCHAR(249) NOT NULL,
+                        pseudoUser VARCHAR(249) NOT NULL,
+                        passwordUser VARCHAR(249) NOT NULL,
                         birthdateUser DATE NOT NULL,
-                        photoUser VARCHAR(255) DEFAULT '/public/assets/img/jpg/users/default.png',
+                        photoUser VARCHAR(249) DEFAULT '/public/assets/img/jpg/users/default.png',
                         registrationDateUser DATETIME DEFAULT CURRENT_TIMESTAMP,
                         levelUser INT DEFAULT 0,
                         totalScoreUser INT DEFAULT 0,

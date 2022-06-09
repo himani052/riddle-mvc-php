@@ -44,62 +44,32 @@ class CourseController extends Controller
     }
 
 
-    function microtime_float()
-    {
-        list($usec, $sec) = explode(" ", microtime());
-        return ((float)$usec + (float)$sec);
-    }
-
-
 
     public function play(HttpRequest $request){
-
-
-        //$exec_time = $time_post - $time_pre;
-
-
-        /*
-        $chrono = 0;
-        echo 'Chrono ='.$chrono;
-
-        if($_POST['start']){
-
-            var_dump($_POST['start']);
-
-            $time_start = $this->microtime_float();
-
-            if($_POST['end']){
-                $time_end = $this->microtime_float();
-                $time = $time_end - $time_start;
-                $chrono = $time;
-
-                echo 'La partie a durée '.$chrono.' minutes';
-            }{
-                echo 'end not found';
-            }
-
-        }else{
-            echo 'start not found';
+        $date = date('h:i:s');
+        $mail = $request->session('email');
+        // $req = $this->db->getPDO()->query("INSERT INTO `SCORE_USER_COURSE` (`scoreUser`, `user_emailUser`,`course_idCourse`, `timeStartCourseUser`, `timeEndCourseUser`) VALUES (DEFAULT, $mail, 'id', DEFAULT, DEFAULT");
+        // $users =  $req->fetchAll();
+        if (isset($_POST['commencer'])) {
+            $req = $this->db->getPDO()->prepare('UPDATE SCORE_USER_COURSE SET timeStartCourseUser =:timeStartCourseUser WHERE course_idCourse =:course_idCourse');
+            $req->execute(array(
+                'timeStartCourseUser' => $date,
+                'course_idCourse' => (int)($_POST['idCourse'])
+            ));
         }
-        */
-
-        return redirect('course.show.play');
-
+        if (isset($_POST['terminer'])) {
+            $req = $this->db->getPDO()->prepare('UPDATE SCORE_USER_COURSE SET timeEndCourseUser =:timeStartCourseUser WHERE course_idCourse =:course_idCourse');
+            $req->execute(array(
+                'timeStartCourseUser' => $date,
+                'course_idCourse' => (int)($_POST['idCourse'])
+            ));
+            
+        }
+        return redirect('course.show.play', ['id' => $_POST['idCourse']]);
     }
 
-    public function playshow(){
-
-
-        $time_start = $this->microtime_float();
-
-        var_dump($time_start);
-
-
-        return $this->view('course/play/index.twig');
-
+    public function playshow($id){
+        return $this->view('course/play/index.twig', ['id' => $id]);
     }
-
-
-
 
 }

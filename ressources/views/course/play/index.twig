@@ -1,16 +1,30 @@
 {% extends "layouts/default.twig" %}
 
 {% block content %}
+    <script type="text/javascript" src="/public/assets/js/stopwatch/stopWatch.js"></script>
 
-    <section id="home-page">
-        <div class="home-page-container container text-center">
-            <main role="main" class="inner cover">
-                <h1 class="font-weight-bolder">Jouer à </h1>
-
-            </main>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h1>StopWatch test</h1>
+            </div>
+            <div class="col text-center">
+                <span id="hour">00</span> :
+                <span id="min">00</span> :
+                <span id="sec">00</span> :
+                <span id="milisec">00</span>
+                
+            </div>
         </div>
-    </section>
+    </div>
+    <form action="{{ route('course.play') }}" method="post">
+        <input type="hidden" class="form-control" id="idCourse" name="idCourse" value="{{ id }}">
+        <input type="submit" name="commencer" value="start" onclick="start()"/>
+        <input type="text" name="reponse" />
+        <input type="submit" name="envoyer" value="envoyer"/>
+        <input type="submit" name="terminer" value="stop" onclick="Stop()"/>
 
-    {% include "layouts/footer.twig" %}
+    </form>
 
 {% endblock %}
+
