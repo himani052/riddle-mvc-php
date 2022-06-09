@@ -1,12 +1,16 @@
-<h1>Timer</h1>
+{% extends "layouts/default.twig" %}
 
-<br>
+{% block content %}
 
-<form action="{{ route('course.play') }}" method="post">
-    {#
-    <label for="answer">Donne ta réponse</label>
-<input type="text" id="answer" name="answer"/> #}
+    <section id="home-page">
+        <div class="home-page-container container text-center">
+            <main role="main" class="inner cover">
+                <h1 class="font-weight-bolder">Jouer à </h1>
 
-    <input type="submit" name="stop" value="stop"/>
+            </main>
+        </div>
+    </section>
 
-</form>
+    {% include "layouts/footer.twig" %}
+
+{% endblock %}
