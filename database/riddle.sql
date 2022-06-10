@@ -89,7 +89,7 @@ CREATE TABLE `LOCATION`
 
 CREATE TABLE `SCORE_USER_COURSE`
 (
-    scoreUser           INT  DEFAULT 0,
+    scoreUser           INT      DEFAULT 0,
     user_emailUser      VARCHAR(249) NOT NULL,
     course_idCourse     INT          NOT NULL,
     timeStartCourseUser DATETIME DEFAULT NULL,
