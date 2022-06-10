@@ -13,9 +13,9 @@ class AccountClueController extends Controller
 {
 
 
-    public function createForm(){
+    public function createForm($id){
 
-        return $this->view('account/clue/create.twig');
+        return $this->view('account/clue/create.twig', ['idRiddle' => $id]);
 
     }
 
@@ -28,6 +28,7 @@ class AccountClueController extends Controller
 
         //Récupération de nos champs
         $value = $request->validator([
+            'idRiddle',
             'clueTitle' => ['required'],
             'clueDescription' => ['required'],
         ]);
@@ -40,12 +41,9 @@ class AccountClueController extends Controller
             $data = array_merge_recursive($value, ['image' => '/public/assets/img/jpg/courses/default.png']);
         }
 
-        //Dernière énigme créé
-        $riddle = new Riddle($this->getDB());
-        $idRiddle = $riddle->findLastRiddleId()->idRiddle;
 
         $new_clue = new Clue($this->getDB());
-        $new_clue->create($data['clueTitle'], $data['clueDescription'], $data['image'], $idRiddle);
+        $new_clue->create($data['clueTitle'], $data['clueDescription'], $data['image'], $data['idRiddle']);
 
         return redirect('account.course.index');
 

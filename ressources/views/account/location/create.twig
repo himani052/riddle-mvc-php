@@ -6,6 +6,7 @@
     <div class="m-5">
         <form id="loginForm" method="POST" action="{{ route('account.location.new') }}" enctype="multipart/form-data">
             <div class="form-group">
+                <input type="hidden" class="form-control" id="idCourse" name="idCourse" value="{{ idCourse }}">
                 <label for="locationTitle">Titre du lieu</label>
                 <input type="text" name="locationTitle" id="locationTitle"
                        class="form-control  {% if error.locationTitle %}input-error{% endif %}"

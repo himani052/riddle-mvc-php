@@ -15,7 +15,7 @@ class AccountRiddleController extends Controller
 
     public function createForm($id){
 
-        return $this->view('account/riddle/create.twig');
+        return $this->view('account/riddle/create.twig', ['idLocation' => $id]);
 
     }
 
@@ -31,6 +31,7 @@ class AccountRiddleController extends Controller
 
         //Récupération de nos champs
         $value = $request->validator([
+            'idLocation',
             'riddleTitle' => ['required'],
             'riddleDescription' => ['required'],
             'riddleSolution' => ['required'],
@@ -45,19 +46,12 @@ class AccountRiddleController extends Controller
             $data = array_merge_recursive($value, ['image' => '/public/assets/img/jpg/courses/default.png']);
         }
 
-        var_dump($data);
-
-        //Trouver l'id du dernier lieu créé
-        $location = new Location($this->getDB());
-        $idLocation = $location->findLastLocationId()->idLocation;
-
 
         $new_riddle = new Riddle($this->getDB());
 
         var_dump($data['riddleTitle']);
 
-        $new_riddle->create($data['riddleTitle'], $data['riddleDescription'], $data['riddleSolution'], $data['image'], $idLocation);
-
+        $new_riddle->create($data['riddleTitle'], $data['riddleDescription'], $data['riddleSolution'], $data['image'], $data['idLocation']);
 
 
         //Dernière énigme créé

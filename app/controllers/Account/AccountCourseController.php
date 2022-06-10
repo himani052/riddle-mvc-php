@@ -54,13 +54,9 @@ class AccountCourseController extends Controller
 
             foreach ($courseLocation->riddles as $riddle) {
 
-
                 //Affichage des indices des énigmes
                 $clueRiddle = new Clue($this->getDB());
                 $riddle->clues = $clueRiddle->findClueRiddle($riddle->idRiddle);
-
-                //var_dump($clueRiddle->findClueRiddle(1));
-
 
             }
 

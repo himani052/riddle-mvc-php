@@ -6,6 +6,7 @@
     <div class="m-5">
         <form id="loginForm" method="POST" action="{{ route('account.clue.new') }}" enctype="multipart/form-data">
             <div class="form-group">
+                <input type="hidden" class="form-control" id="idRiddle" name="idRiddle" value="{{ idRiddle }}">
                 <label for="clueTitle">Titre de l'indice</label>
                 <input type="text" name="clueTitle" id="clueTitle"
                        class="form-control  {% if error.clueTitle %}input-error{% endif %}"

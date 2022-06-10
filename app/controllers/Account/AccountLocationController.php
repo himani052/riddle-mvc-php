@@ -15,7 +15,7 @@ class AccountLocationController extends Controller
 
     public function createForm($id){
 
-        return $this->view('account/location/create.twig');
+        return $this->view('account/location/create.twig', ['idCourse' => $id]);
 
     }
 
@@ -28,6 +28,7 @@ class AccountLocationController extends Controller
 
         //Récupération de nos champs
         $value = $request->validator([
+            'idCourse',
             'locationTitle' => ['required'],
             'locationDescription' => ['required'],
             'locationAddress' => ['required'],
@@ -44,19 +45,13 @@ class AccountLocationController extends Controller
         //Insérer les données dans la table course
         var_dump($data);
 
-        //trouver l'ID du dernier parcours créé
-        $course = new Course($this->getDB());
-        $idCourse = $course->findLastCourse()->idCourse;
-
         $new_location = new Location($this->getDB());
-        $new_location->create($data['locationTitle'], $data['locationDescription'], $data['image'], $data['locationAddress'],$idCourse,83000, 83 );
+        $new_location->create($data['locationTitle'], $data['locationDescription'], $data['image'], $data['locationAddress'],$data['idCourse'],83000, 83 );
 
 
         //Trouver l'id du dernier lieu créé
         $idLocation = $new_location->findLastLocationId()->idLocation;
 
-        //$new_location->create($data['courseTitle'],$data['courseDescription'], $data['image'],$data['courseDistance'],$_SESSION['email']);
-        //$new_course->joinCreatedCourseWithUser($_SESSION['email']);
 
         return redirect('account.riddle.create', ['id' => $idLocation]);
 

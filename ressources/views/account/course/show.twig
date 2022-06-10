@@ -30,8 +30,14 @@
                     {{ courseGeneral.descriptionCourse | raw }}
 
             </div>
+        </div>
 
-
+        <div class="mt-4">
+            <a href="{{ route('account.location.create',{'id' : courseGeneral.idCourse}) }}" class="btn btn-yellow-square mb-3">
+                <i class="fa-solid fa-plus"></i>
+                Nouveau lieu
+            </a>
+        </div>
 
         {% for location in courseLocations %}
             {% if location.idLocation != NULL %}
@@ -44,6 +50,11 @@
                     <div class="card-body mr-4 ml-4 mb-4">
                         {{ location.descriptionLocation }}
 
+                        <br><br>
+                        <a href="{{ route('account.riddle.create',{'id' : location.idLocation}) }}">
+                            <i class="fa-solid fa-plus"></i>
+                            Nouvelle énigme
+                        </a>
                         <br><br>
                         {% if location.riddles != NULL %}
                         <div class="accordion" id="accordionExample">
