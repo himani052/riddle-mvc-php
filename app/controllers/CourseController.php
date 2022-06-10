@@ -44,58 +44,16 @@ class CourseController extends Controller
     }
 
 
-    function microtime_float()
-    {
-        list($usec, $sec) = explode(" ", microtime());
-        return ((float)$usec + (float)$sec);
-    }
-
-
-
     public function play(HttpRequest $request){
-
-
-        //$exec_time = $time_post - $time_pre;
-
-
-        /*
-        $chrono = 0;
-        echo 'Chrono ='.$chrono;
-
-        if($_POST['start']){
-
-            var_dump($_POST['start']);
-
-            $time_start = $this->microtime_float();
-
-            if($_POST['end']){
-                $time_end = $this->microtime_float();
-                $time = $time_end - $time_start;
-                $chrono = $time;
-
-                echo 'La partie a durée '.$chrono.' minutes';
-            }{
-                echo 'end not found';
-            }
-
-        }else{
-            echo 'start not found';
-        }
-        */
 
         return redirect('course.show.play');
 
     }
 
-    public function playshow(){
+    public function playshow($id){
 
 
-        $time_start = $this->microtime_float();
-
-        var_dump($time_start);
-
-
-        return $this->view('course/play/index.twig');
+        return $this->view('course/play/index.twig', ['id' => $id]);
 
     }
 

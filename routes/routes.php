@@ -12,7 +12,7 @@ Route::get('/course/show/{id}', 'App\controllers\CourseController@show')->name('
 
 //Course play
 Route::post('/course/play/post', 'App\controllers\CourseController@play')->name('course.play');
-Route::get('/course/play', 'App\controllers\CourseController@playshow')->name('course.show.play');
+Route::get('/course/play/course/{id}', 'App\controllers\CourseController@playshow')->name('course.show.play');
 
 
 
@@ -37,6 +37,20 @@ Route::get('/account/course/delete/{id}','App\controllers\Account\AccountCourseC
 Route::get('/account/course/create','App\controllers\Account\AccountCourseController@createForm')->name('account.course.create') ;
 Route::post('/account/course/new','App\controllers\Account\AccountCourseController@create')->name('account.course.new') ;
 Route::get('/account/course/show/{id}','App\controllers\Account\AccountCourseController@show')->name('account.course.show') ;
+
+
+//User:account:location
+Route::get('/account/course/{id}/location/create','App\controllers\Account\AccountLocationController@createForm')->name('account.location.create') ;
+Route::post('/account/location/new','App\controllers\Account\AccountLocationController@create')->name('account.location.new') ;
+
+//User:account:riddle
+Route::get('/account/location/{id}/riddle/create','App\controllers\Account\AccountRiddleController@createForm')->name('account.riddle.create') ;
+Route::post('/account/riddle/new','App\controllers\Account\AccountRiddleController@create')->name('account.riddle.new') ;
+
+//User:account:clue
+Route::get('/account/riddle/{id}/clue/create','App\controllers\Account\AccountClueController@createForm')->name('account.clue.create') ;
+Route::post('/account/clue/new','App\controllers\Account\AccountClueController@create')->name('account.clue.new') ;
+
 
 
 //Admin:account:admin:user

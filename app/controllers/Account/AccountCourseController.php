@@ -3,8 +3,10 @@
 namespace App\controllers\Account;
 
 use App\https\HttpRequest;
+use App\models\Clue;
 use App\models\Course;
 use App\models\Location;
+use App\models\Riddle;
 use App\models\User;
 use Controller;
 use Database\DBConnection;
@@ -38,17 +40,31 @@ class AccountCourseController extends Controller
         $courseGeneral = new Course($this->getDB());
         $courseGeneral = $courseGeneral->findById($id);
 
-        $courseLocations = new Course($this->getDB());
+        $courseLocations = new Location($this->getDB());
         $courseLocations = $courseLocations->findCourseLocations($id);
 
-        $arraytempo=array();
 
 
         foreach ($courseLocations as $courseLocation){
 
-            $locationRiddle = new Location($this->getDB());
+            //Affichage des énigmes du parcours
+            $locationRiddle = new Riddle($this->getDB());
             $courseLocation->riddles = $locationRiddle->findLocationRiddle($courseLocation->idLocation);
-            //$arraytempo[] = $locationRiddle;
+
+
+            foreach ($courseLocation->riddles as $riddle) {
+
+
+                //Affichage des indices des énigmes
+                $clueRiddle = new Clue($this->getDB());
+                $riddle->clues = $clueRiddle->findClueRiddle($riddle->idRiddle);
+
+                //var_dump($clueRiddle->findClueRiddle(1));
+
+
+            }
+
+
         }
 
 
@@ -92,7 +108,11 @@ class AccountCourseController extends Controller
         $new_course->create($data['courseTitle'],$data['courseDescription'], $data['image'],$data['courseDistance'],$_SESSION['email']);
         //$new_course->joinCreatedCourseWithUser($_SESSION['email']);
 
-        return redirect('account.course.index');
+
+        //trouver l'ID du dernier parcours créé
+        $idCourse = $new_course->findLastCourse()->idCourse;
+
+        return redirect('account.location.create', ['id' => $idCourse]);
 
     }
 

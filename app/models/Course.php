@@ -52,11 +52,6 @@ class Course extends Model {
         return $stmt->fetchAll();
     }
 
-    public function findCourseLocations($idCourse){
-        $stmt = $this->db->getPDO()->prepare("SELECT DISTINCT idLocation, titleLocation, descriptionLocation, imageLocation, addressLocation, city_codeCity, department_codeDepartment FROM `COURSES_DETAILS` WHERE idCourse = ?;");
-        $stmt->execute([$idCourse]);
-        return $stmt->fetchAll();
-    }
 
 
 

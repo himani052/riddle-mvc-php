@@ -4,7 +4,6 @@
     display: none;
 }
 
-
 .dark-bg{
     background-color: #1b1e21;
 }
@@ -117,7 +116,7 @@ iframe{
 }
 
 .content-margin-top{
-    margin-top: 5.5%;
+    margin-top: 4%;
 }
 
 
@@ -129,9 +128,7 @@ iframe{
 
 /********************** Course ***************************************/
 
-#parcours-list{
-    margin-top: 5%;
-}
+
 
 .box-parcours{
     background-size: cover;
@@ -345,10 +342,18 @@ iframe{
 }
 
 
+/****** Side menu Responsive ********/
 
+#responsive-account-sidemenu{
+    display: none;
+}
 
 
 /*************************************** Account - Course *********************************************/
+
+.account-parcours-box-content{
+    width: 16.5rem
+}
 
 .account-parcours-box h3{
     font-size: 1.2em;
@@ -392,9 +397,45 @@ iframe{
 /********************* Admin *************************************************************/
 
 
+/***** iframe parent *****/
+.iframe-parent{
+    position: relative;
+    overflow: hidden;
+    -ms-overflow-style: none;
+    height: 80vh;
+}
+
+.iframe-parent ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+/***** iframe ****/
+.responsive-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    overflow-x:hidden;
+    overflow-Y:hidden;
+}
+
 
 
 /************************************* Responsive *****************************************/
+
+@media (min-width: 995px) {
+
+    /************ Side menu *****************/
+    #responsive-account-sidemenu{
+        display: none;
+    }
+
+}
 
 
 @media (max-width: 995px) {
@@ -402,6 +443,16 @@ iframe{
     .parcours-fixed{
         width: 100%;
         position: static;
+    }
+
+    /******** course list *******************/
+    .account-parcours-box-content{
+        width: 100%;
+    }
+
+    /************ Side menu *****************/
+    #responsive-account-sidemenu{
+        display: block;
     }
 
 }

@@ -1,0 +1,70 @@
+{% extends "account/layouts/default.twig" %}
+
+
+{% block account %}
+
+    <div class="m-5">
+        <form id="loginForm" method="POST" action="{{ route('account.location.new') }}" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="locationTitle">Titre du lieu</label>
+                <input type="text" name="locationTitle" id="locationTitle"
+                       class="form-control  {% if error.locationTitle %}input-error{% endif %}"
+                       placeholder="Quelle est le titre du lieu ?"
+                       value="{{ post.locationTitle }}"
+                >
+                {% if error.locationTitle %}
+                    <span class="text-danger">
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ error.locationTitle }}
+                    </span>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="locationDescription">Description</label>
+                <textarea
+                        name="locationDescription"
+                        id="locationDescription"
+                        class="form-control {% if error.locationDescription %}input-error{% endif %}">
+                        {{ post.locationDescription }}
+                </textarea>
+                {% if error.locationDescription %}
+                    <span class="text-danger">
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ error.locationDescription }}
+                    </span>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="locationImage">Image du lieu</label>
+                <input type="file" name="locationImage" id="locationImage"
+                       class="form-control {% if error.locationImage %}input-error{% endif %}"
+                       placeholder="Image du lieu"
+                       value="{{ post.locationImage }}"
+                >
+                {% if error.locationImage %}
+                    <span class="text-danger">
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ error.locationImage }}
+                    </span>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="locationAddress">Adresse du lieu</label>
+                <input type="text" name="locationAddress" id="locationAddress"
+                       class="form-control  {% if error.locationAddress %}input-error{% endif %}"
+                       placeholder="Quelle est l'adresse du lieu ?"
+                       value="{{ post.addressLocation }}"
+                >
+                {% if error.locationAddress %}
+                    <span class="text-danger">
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ error.locationAddress }}
+                    </span>
+                {% endif %}
+            </div>
+            <div class="mt-4 submit-box">
+                <button type="submit" class="btn btn-yellow-square mx-auto d-block">C'est parti !</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
