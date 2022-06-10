@@ -21,8 +21,9 @@
                 </h3>
                 <form action="{{ route('course.play') }}" method="post">
                     <input type="hidden" class="form-control" id="idCourse" name="idCourse" value="{{ id }}">
-                    <button onclick="start()" id="start">Start</button>
-                    <button onclick="stop()" id="stop">Stop</button>
+                    <button onclick="start()" id="start" name="start">Start</button>
+                    <button onclick="stop()" id="stop" name="end">Stop</button>
+                    <input type="text" name="reponse"/>
                 </form>
             </div>
         </div>

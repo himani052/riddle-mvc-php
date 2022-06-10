@@ -61,3 +61,6 @@ Route::post('/contact/post', 'App\controllers\ContactController@send')->name('co
 Route::get('/about', 'App\controllers\AboutController@index')->name('about.index');
 //StopWatch test
 Route::get('/stopwatch', 'App\controllers\StopwatchController@index')->name('stopwatch.index');
+
+//Riddle API
+Route::get('/userlist', 'App\controllers\API\RiddleApi@index');

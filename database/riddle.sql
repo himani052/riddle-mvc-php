@@ -92,8 +92,8 @@ CREATE TABLE `SCORE_USER_COURSE`
     scoreUser           INT  DEFAULT 0,
     user_emailUser      VARCHAR(249) NOT NULL,
     course_idCourse     INT          NOT NULL,
-    timeStartCourseUser TIME DEFAULT NULL,
-    timeEndCourseUser   TIME DEFAULT NULL,
+    timeStartCourseUser DATETIME DEFAULT NULL,
+    timeEndCourseUser   DATETIME DEFAULT NULL,
     PRIMARY KEY (user_emailUser, course_idCourse)
 );
 
