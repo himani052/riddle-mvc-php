@@ -76,6 +76,11 @@ PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"
 
 https://www.tiny.cloud/docs/quick-start/
 
+
+## Utilisation de l'API Riddle
+Riddle propose l'usage de son API afin de récupérer la liste des utilisateurs sous un format JSON.
+Pour atteindre les données il faut insérer /userlist à l'url.
+Les données d'en-tête sont affichées avec Postman et regroupe toutes les informations tel que le type et le nombre de caractère du fichier renvoyé.
 ## Initialiser des variables de session
 
 -> Controlleur userControlleur
