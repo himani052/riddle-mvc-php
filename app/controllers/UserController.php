@@ -30,10 +30,10 @@ class UserController extends Controller {
         if($user !== FALSE ){
 
             //on vérifie le mot de passe
-            if($request->name('password') === $user->passwordUser){
+            if(password_verify($request->name('password'), $user->passwordUser)){
                 //stocker la session
                 //Declaration variables de sessions
-
+                
                 $request->session('admin', (int) $user->admin);
                 $request->session('pseudo', $user->pseudoUser);
                 $request->session('email', $user->emailUser);
@@ -42,12 +42,15 @@ class UserController extends Controller {
 
                 header('Location: /?success=true');
             }else{
-                echo "mot de passe incorrect";
+                echo '<script type="text/javascript">
+                    window.onload = function () { alert("Welcome"); } 
+                </script>';
+                $request->lastRedirect();
             }
 
         }else{
             $request->lastRedirect();
-        }
+        };
     }
 
     public function logout(){
@@ -65,17 +68,17 @@ class UserController extends Controller {
         //Traitement des valeurs POST par la méthode validator
         $values = $request->validator(
             [
-                'pseudoUser'  => ['requiered'],
-                'birthdateUser'  => ['requiered'],
-                'emailUser' =>  ['requiered'],
-                'passwordUser' => ['requiered'],
-                'passwordUserConfirmation' => ['requiered'],
+                'pseudoUser'  => ['required'],
+                'birthdateUser'  => ['required'],
+                'emailUser' =>  ['email'],
+                'passwordUser' => ['min:8'],
+                'passwordUserConfirmation' => ['passverif'],
             ]
         );
 
         //Insertion des valeurs dans la base de donnée
         $user = new User($this->getDB());
-        $user = $user->create($values['emailUser'],$values['pseudoUser'],$values['passwordUser'],$values['birthdateUser'],0 );
+        $user = $user->create($values['emailUser'],$values['pseudoUser'],password_hash($values['passwordUser'], PASSWORD_DEFAULT),$values['birthdateUser'],0 );
 
         return redirect('user.connect');
     }

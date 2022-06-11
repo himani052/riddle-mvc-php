@@ -101,7 +101,7 @@ CREATE TABLE `SCORE_USER_COURSE` (
 CREATE TABLE `USER` (
                         emailUser VARCHAR(249) NOT NULL,
                         pseudoUser VARCHAR(249) NOT NULL,
-                        passwordUser VARCHAR(249) NOT NULL,
+                        passwordUser VARBINARY(249) NOT NULL,
                         birthdateUser DATE NOT NULL,
                         photoUser VARCHAR(249) DEFAULT '/public/assets/img/jpg/users/default.png',
                         registrationDateUser DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -232,9 +232,9 @@ ALTER TABLE `CLUE` ADD CONSTRAINT fk_riddle FOREIGN KEY(riddle_idRiddle)  REFERE
 
 -- Création des utilisateurs
 INSERT INTO `USER` (emailUser, pseudoUser,passwordUser,photoUser, birthdateUser,`admin`)
-VALUES ('houssam.imani@gmail.com', 'hortalia', '1234','/public/assets/img/jpg/users/portrait-1.jpg','2000-03-17', 1),
-       ('hissani.imani@gmail.com', 'mlsni', '1234','/public/assets/img/jpg/users/portrait-2.jpg','1998-11-29', 0),
-       ('tom.orhon@gmail.com', 'araschi', '1234','/public/assets/img/jpg/users/portrait-3.jpg', '1998-07-25',0);
+VALUES ('houssam.imani@gmail.com', 'hortalia', AES_ENCRYPT('1234', 'secret'),'/public/assets/img/jpg/users/portrait-1.jpg','2000-03-17', 1),
+       ('hissani.imani@gmail.com', 'mlsni', AES_ENCRYPT('1234', 'secret'),'/public/assets/img/jpg/users/portrait-2.jpg','1998-11-29', 0),
+       ('tom.orhon@gmail.com', 'araschi', AES_ENCRYPT('1234', 'secret'),'/public/assets/img/jpg/users/portrait-3.jpg', '1998-07-25',0);
 
 
 -- Création des departements

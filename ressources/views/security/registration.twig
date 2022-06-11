@@ -17,12 +17,24 @@
                                 <div class="form-group">
                                     <label for="pseudoUser">Pseudo</label>
                                     <input type="text" name="pseudoUser" id="pseudo" value="{{ post.pseudoUser }}" class="form-control {% if error.pseudoUser %}input-error{% endif %}" placeholder="Comment veux-tu être appelé ?">
+                                    {% if error.pseudo %}
+                                        <span class="text-danger">
+                                            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                            {{ error.pseudo }}
+                                        </span>
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="birthdateUser">Date de naissance</label>
                                     <input type="date" name="birthdateUser" id="birthdateUser" value="{{ post.birthdateUser }}"  class="form-control{% if error.birthdateUser %}input-error{% endif %}" placeholder="Quand est-tu né ?">
+                                    {% if error.birthdateUser %}
+                                        <span class="text-danger">
+                                            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                            {{ error.birthdateUser }}
+                                        </span>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -30,17 +42,35 @@
                         <div class="form-group">
                             <label for="emailUser">Addresse mail</label>
                             <input type="email" name="emailUser" id="emailUser" value="{{ post.emailUser }}" class="form-control {% if error.emailUser %}input-error{% endif %}" placeholder="Quelle est ton addresse mail ?">
+                            {% if error.emailUser %}
+                                <span class="text-danger">
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ error.emailUser }}
+                                </span>
+                            {% endif %}
                         </div>
                         <div class="form-group">
                             <label for="passwordUser">Mot de passe</label>
                             <input type="password" name="passwordUser" id="passwordUser" value="{{ post.passwordUser }}" class="form-control {% if error.passwordUser %}input-error{% endif %}" placeholder="Choisis un mot de passe pour sécuriser ton compte">
+                            {% if error.passwordUser %}
+                                <span class="text-danger">
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ error.passwordUser }}
+                                </span>
+                            {% endif %}
                         </div>
                         <div class="form-group">
                             <label for="passwordUserConfirmation">Confirmation de mot de passe</label>
                             <input type="password" name="passwordUserConfirmation" id="passwordUserConfirmation" value="{{ post.passwordUserConfirmation }}" class="form-control {% if error.passwordUserConfirmation %}input-error{% endif %}" placeholder="Confirme ton mot de passe">
+                        {% if error.passwordUserConfirmation %}
+                            <span class="text-danger">
+                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                {{ error.passwordUserConfirmation }}
+                            </span>
+                         {% endif %}
                         </div>
                         <div class="mt-4 submit-box">
-                            <button type="submit" class="btn btn-yellow-square mx-auto d-block">C'est parti !</button>
+                            <input type="submit" class="btn btn-yellow-square mx-auto d-block" id="submit">
                             <small id="emailHelp" class="form-text text-muted">Déjà un compte ? Accède à la page de <a href="{{ route('user.connect') }}" class="text-yellow">connection</a></small>
                         </div>
                     </form>
@@ -52,5 +82,5 @@
 {% endblock %}
 
 {% block js %}
-<script src="JS.js"></script>
+    <script src="public\assets\js\JS.js"></script>
 {% endblock %}

@@ -17,8 +17,8 @@ class ContactController extends Controller
         ini_set("smpt_port", 1025);
         $values = $request->validator(
             [
-                'mail'  => ['requiered'],
-                'message'  => ['requiered'],
+                'mail'  => ['required'],
+                'message'  => ['required'],
             ]
         );
         $destinataire = 'thomas.es13@gmail.com';

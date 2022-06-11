@@ -46,7 +46,7 @@ class CourseController extends Controller
 
 
     public function play(HttpRequest $request){
-        $date = date('h:i:s');
+        $date = date("Y-m-d H:i:s");
         $mail = $request->session('email');
         // $req = $this->db->getPDO()->query("INSERT INTO `SCORE_USER_COURSE` (`scoreUser`, `user_emailUser`,`course_idCourse`, `timeStartCourseUser`, `timeEndCourseUser`) VALUES (DEFAULT, $mail, 'id', DEFAULT, DEFAULT");
         // $users =  $req->fetchAll();

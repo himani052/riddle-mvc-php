@@ -92,6 +92,12 @@ class HttpRequest{
                         case 'required':
                             $this->required($key, $this->posts[$key]);
                             break;
+                        case 'email':
+                            $this->email($key, $this->posts[$key]);
+                            break;
+                        case 'passverif':
+                            $this->passverif($key, $this->posts[$key], $this->posts['passwordUser']);
+                            break;
                         case substr($rule, 0,3) == 'max':
                             $this->max($key, $this->posts[$key], $rule);
                             break;
@@ -122,6 +128,22 @@ class HttpRequest{
         //traiter les erreurs en affichant qu'un champ est requis
         if(!isset($value) || is_null($value) || empty($value)){
             $this->errors[$name][] = "Veuillez remplir la valeur ".$name;
+        }
+    }
+
+    public function email($name, $value){
+        $value = trim($value);
+        
+        if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
+            $this->errors[$name][] = "email non valide ".$name;
+        }
+    }
+
+    //verifie le mdp et le champ confirme mdp sont identique
+    public function passverif($name, $passconfirm, $pass){
+        
+        if ($passconfirm!=$pass) {
+            $this->errors[$name][] = "les mots de passe ne corresponde pas".$name;
         }
     }
 
