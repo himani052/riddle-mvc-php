@@ -6,16 +6,13 @@ use App\https\HttpRequest;
 use App\models\User;
 use Controller;
 
-class UserController extends Controller
-{
+class UserController extends Controller {
 
-    public function connect()
-    {
+    public function connect(){
         return $this->view('security/login.twig');
     }
 
-    public function login(HttpRequest $request)
-    {
+    public function login(HttpRequest $request){
 
 
         //On test si email et password existes dans $_POST
@@ -26,65 +23,68 @@ class UserController extends Controller
 
 
         $user = new User($this->getDB());
-        $user = $user->where('emailUser', '=', $request->name('email'));
+        $user = $user->where('emailUser', '=',$request->name('email'));
 
 
         //Si l'utilisateur existe
-        if ($user !== FALSE) {
+        if($user !== FALSE ){
 
             //on vérifie le mot de passe
-            if ($request->name('password') === $user->passwordUser) {
+            if(password_verify($request->name('password'), $user->passwordUser)){
                 //stocker la session
                 //Declaration variables de sessions
-
-                $request->session('admin', (int)$user->admin);
+                
+                $request->session('admin', (int) $user->admin);
                 $request->session('pseudo', $user->pseudoUser);
                 $request->session('email', $user->emailUser);
                 $request->session('photo', $user->photoUser);
                 $request->session('registrationDate', $user->registrationDateUser);
 
                 header('Location: /?success=true');
-            } else {
-                echo "mot de passe incorrect";
+            }else{
+                echo '<script type="text/javascript">
+                    window.onload = function () { alert("Welcome"); } 
+                </script>';
+                $request->lastRedirect();
             }
 
-        } else {
+        }else{
             $request->lastRedirect();
-        }
+        };
     }
 
-    public function logout()
-    {
+    public function logout(){
         session_destroy();
         return redirect('home.index');
     }
 
-    public function register()
-    {
+    public function register(){
         return $this->view('security/registration.twig');
     }
 
-    public function create(HttpRequest $request)
-    {
+    public function create(HttpRequest $request){
 
         //Récupération des valeus POST
         //Traitement des valeurs POST par la méthode validator
         $values = $request->validator(
             [
-                'pseudoUser' => ['requiered'],
-                'birthdateUser' => ['requiered'],
-                'emailUser' => ['requiered'],
-                'passwordUser' => ['requiered'],
-                'passwordUserConfirmation' => ['requiered'],
+                'pseudoUser'  => ['required'],
+                'birthdateUser'  => ['required'],
+                'emailUser' =>  ['email'],
+                'passwordUser' => ['min:8'],
+                'passwordUserConfirmation' => ['passverif'],
             ]
         );
 
         //Insertion des valeurs dans la base de donnée
         $user = new User($this->getDB());
-        $user = $user->create($values['emailUser'], $values['pseudoUser'], $values['passwordUser'], $values['birthdateUser'], 0);
+        $user = $user->create($values['emailUser'],$values['pseudoUser'],password_hash($values['passwordUser'], PASSWORD_DEFAULT),$values['birthdateUser'],0 );
 
         return redirect('user.connect');
     }
+
+
+
 
 
 }

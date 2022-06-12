@@ -45,6 +45,14 @@ class User extends Model
         return $stmt->fetch();
     }
 
+    public function findMdp($emailUser) {
+        $stmt = $this->db->getPDO()->prepare("SELECT `USER` FROM `passwordUser` WHERE `emailUser` = :emailUser ");
+        $stmt->execute(array(
+            'emailUser' => $emailUser
+        ));
+        return $stmt->fetch();
+    }
+
 
     //Trouver les commentaires d'un utilisateur par course
 
