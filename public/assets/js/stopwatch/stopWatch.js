@@ -1,5 +1,34 @@
 var x;
 var startstop = 0;
+console.log("Jul");
+
+jQuery(document).ready(function () {
+    var idCourseValue = function () {
+        return url.charAt(url.length - 1)
+    }
+    console.log(idCourseValue);
+
+    $('#start').on('click', function () {
+
+        success:function (data) {
+            console.log(data);
+            console.log("Good");
+            start();
+        }
+    });
+
+    $('#stop').on('click', function () {
+
+        success:function (data) {
+            console.log(data);
+            console.log("Good");
+            stop();
+        }
+    });
+
+
+});
+
 
 function startStop() { /* Toggle StartStop */
 
@@ -107,3 +136,8 @@ function reset() {
     document.getElementById("hour").innerHTML = "00";
 
 }
+
+
+
+
+
