@@ -15,6 +15,10 @@ class AccountRiddleController extends Controller
 
     public function createForm($id){
 
+        if(isAuth() != true){
+            return redirect('user.connect');
+        }
+
         return $this->view('account/riddle/create.twig', ['idLocation' => $id]);
 
     }
@@ -22,6 +26,9 @@ class AccountRiddleController extends Controller
 
     public function create(HttpRequest $request){
 
+        if(isAuth() != true){
+            return redirect('user.connect');
+        }
 
         //Télécharger l'image
         //LoaderFile prendre en paramètre : nom de l'imput + addresse de destination + type de fichier

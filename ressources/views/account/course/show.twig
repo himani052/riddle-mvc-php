@@ -48,6 +48,8 @@
                     </div>
                     <hr class="text-black-50">
                     <div class="card-body mr-4 ml-4 mb-4">
+                        <em class="font-weight-bold">Adresse : {{ location.addressLocation }}</em>
+                        <br>
                         {{ location.descriptionLocation }}
 
                         <br><br>
@@ -71,7 +73,11 @@
                                             <div class="card-body">
                                                 {{ riddle.descriptionRiddle }}
                                             </div>
-
+                                            <a class="ml-3 text-yellow" href="{{ route('account.clue.create',{'id' : riddle.idRiddle}) }}">
+                                                <i class="fa-solid fa-plus"></i>
+                                                Nouvelle indice
+                                            </a>
+                                            <br><br>
                                             {% for clue in riddle.clues %}
                                             <!-- Clues -->
                                             <div class="alert alert-warning" role="alert">

@@ -435,6 +435,8 @@ iframe{
         display: none;
     }
 
+
+
 }
 
 
@@ -453,6 +455,12 @@ iframe{
     /************ Side menu *****************/
     #responsive-account-sidemenu{
         display: block;
+    }
+
+    /***** card responsive *****/
+    .form-box {
+        width: 90%;
+        padding: 0;
     }
 
 }

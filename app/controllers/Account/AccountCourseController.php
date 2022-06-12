@@ -17,6 +17,10 @@ class AccountCourseController extends Controller
 
     public function index(){
 
+        if(isAuth() != true){
+            return redirect('user.connect');
+        }
+
         $course = new Course($this->getDB());
         $courses = $course->findCourseByUser($_SESSION['email']);
 
@@ -25,6 +29,10 @@ class AccountCourseController extends Controller
     }
 
     public function list(){
+
+        if(isAuth() != true){
+            return redirect('user.connect');
+        }
 
         $course = new Course($this->getDB());
         $courses = $course->findCourseByUser($_SESSION['email']);
@@ -36,6 +44,9 @@ class AccountCourseController extends Controller
 
     public function show($id){
 
+        if(isAuth() != true){
+            return redirect('user.connect');
+        }
 
         $courseGeneral = new Course($this->getDB());
         $courseGeneral = $courseGeneral->findById($id);
@@ -71,11 +82,18 @@ class AccountCourseController extends Controller
 
     public function createForm(){
 
+        if(isAdmin() != true){
+            return redirect('home.index');
+        }
         return $this->view('account/course/create.twig');
 
     }
 
     public function create(HttpRequest $request){
+
+        if(isAdmin() != true){
+            return redirect('home.index');
+        }
 
         //Télécharger l'image
         //LoaderFile prendre en paramètre : nom de l'imput + addresse de destination + type de fichier
@@ -105,8 +123,8 @@ class AccountCourseController extends Controller
         //$new_course->joinCreatedCourseWithUser($_SESSION['email']);
 
 
-        //trouver l'ID du dernier parcours créé
-        $idCourse = $new_course->findLastCourse()->idCourse;
+        //trouver l'ID du dernier parcours créé (par l'utilisateur)
+        $idCourse = $new_course->findLastCourse($_SESSION['email'])->idCourse;
 
         return redirect('account.location.create', ['id' => $idCourse]);
 
