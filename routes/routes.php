@@ -1,6 +1,5 @@
 <?php
 
-
 //Homepage
 Route::get('/', 'App\controllers\HomeController@index')->name('home.index');
 Route::get('/home/show/{id}', 'App\controllers\HomeController@show')->name('home.show');

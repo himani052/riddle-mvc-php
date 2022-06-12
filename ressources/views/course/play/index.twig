@@ -2,23 +2,31 @@
 
 {% block content %}
 
-    <div class="container mt-5">
-                <div class="row m-4">
-                    <div class="col-9">
-                        Lieu
-                    </div>
-                    <div class="col-3">
-                        Distance
-                    </div>
-                </div>
+    <script type="text/javascript" src="/public/assets/js/stopwatch/stopWatch.js"></script>
 
-                <div class="m-5">
-                    <h1 class="mb-3">Context</h1>
-                    <p class="mb-5">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget ullamcorper magna. Suspendisse ultrices est est, nec tempus dui sodales in. Duis ultrices sodales orci in auctor. Mauris ultrices sodales turpis id laoreet. Etiam posuere risus vitae leo rutrum, id eleifend nibh hendrerit.
-                    </p>
-                    <a href="" class="btn btn-yellow">Démarrer<i class="fa "></i></a>
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h1>StopWatch test</h1>
+            </div>
+            <div class="col text-center">
+                <span id="hour">00</span> :
+                <span id="min">00</span> :
+                <span id="sec">00</span> :
+                <span id="milisec">00</span>
+                
+            </div>
+        </div>
     </div>
+    <form action="{{ route('course.play') }}" method="post">
+        <input type="hidden" class="form-control" id="idCourse" name="idCourse" value="{{ id }}">
+        <input type="submit" name="commencer" value="start" onclick="start()"/>
+        <input type="text" name="reponse" />
+        <input type="submit" name="envoyer" value="envoyer"/>
+        <input type="submit" name="terminer" value="stop" onclick="Stop()"/>
+
+    </form>
 
 {% endblock %}
+
+
