@@ -35,3 +35,14 @@ left: -25%;
     width: 25%;
     height: 100%;
 }
+
+
+/************* Media queries *********************************/
+
+@media (max-width: 995px) {
+
+    .sidebar-responsive{
+        display: none;
+    }
+
+}

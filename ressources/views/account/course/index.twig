@@ -3,15 +3,13 @@
 
 {% block account %}
 
-
-
         <div class="overflow-hidden">
             <a href="{{ route('account.course.create') }}" class="btn btn-yellow-square mb-3 float-right">
                 <i class="fa-solid fa-plus"></i>
                 Nouveau parcours
             </a>
-            <div class="embed-responsive embed-responsive-4by3 ">
-                <iframe class="embed-responsive-item" src="{{ route('account.course.list') }}" height="800px" width="100%" title="Iframe Example"></iframe>
+            <div class="embed-responsive embed-responsive-4by3 iframe-parent">
+                <iframe class="embed-responsive-item responsive-iframe " src="{{ route('account.course.list') }}" title="Iframe Example" ></iframe>
             </div>
         </div>
 

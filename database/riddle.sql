@@ -334,8 +334,8 @@ CREATE VIEW `COURSE_BY_CREATOR` AS
 SELECT *
 FROM  COURSE
           INNER JOIN `USER`
-                    ON COURSE.creatorCourse = user.emailUser
-ORDER BY course.idCourse ASC;
+                    ON COURSE.creatorCourse = USER.emailUser
+ORDER BY COURSE.idCourse ASC;
 
 
 
@@ -354,7 +354,7 @@ CREATE VIEW `COURSES_DETAILS` AS
 SELECT *
 FROM  COURSE
           LEFT JOIN `USER`
-                    ON COURSE.creatorCourse = user.emailUser
+                    ON COURSE.creatorCourse = USER.emailUser
           LEFT JOIN `LOCATION`
                     ON COURSE.idCourse = LOCATION.course_idCourse
           LEFT JOIN `DEPARTMENT`
@@ -365,7 +365,7 @@ FROM  COURSE
                     ON LOCATION.idLocation = RIDDLE.location_idLocation
           LEFT JOIN `CLUE`
                     ON CLUE.riddle_idRiddle = RIDDLE.idRiddle
-ORDER BY course.idCourse ASC;
+ORDER BY COURSE.idCourse ASC;
 
 
 
@@ -375,9 +375,9 @@ CREATE VIEW `COURSE_PARTICIPANT` AS
 SELECT *
 FROM `SCORE_USER_COURSE`
          INNER JOIN `USER`
-                    ON user.emailUser = SCORE_USER_COURSE.user_emailUser
+                    ON USER.emailUser = SCORE_USER_COURSE.user_emailUser
          INNER JOIN `COURSE`
-                    ON course.idCourse = SCORE_USER_COURSE.course_idCourse
+                    ON COURSE.idCourse = SCORE_USER_COURSE.course_idCourse
 /*GROUP BY `user`.emailUser*/
-ORDER BY course.idCourse ASC;
+ORDER BY COURSE.idCourse ASC;
 

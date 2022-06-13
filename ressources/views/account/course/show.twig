@@ -20,18 +20,24 @@
             <div class="card-body mr-4 ml-4 mb-4">
 
                     {% if courseGeneral.distanceCourse == NULL %}
-                        <span class="text-danger">Distance : ( valeur nulle )</span>
+                        <span class="text-danger">Distance du parcours : ( valeur nulle )</span>
                     {% else %}
-                        <em class="">{{ courseGeneral.distanceCourse }}</em>
+                        <em class="">Distance du parcours : {{ courseGeneral.distanceCourse }}</em>
                     {% endif %}
                     <br><br>
 
                     <em class="font-weight-bold">Description du parcours</em><br><br>
                     {{ courseGeneral.descriptionCourse | raw }}
-                </div>
+
             </div>
+        </div>
 
-
+        <div class="mt-4">
+            <a href="{{ route('account.location.create',{'id' : courseGeneral.idCourse}) }}" class="btn btn-yellow-square mb-3">
+                <i class="fa-solid fa-plus"></i>
+                Nouveau lieu
+            </a>
+        </div>
 
         {% for location in courseLocations %}
             {% if location.idLocation != NULL %}
@@ -42,16 +48,24 @@
                     </div>
                     <hr class="text-black-50">
                     <div class="card-body mr-4 ml-4 mb-4">
+                        <em class="font-weight-bold">Adresse : {{ location.addressLocation }}</em>
+                        <br>
                         {{ location.descriptionLocation }}
 
                         <br><br>
+                        <a href="{{ route('account.riddle.create',{'id' : location.idLocation}) }}">
+                            <i class="fa-solid fa-plus"></i>
+                            Nouvelle énigme
+                        </a>
+                        <br><br>
+                        {% if location.riddles != NULL %}
                         <div class="accordion" id="accordionExample">
                                 <div class="card">
                                     {% for riddle in location.riddles  %}
                                         <div class="card-header" id="headingThree">
                                             <h2 class="mb-0">
                                                 <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                    {{ riddle.idRiddle }} - {{ riddle.titleRiddle }}
+                                                    {{ riddle.titleRiddle }}
                                                 </button>
                                             </h2>
                                         </div>
@@ -59,10 +73,26 @@
                                             <div class="card-body">
                                                 {{ riddle.descriptionRiddle }}
                                             </div>
+                                            <a class="ml-3 text-yellow" href="{{ route('account.clue.create',{'id' : riddle.idRiddle}) }}">
+                                                <i class="fa-solid fa-plus"></i>
+                                                Nouvelle indice
+                                            </a>
+                                            <br><br>
+                                            {% for clue in riddle.clues %}
+                                            <!-- Clues -->
+                                            <div class="alert alert-warning" role="alert">
+                                                {{ clue.titleClue }} - {{ clue.descriptionClue }}
+                                            </div>
+                                            <!-- Clues -->
+                                            {% endfor %}
                                         </div>
-                                {% endfor %}
+                                    {% endfor %}
                                 </div>
                         </div>
+                        {% else %}
+                            <span class="text-danger">Aucunes énigmes</span>
+                        {% endif %}
+
                     </div>
                 </div>
             {% else %}

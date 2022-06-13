@@ -1,0 +1,57 @@
+{% extends "account/layouts/default.twig" %}
+
+
+{% block account %}
+
+    <div class="m-5">
+        <form id="loginForm" method="POST" action="{{ route('account.clue.new') }}" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="hidden" class="form-control" id="idRiddle" name="idRiddle" value="{{ idRiddle }}">
+                <label for="clueTitle">Titre de l'indice</label>
+                <input type="text" name="clueTitle" id="clueTitle"
+                       class="form-control  {% if error.clueTitle %}input-error{% endif %}"
+                       placeholder="Quelle est le titre du lieu ?"
+                       value="{{ post.clueTitle }}"
+                >
+                {% if error.clueTitle %}
+                    <span class="text-danger">
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ error.clueTitle }}
+                    </span>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="clueDescription">Description de l'indice</label>
+                <textarea
+                        name="clueDescription"
+                        id="clueDescription"
+                        class="form-control {% if error.clueDescription %}input-error{% endif %}">
+                        {{ post.clueDescription }}
+                </textarea>
+                {% if error.clueDescription %}
+                    <span class="text-danger">
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ error.clueDescription }}
+                    </span>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="clueImage">Image de l'indice</label>
+                <input type="file" name="clueImage" id="clueImage"
+                       class="form-control {% if error.clueImage %}input-error{% endif %}"
+                       placeholder="Image du lieu"
+                       value="{{ post.clueImage }}"
+                >
+                {% if error.clueImage %}
+                    <span class="text-danger">
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ error.clueImage }}
+                    </span>
+                {% endif %}
+            </div>
+            <div class="mt-4 submit-box">
+                <button type="submit" class="btn btn-yellow-square mx-auto d-block">C'est parti !</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

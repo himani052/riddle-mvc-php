@@ -1,0 +1,22 @@
+{% extends "layouts/default.twig" %}
+
+{% block content %}
+    <script type="text/javascript" src="/public/assets/js/stopwatch/stopWatch.js"></script>
+
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h1>StopWatch test</h1>
+            </div>
+            <div class="col text-center">
+                <span id="hour">00</span> :
+                <span id="min">00</span> :
+                <span id="sec">00</span> :
+                <span id="milisec">00</span>
+                <button onclick="startStop()" id="start">Start</button>
+                <button onclick="reset()">Reset</button>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

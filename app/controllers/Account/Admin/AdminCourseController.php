@@ -10,6 +10,10 @@ class AdminCourseController extends Controller {
 
     public function index(){
 
+        if(isAdmin() != true){
+            return redirect('home.index');
+        }
+
         $course = new Course($this->getDB());
         $courses = $course->allFromView('`COURSE_BY_CREATOR`');
 
@@ -17,6 +21,10 @@ class AdminCourseController extends Controller {
     }
 
     public function show($id){
+
+        if(isAdmin() != true){
+            return redirect('home.index');
+        }
 
         $course = new Course($this->getDB());
         $course = $course->findByFromView($id,'`COURSES_DETAILS`');
@@ -33,7 +41,7 @@ class AdminCourseController extends Controller {
             return redirect('admin.course.index');
         }else{
             //Sinon renvoyer vers la page de login
-            return redirect('user.connect');
+            return redirect('home.index');
         }
 
     }

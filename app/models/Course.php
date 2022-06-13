@@ -22,8 +22,15 @@ class Course extends Model {
         ));
     }
 
-    public function findLastCourse(){
+    /*public function findLastCourse(){
         $req = $this->db->getPDO()->query("SELECT * FROM `COURSE` ORDER BY `creationDateCourse` DESC LIMIT 1");
+        return $req->fetch();
+    }*/
+
+
+    public function findLastCourse($emailUser){
+        $req = $this->db->getPDO()->prepare("SELECT * FROM `COURSE` WHERE creatorCourse = ? ORDER BY `creationDateCourse` DESC LIMIT 1");
+        $req->execute([$emailUser]);
         return $req->fetch();
     }
 
@@ -52,11 +59,6 @@ class Course extends Model {
         return $stmt->fetchAll();
     }
 
-    public function findCourseLocations($idCourse){
-        $stmt = $this->db->getPDO()->prepare("SELECT DISTINCT idLocation, titleLocation, descriptionLocation, imageLocation, addressLocation, city_codeCity, department_codeDepartment FROM `COURSES_DETAILS` WHERE idCourse = ?;");
-        $stmt->execute([$idCourse]);
-        return $stmt->fetchAll();
-    }
 
 
 

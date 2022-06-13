@@ -15,7 +15,7 @@
                 <a class="nav-link" href="{{ route('contact.index') }}">Contact</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">À propos</a>
+                <a class="nav-link" href="{{ route('about.index') }}">À propos</a>
             </li>
         </ul>
 
@@ -29,7 +29,7 @@
                     <span class="font-weight-normal mr-2">{{ auth.pseudo }}</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right shadow border-0">
-                    <a class="dropdown-item" href="#">Mon profil</a>
+                    <a class="dropdown-item" href="{{ route('account.profile.index')}}">Mon profil</a>
                     <a class="dropdown-item" href="#">Parcours lancé(s)</a>
                     <a class="dropdown-item" href="{{ route('account.course.index')}}">Création/édition de parcours</a>
                     <a class="dropdown-item" href="#">Classement général</a>

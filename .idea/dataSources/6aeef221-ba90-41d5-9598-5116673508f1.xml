@@ -934,7 +934,7 @@ SELECT|sys.sys_config
     <table id="297" parent="13" name="score_user_course"/>
     <table id="298" parent="13" name="user"/>
     <view id="299" parent="13" name="course_by_creator">
-      <SourceTextLength>953</SourceTextLength>
+      <SourceTextLength>918</SourceTextLength>
       <Definer>root@localhost</Definer>
     </view>
     <view id="300" parent="13" name="course_participant">
