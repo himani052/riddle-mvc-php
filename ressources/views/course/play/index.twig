@@ -1,42 +1,31 @@
-{% extends "account/layouts/default.twig" %}
-{% block content %}
+{% extends "layouts/default.twig" %}
 
+{% block content %}
     <script src="/public/assets/js/stopwatch/stopWatch.js"></script>
 
-    <div class="home-page-container container text-center">
-
+    <div class="container">
         <div class="row">
-            <div class="col-sm-6">
-                <h1> Répondez aux énigmes ! </h1>
-                <span>Vous pouvez vous aider avec les indices.</span>
+            <div class="col-4 text-center">
+                <h1>StopWatch test</h1>
+                <span id="hour">00</span> :
+                <span id="min">00</span> :
+                <span id="sec">00</span> :
+                <span id="milisec">00</span>
+
+                <button name="start" id="start">Start</button>
+                <button id="stop">Stop</button>
+
             </div>
-            <div class="col-sm-6">
-                <h1>Chronomètre</h1>
 
-                <h3>
-                    <span id="hour">00</span> :
-                    <span id="min">00</span> :
-                    <span id="sec">00</span> :
-                    <span id="milisec">00</span>
-                </h3>
-
-                <button id="start" name="start">Start</button>
-                <button id="stop" name="end">Stop</button>
-
-
-                <form action="{{ route('course.play') }}" method="post">
-                    <input type="hidden" class="form-control" id="idCourse" name="idCourse" value="{{ id }}">
-                    <input type="text" name="reponse"/>
-                </form>
-
+            <div class="col-8 text-center">
+                <h1>Répondez à l'énigme</h1>
             </div>
         </div>
-
     </div>
 
-
-
+    <form action="{{ route('course.play') }}" method="post">
+        <input type="hidden" class="form-control" id="idCourse" name="idCourse" value="{{ id }}">
+        <input type="text" name="reponse"/>
+    </form>
 
 {% endblock %}
-
-

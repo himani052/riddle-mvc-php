@@ -1,32 +1,26 @@
 var x;
 var startstop = 0;
-console.log("Jul");
+console.log("Good");
 
-jQuery(document).ready(function () {
-    var idCourseValue = function () {
-        return url.charAt(url.length - 1)
-    }
-    console.log(idCourseValue);
+jQuery(function () {
 
     $('#start').on('click', function () {
-
-        success:function (data) {
-            console.log(data);
             console.log("Good");
             start();
-        }
     });
 
     $('#stop').on('click', function () {
-
-        success:function (data) {
-            console.log(data);
-            console.log("Good");
-            stop();
-        }
+        console.log("Good");
+        stop();
     });
 
-
+    $.ajax({
+        type: 'POST',           //La méthode cible (POST ou GET)
+        url : '/course/play/',
+        data: {
+            id : 4
+        },
+    });
 });
 
 
@@ -36,27 +30,22 @@ function startStop() { /* Toggle StartStop */
 
     if (startstop === 1) {
         start();
-        document.getElementById("start").innerHTML = "Stop";
+        document.getElementById("terminer").innerHTML = "Stop";
     } else if (startstop === 2) {
         document.getElementById("start").innerHTML = "Start";
         startstop = 0;
         stop();
     }
+
 }
 
 
 function start() {
     x = setInterval(timer, 10);
-    document.getElementById("start").disabled = true;
-    document.getElementById("stop").disabled = false;
-
-
 } /* Start */
 
 function stop() {
     clearInterval(x);
-    document.getElementById("stop").disabled = true;
-    document.getElementById("start").disabled = false;
 } /* Stop */
 
 var milisec = 0;
@@ -136,8 +125,3 @@ function reset() {
     document.getElementById("hour").innerHTML = "00";
 
 }
-
-
-
-
-

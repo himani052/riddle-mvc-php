@@ -4,29 +4,27 @@ namespace App\models;
 
 use Model;
 
-class User extends Model
-{
+class User extends Model {
 
     protected $table = '`USER`';
     protected $id = '`emailUser`';
 
 
-    public function create($emailUser, $pseudoUser, $passwordUser, $birthdateUser, $admin)
-    {
+
+    public function create($emailUser,$pseudoUser, $passwordUser, $birthdateUser, $admin ){
 
         $req = $this->db->getPDO()->prepare("INSERT INTO `USER` (emailUser, pseudoUser, passwordUser, birthdateUser, admin) VALUES  (:emailUser, :pseudoUser , :passwordUser, :birthdateUser, :admin) ");
 
         return $req->execute(array(
-            'emailUser' => $emailUser,
-            'pseudoUser' => $pseudoUser,
+           'emailUser' => $emailUser,
+           'pseudoUser' => $pseudoUser,
             'passwordUser' => $passwordUser,
             'birthdateUser' => $birthdateUser,
             'admin' => $admin
         ));
     }
 
-    public function changeRole($emailUser, int $role)
-    {
+    public function changeRole($emailUser, int $role){
 
         $req = $this->db->getPDO()->prepare("UPDATE `user` SET admin = :role WHERE emailUser = :emailUser");
 
@@ -36,8 +34,7 @@ class User extends Model
         ));
     }
 
-    public function findByEmail($emailUser)
-    {
+    public function findByEmail($emailUser) {
         $stmt = $this->db->getPDO()->prepare("SELECT * FROM `USER` WHERE `emailUser` = :emailUser ");
         $stmt->execute(array(
             'emailUser' => $emailUser
@@ -56,8 +53,7 @@ class User extends Model
 
     //Trouver les commentaires d'un utilisateur par course
 
-    public function findUserCommentByCourse($idCourse, $emailUser)
-    {
+    public function findUserCommentByCourse($idCourse, $emailUser) {
 
         $stmt = $this->db->getPDO()->prepare("
         SELECT * FROM `USER`,`COMMENT`, `COURSE` 
@@ -77,11 +73,11 @@ class User extends Model
     }
 
 
-    public function removeByEmail($email)
-    {
+    public function removeByEmail($email){
         $stmt = $this->db->getPDO()->prepare("DELETE FROM {$this->table}  WHERE {$email} = ? ");
         return $stmt->execute([$email]);
     }
+
 
 
 }

@@ -20,7 +20,7 @@ class Route
      */
     public static function get($path, $action)
     {
-        $routes = new Request($path, $action);
+        $routes = new Request($path,$action);
         self::$request['GET'][] = $routes;
         return $routes;
     }
@@ -35,7 +35,7 @@ class Route
     public static function post($path, $action)
     {
 
-        $routes = new Request($path, $action);
+        $routes = new Request($path,$action);
         self::$request['POST'][] = $routes;
         return $routes;
     }
@@ -53,9 +53,9 @@ class Route
      */
     public static function run()
     {
-        foreach (self::$request[$_SERVER['REQUEST_METHOD']] as $route) {
+        foreach (self::$request[$_SERVER['REQUEST_METHOD']] as $route){
 
-            if ($route->match(trim($_GET['url']), '/')) {
+            if($route->match(trim($_GET['url']), '/' )){
 
                 $route->execute();
                 die();
@@ -71,14 +71,13 @@ class Route
      * @return string
      * fonction qui va traiter la fonction name dans la classe Request
      */
-    public static function url($name, $parameters = [])
-    {
+    public static function url($name, $parameters = []){
 
         //parcourir toutes les routes (post ou get)
-        foreach (self::$request as $key => $value) {
-            foreach (self::$request[$key] as $routes) {
+        foreach (self::$request as $key => $value){
+            foreach (self::$request[$key] as $routes){
                 //si la cle existe (ex: home.show existe ?)
-                if (array_key_exists($name, $routes->name())) {
+                if(array_key_exists($name, $routes->name())){
 
                     //récupération de la route
                     $route = $routes->name();
@@ -87,18 +86,17 @@ class Route
                     $path = implode($route[$name]);
 
                     //tester si le paramètre est vide
-                    if (!empty($parameters)) {
+                    if(!empty($parameters)){
 
                         //parcourir tableau
-                        foreach ($parameters as $key => $value) {
+                        foreach ($parameters as $key => $value){
                             //je remplace le parametre id par la valeur dans le 'path' (chemin)
                             $path = str_replace("{{$key}}", $value, $path);
 
-                        }
-                        return '/' . $path;
-                    } else {
+                        }return '/'.$path;
+                    }else{
                         //si le paramètre est vide retourner un slash
-                        return "/" . $path;
+                        return "/".$path;
                     }
                 }
             }

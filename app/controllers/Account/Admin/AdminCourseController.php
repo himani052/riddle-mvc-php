@@ -3,13 +3,12 @@
 namespace App\controllers\Account\Admin;
 
 use App\models\Course;
+use App\models\User;
 use Controller;
 
-class AdminCourseController extends Controller
-{
+class AdminCourseController extends Controller {
 
-    public function index()
-    {
+    public function index(){
 
         $course = new Course($this->getDB());
         $courses = $course->allFromView('`COURSE_BY_CREATOR`');
@@ -17,24 +16,22 @@ class AdminCourseController extends Controller
         return $this->view('account/admin/course/index.twig', compact('courses'));
     }
 
-    public function show($id)
-    {
+    public function show($id){
 
         $course = new Course($this->getDB());
-        $course = $course->findByFromView($id, '`COURSES_DETAILS`');
+        $course = $course->findByFromView($id,'`COURSES_DETAILS`');
 
         return $this->view('account/admin/course/show.twig', compact('course'));
     }
 
-    public function delete($id)
-    {
+    public function delete($id){
 
-        if (isAdmin()) {
+        if(isAdmin()){
             //Si administrateur supprimer course
             $course = new Course($this->getDB());
             $course->removeById($id);
             return redirect('admin.course.index');
-        } else {
+        }else{
             //Sinon renvoyer vers la page de login
             return redirect('user.connect');
         }

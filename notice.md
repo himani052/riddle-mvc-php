@@ -1,12 +1,12 @@
 # Création site MVC
 
-## Initialisation du projet composer
+## Initialisation du projet composer 
 
 ````
 composer init 
 ````
 
-Pour charger automatiquement certains fichiers on fait appel à l'autolaod
+Pour charger automatiquement certains fichiers on fait appel à l'autolaod 
 
 `````json
 {

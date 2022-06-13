@@ -7,20 +7,17 @@ use App\models\Comment;
 use App\models\User;
 use Controller;
 
-class CommentController extends Controller
-{
+class CommentController extends Controller {
 
-    public function index()
-    {
+    public function index(){
         echo "default controller";
     }
 
-    public function create(HttpRequest $request)
-    {
+    public function create(HttpRequest $request){
 
         //récupération du champ post idparcours
         $idCourse = $request->name('idCourse');
-
+        
 
         //Valeurs post récupérées traités par la méthode validator
         $feilds = $request->validator(
@@ -31,7 +28,7 @@ class CommentController extends Controller
 
         //Insertion des commentaires dans la base
         $comment = new Comment($this->getDB());
-        if (!empty($request->session('email'))) {
+        if(!empty($request->session('email'))){
             //Si l'utilisateur a un compte, utiliser son pseudo pour le commentaire
             $comment->create($feilds['usercomment'], $request->session('email'), $idCourse, NULL);
 
@@ -40,18 +37,19 @@ class CommentController extends Controller
             $user = $user->findUserCommentByCourse($idCourse, $request->session('email'));
 
 
-        } else {
+
+        }else{
             //Si l'utilisateur n'a pas de compte, utiliser le pseudo qu'il a renseigné
             $comment->create($feilds['usercomment'], NULL, $idCourse, $feilds['pseudo']);
         }
+
 
 
         return redirect('course.show', ['id' => $idCourse]);
 
     }
 
-    public function delete($idComment, $idCourse)
-    {
+    public function delete($idComment, $idCourse){
 
         $comment = new Comment($this->getDB());
         $comment->removeById($idComment);
@@ -59,6 +57,7 @@ class CommentController extends Controller
         return redirect('course.show', ['id' => $idCourse]);
 
     }
+
 
 
 }

@@ -1,24 +1,22 @@
 <?php
 
+use App\models\Location;
 use Database\DBConnection;
 use Twig\Environment;
-use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFunction;
 
-abstract class Controller
-{
+abstract class Controller{
 
     //connexion à la base de donnée
     protected $db;
 
-    public function __construct(DBConnection $db)
-    {
+    public function __construct(DBConnection $db){
         $this->db = $db;
     }
 
-    public function view($path, $datas = [])
-    {
+    public function view($path, $datas = []){
+
 
         //mécanique de twig
         $loader = new FilesystemLoader('../ressources/views');
@@ -27,7 +25,7 @@ abstract class Controller
             'debug' => true
         ]);
 
-        $twig->addExtension(new DebugExtension());
+        $twig->addExtension(new \Twig\Extension\DebugExtension());
 
         //ajouter fonction twig route
         $twig->addFunction(new TwigFunction('route', function ($name, $params = []) {
@@ -37,13 +35,12 @@ abstract class Controller
 
         $twig->addGlobal('error', Errors());
         $twig->addGlobal('auth', Auth());
-        $twig->addGlobal('post', setpost());
+        $twig->addGlobal('post',setpost());
 
-        echo $twig->render($path, $datas);
+        echo $twig->render($path,$datas);
     }
 
-    protected function getDB()
-    {
+    protected function getDB(){
         return $this->db;
     }
 

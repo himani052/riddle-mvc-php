@@ -5,14 +5,15 @@ namespace App\controllers\Account;
 use App\https\HttpRequest;
 use App\models\Course;
 use App\models\Location;
+use App\models\User;
 use Controller;
+use Database\DBConnection;
 
 
 class AccountCourseController extends Controller
 {
 
-    public function index()
-    {
+    public function index(){
 
         $course = new Course($this->getDB());
         $courses = $course->findCourseByUser($_SESSION['email']);
@@ -21,8 +22,7 @@ class AccountCourseController extends Controller
 
     }
 
-    public function list()
-    {
+    public function list(){
 
         $course = new Course($this->getDB());
         $courses = $course->findCourseByUser($_SESSION['email']);
@@ -32,8 +32,7 @@ class AccountCourseController extends Controller
 
     }
 
-    public function show($id)
-    {
+    public function show($id){
 
 
         $courseGeneral = new Course($this->getDB());
@@ -42,10 +41,10 @@ class AccountCourseController extends Controller
         $courseLocations = new Course($this->getDB());
         $courseLocations = $courseLocations->findCourseLocations($id);
 
-        $arraytempo = array();
+        $arraytempo=array();
 
 
-        foreach ($courseLocations as $courseLocation) {
+        foreach ($courseLocations as $courseLocation){
 
             $locationRiddle = new Location($this->getDB());
             $courseLocation->riddles = $locationRiddle->findLocationRiddle($courseLocation->idLocation);
@@ -53,23 +52,22 @@ class AccountCourseController extends Controller
         }
 
 
+
         return $this->view('account/course/show.twig', compact('courseGeneral', 'courseLocations'));
 
     }
 
-    public function createForm()
-    {
+    public function createForm(){
 
         return $this->view('account/course/create.twig');
 
     }
 
-    public function create(HttpRequest $request)
-    {
+    public function create(HttpRequest $request){
 
         //Télécharger l'image
         //LoaderFile prendre en paramètre : nom de l'imput + addresse de destination + type de fichier
-        $image = $request->loaderFiles('courseImage', 'assets/img/loaders/', ['.png', '.PNG', '.jpg', '.JPG', '.jpeg', '.JPEG']);
+        $image = $request->loaderFiles('courseImage', 'assets/img/loaders/', ['.png', '.PNG', '.jpg', '.JPG', '.jpeg', '.JPEG'] );
 
         //Récupération de nos champs
         $value = $request->validator([
@@ -80,9 +78,9 @@ class AccountCourseController extends Controller
 
         //fusionner tableau de valeur et images
         //image => champs img bdd
-        if (!empty($image)) {
-            $data = array_merge_recursive($value, ['image' => '/public/' . $image]);
-        } else {
+        if(!empty($image)){
+            $data = array_merge_recursive($value, ['image' => '/public/'.$image]);
+        }else{
             $data = array_merge_recursive($value, ['image' => '/public/assets/img/jpg/courses/default.png']);
         }
 
@@ -91,22 +89,21 @@ class AccountCourseController extends Controller
 
         $new_course = new Course($this->getDB());
 
-        $new_course->create($data['courseTitle'], $data['courseDescription'], $data['image'], $data['courseDistance'], $_SESSION['email']);
+        $new_course->create($data['courseTitle'],$data['courseDescription'], $data['image'],$data['courseDistance'],$_SESSION['email']);
         //$new_course->joinCreatedCourseWithUser($_SESSION['email']);
 
         return redirect('account.course.index');
 
     }
 
-    public function delete($id)
-    {
+    public function delete($id){
 
-        if (isAdmin()) {
+        if(isAdmin()){
             //Si administrateur supprimer course
             $course = new Course($this->getDB());
             $course->removeById($id);
             return redirect('account.course.list');
-        } else {
+        }else{
             //Sinon renvoyer vers la page de login
             return redirect('user.connect');
         }
