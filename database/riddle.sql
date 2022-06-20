@@ -156,12 +156,12 @@ CREATE TABLE `RIDDLE` (
 
 
 CREATE TABLE `CLUE` (
-                          idClue INT NOT NULL AUTO_INCREMENT,
-                          titleClue VARCHAR(255),
-                          descriptionClue TEXT,
-                          imageClue VARCHAR(255),
-                          riddle_idRiddle INT NOT NULL ,
-                          PRIMARY KEY (idClue)
+                        idClue INT NOT NULL AUTO_INCREMENT,
+                        titleClue VARCHAR(255),
+                        descriptionClue TEXT,
+                        imageClue VARCHAR(255),
+                        riddle_idRiddle INT NOT NULL ,
+                        PRIMARY KEY (idClue)
 );
 
 
@@ -240,35 +240,35 @@ VALUES ('houssam.imani@gmail.com', 'hortalia', AES_ENCRYPT('1234', 'secret'),'/p
 -- Création des departements
 INSERT INTO `DEPARTMENT` (`codeDepartment`, `titleDepartment`)
 VALUES ('04', 'Alpes de Haute Provence'),
-(05,'Hautes Alpes' ),
-(06, 'Alpes Maritimes'),
-(13, 'Bouches-du-Rhône'),
-(83, 'Var'),
-(84, 'Vaucluse');
+       (05,'Hautes Alpes' ),
+       (06, 'Alpes Maritimes'),
+       (13, 'Bouches-du-Rhône'),
+       (83, 'Var'),
+       (84, 'Vaucluse');
 
 
 -- Création des villes
 INSERT INTO `CITY` (`codeCity`, `titleCity`) VALUES (13000, 'Marseille'),
-            (06000,'Nice'),
-            (83000, 'Toulon'),
-            (13090, 'Aix-en-provence'),
-            (84000, 'Avignon'),
-            (06600, 'Antibes'),
-            (06400, 'Cannes'),
-            (83500, 'La Seyne-sur-Mer'),
-            (83400, 'Hyère'),
-            (83600, 'Fréjus'),
-            (13200, 'Arles'),
-            (06130, 'Grasse'),
-            (13500, 'Martigues'),
-            (81130, 'Cagne-sur-Mer'),
-            (13400, 'Aubagne'),
-            (13300, 'Salon-de-Provence'),
-            (13800, 'Istres'),
-            (06110, 'Le Cannet'),
-            (05000, 'Gap'),
-            (83300, 'Draguignan'),
-            (13600, 'La Ciotat');
+                                                    (06000,'Nice'),
+                                                    (83000, 'Toulon'),
+                                                    (13090, 'Aix-en-provence'),
+                                                    (84000, 'Avignon'),
+                                                    (06600, 'Antibes'),
+                                                    (06400, 'Cannes'),
+                                                    (83500, 'La Seyne-sur-Mer'),
+                                                    (83400, 'Hyère'),
+                                                    (83600, 'Fréjus'),
+                                                    (13200, 'Arles'),
+                                                    (06130, 'Grasse'),
+                                                    (13500, 'Martigues'),
+                                                    (81130, 'Cagne-sur-Mer'),
+                                                    (13400, 'Aubagne'),
+                                                    (13300, 'Salon-de-Provence'),
+                                                    (13800, 'Istres'),
+                                                    (06110, 'Le Cannet'),
+                                                    (05000, 'Gap'),
+                                                    (83300, 'Draguignan'),
+                                                    (13600, 'La Ciotat');
 
 
 
@@ -284,29 +284,29 @@ INSERT INTO `COURSE` (`idCourse`, `titleCourse`,`descriptionCourse`, `imageCours
 
 
 INSERT INTO `LOCATION` (`idLocation`,`titleLocation`, `descriptionLocation`,imageLocation,addressLocation,department_codeDepartment,city_codeCity,course_idCourse)
-    VALUES (1, 'Batîment V1 - Université de Toulon', 'Derrière le bâtiment EVE', 'location-1-course-1.jpg','Av. de l Université',83, 83000, 1),
-            (2, 'Bibliothèque de Toulon - Université de Toulon', 'Face à la fac de biologie','location-2-course-1.jpg','Av. de l Université',83, 83000,  1),
-            (3, 'Fac de droit - Universitaire Aix-Marseille', 'Devant arrêt du car 72', 'location-1-course-3.jpg','Jardin du Pharo, 58 Boulevard Charles Livon', 13, 13400, 1),
-            (4, 'Fac de biologie - Universitaire Aix-Marseille', 'Campus de Lumini', 'location-1-course-4.jpg','163 Av, de Luminy', 13, 13000,  1);
+VALUES (1, 'Batîment V1 - Université de Toulon', 'Derrière le bâtiment EVE', 'location-1-course-1.jpg','Av. de l Université',83, 83000, 1),
+       (2, 'Bibliothèque de Toulon - Université de Toulon', 'Face à la fac de biologie','location-2-course-1.jpg','Av. de l Université',83, 83000,  1),
+       (3, 'Fac de droit - Universitaire Aix-Marseille', 'Devant arrêt du car 72', 'location-1-course-3.jpg','Jardin du Pharo, 58 Boulevard Charles Livon', 13, 13400, 1),
+       (4, 'Fac de biologie - Universitaire Aix-Marseille', 'Campus de Lumini', 'location-1-course-4.jpg','163 Av, de Luminy', 13, 13000,  1);
 
 
 -- Ajouter la table RIDLE & Clue (finaliser un parcours)
 
 INSERT INTO `RIDDLE` (idRiddle, titleRiddle, descriptionRiddle, imageRiddle, solutionRiddle, location_idLocation)
 VALUES (1, 'bâtiment','Combien de batiments compte l université de Toulon ? ', NULL,'15', 1 ),
-        (2, 'Object disparue','Retrouve dans la bibliothèques l objets manquants. Dès que tu aura retrouvé indique les 3 premières lettres dans le champ texte',NULL,'liv', 2 ),
-        (3, 'Retrouve un livre','Retrouve le livre des mysérables de Victor Hugo et va à la page 100, ligne 6, caractère 10. Note la lettre',NULL,'a', 2 ),
-        (4, 'Couleure','De quelle couleure est la bibliothèque d aix en provence',NULL,'blanc', 3),
-        (5, 'Biologie','Quelle est la matiere principale enseigné en fac de biologie?',NULL,'biologie',4 );
+       (2, 'Object disparue','Retrouve dans la bibliothèques l objets manquants. Dès que tu aura retrouvé indique les 3 premières lettres dans le champ texte',NULL,'liv', 2 ),
+       (3, 'Retrouve un livre','Retrouve le livre des mysérables de Victor Hugo et va à la page 100, ligne 6, caractère 10. Note la lettre',NULL,'a', 2 ),
+       (4, 'Couleure','De quelle couleure est la bibliothèque d aix en provence',NULL,'blanc', 3),
+       (5, 'Biologie','Quelle est la matiere principale enseigné en fac de biologie?',NULL,'biologie',4 );
 
 
 INSERT INTO `CLUE` (idClue,titleClue,descriptionClue, imageClue, riddle_idRiddle)
 VALUES (1, 'indice 1','Demandez aux étudiants si vous voulez en avoir le coeur net ;)', NULL,1),
-        (2,'indice 2','Le chiffre est compris entre 5 et 25', NULL,1),
-        (3,'indice 1','L object en question est assez evident', NULL,2),
-        (4,'indice 1','Le livre se trouve dans l allé 4', NULL,3),
-        (5,'indice 1','C est une couleure neutre !', NULL,4),
-        (6,'indice 1','Ne réflechis pas trop c est tout simple la reponse est dans la question ;)', NULL,5);
+       (2,'indice 2','Le chiffre est compris entre 5 et 25', NULL,1),
+       (3,'indice 1','L object en question est assez evident', NULL,2),
+       (4,'indice 1','Le livre se trouve dans l allé 4', NULL,3),
+       (5,'indice 1','C est une couleure neutre !', NULL,4),
+       (6,'indice 1','Ne réflechis pas trop c est tout simple la reponse est dans la question ;)', NULL,5);
 
 
 
@@ -334,8 +334,8 @@ CREATE VIEW `COURSE_BY_CREATOR` AS
 SELECT *
 FROM  COURSE
           INNER JOIN `USER`
-                    ON COURSE.creatorCourse = user.emailUser
-ORDER BY course.idCourse ASC;
+                     ON COURSE.creatorCourse = USER.emailUser
+ORDER BY COURSE.idCourse ASC;
 
 
 
@@ -354,7 +354,7 @@ CREATE VIEW `COURSES_DETAILS` AS
 SELECT *
 FROM  COURSE
           LEFT JOIN `USER`
-                    ON COURSE.creatorCourse = user.emailUser
+                    ON COURSE.creatorCourse = USER.emailUser
           LEFT JOIN `LOCATION`
                     ON COURSE.idCourse = LOCATION.course_idCourse
           LEFT JOIN `DEPARTMENT`
@@ -365,7 +365,7 @@ FROM  COURSE
                     ON LOCATION.idLocation = RIDDLE.location_idLocation
           LEFT JOIN `CLUE`
                     ON CLUE.riddle_idRiddle = RIDDLE.idRiddle
-ORDER BY course.idCourse ASC;
+ORDER BY COURSE.idCourse ASC;
 
 
 
@@ -375,9 +375,9 @@ CREATE VIEW `COURSE_PARTICIPANT` AS
 SELECT *
 FROM `SCORE_USER_COURSE`
          INNER JOIN `USER`
-                    ON user.emailUser = SCORE_USER_COURSE.user_emailUser
+                    ON USER.emailUser = SCORE_USER_COURSE.user_emailUser
          INNER JOIN `COURSE`
-                    ON course.idCourse = SCORE_USER_COURSE.course_idCourse
+                    ON COURSE.idCourse = SCORE_USER_COURSE.course_idCourse
 /*GROUP BY `user`.emailUser*/
-ORDER BY course.idCourse ASC;
+ORDER BY COURSE.idCourse ASC;
 

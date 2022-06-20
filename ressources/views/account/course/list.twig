@@ -27,7 +27,7 @@
                            </div>
                            <div class="col-4">
                                <a href="{{ route('account.course.show', {'id':course.idCourse}) }}" class="text-black-50" target="_parent"><i class="fa-solid fa-pen-to-square"></i></a>
-                               <a href="{{ route('account.course.delete', {'id':course.idCourse}) }}" class="text-danger" onclick="alert('Voulez-vous vraiment supprimer ce parcours ?')" ><i class="fa-solid fa-trash-can"></i></a>
+                               <a href="{{ route('account.course.delete', {'id':course.idCourse}) }}" class="text-danger" onclick="return valid('Voulez-vous vraiment supprimer ce parcours ?')" ><i class="fa-solid fa-trash-can"></i></a>
                            </div>
                        </div>
                     </div>

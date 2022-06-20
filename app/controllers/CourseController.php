@@ -30,11 +30,11 @@ class CourseController extends Controller
         $parc = $parc->findById($id);
 
         //users
-        $req = $this->db->getPDO()->query("SELECT * FROM user LIMIT 3");
+        $req = $this->db->getPDO()->query("SELECT * FROM USER LIMIT 3");
         $users =  $req->fetchAll();
 
         //comments
-        $req = $this->db->getPDO()->prepare("SELECT * FROM comment WHERE course_idCourse = ? ");
+        $req = $this->db->getPDO()->prepare("SELECT * FROM COMMENT WHERE course_idCourse = ? ");
         $req->execute([$id]);
         $comments = $req->fetchAll();
 

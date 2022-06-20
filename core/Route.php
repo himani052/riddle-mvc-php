@@ -53,8 +53,10 @@ class Route
      */
     public static function run()
     {
+        //Pour toutes les URL récupérés par le navigateurs (POST ou GET)
         foreach (self::$request[$_SERVER['REQUEST_METHOD']] as $route){
 
+            //Vérifier que l'URL correspond avec une URL défini dans le fichier Route
             if($route->match(trim($_GET['url']), '/' )){
 
                 $route->execute();

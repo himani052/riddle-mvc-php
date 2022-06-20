@@ -82,7 +82,7 @@ class AccountCourseController extends Controller
 
     public function createForm(){
 
-        if(isAdmin() != true){
+        if(isAuth() != true){
             return redirect('home.index');
         }
         return $this->view('account/course/create.twig');
@@ -91,7 +91,7 @@ class AccountCourseController extends Controller
 
     public function create(HttpRequest $request){
 
-        if(isAdmin() != true){
+        if(isAuth() != true){
             return redirect('home.index');
         }
 
@@ -105,6 +105,8 @@ class AccountCourseController extends Controller
             'courseDescription' => ['required'],
             'courseDistance' => ['required'],
         ]);
+
+        $request->validator(['couseTitle']);
 
         //fusionner tableau de valeur et images
         //image => champs img bdd
@@ -132,7 +134,7 @@ class AccountCourseController extends Controller
 
     public function delete($id){
 
-        if(isAdmin()){
+        if(isAuth()){
             //Si administrateur supprimer course
             $course = new Course($this->getDB());
             $course->removeById($id);

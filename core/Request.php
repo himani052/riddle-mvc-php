@@ -50,7 +50,7 @@ class Request
         //remplacer tous les caractères alphanumériques par tout sauf des /
         $path = preg_replace('#({[\w]+})#', '([^/]+)', $this->path);
 
-        //passer le chemin complet dans une exp regulière
+        //passer le chemin complet dans une expression regulière
         //Remplacer toute la chaine
         $pathToMatch = "#^$path$#";
 
@@ -89,6 +89,9 @@ class Request
             $controller = new $controller(new DBConnection('riddle', 'localhost', 'root', ''));
             //$controller = new $controller(new DBConnection('riddle_test', 'mysql-riddle.alwaysdata.net', 'riddle', 'azert123&'));
             $method = $action[1];
+
+            // Appelle une fonction de rappel avec les paramètres rassemblés en tableau
+            // Appel de la méthode du contrôleur en question en renvoyant les paramètres associés
             call_user_func_array([$controller, $method], $this->params);
             //return isset($this->params) ? $controller->$method(implode($this->params)) : $controller->$method(); isset($this->params) ? $controller->method(implode($this->params)) : $controller->method();
         } else {
@@ -107,6 +110,9 @@ class Request
             $method = $action[1];
             //on ajoute l'object request dans le tableau de paramètres
             array_unshift($this->params, $this->request);
+
+            // Appelle une fonction de rappel avec les paramètres rassemblés en tableau
+            // Appel de la méthode du contrôleur en question en renvoyant les paramètres associés
             call_user_func_array([$controller, $method], $this->params);
             //return isset($this->params) ? $controller->$method($this->request, implode($this->params)) : $controller->$method($this->request);
         } else {

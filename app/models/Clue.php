@@ -6,13 +6,13 @@ use Model;
 
 class Clue extends Model {
 
-    protected $table = '`Clue`';
+    protected $table = '`CLUE`';
     protected $id = '`idClue`';
 
 
     public function create( $titleClue, $descriptionClue, $imageClue, $idRiddle)
     {
-        $req = $this->db->getPDO()->prepare('INSERT INTO `Clue` (titleClue, descriptionClue ,imageClue, riddle_idRiddle) VALUES (:titleClue, :descriptionClue ,:imageClue, :riddle_idRiddle)');
+        $req = $this->db->getPDO()->prepare('INSERT INTO `CLUE` (titleClue, descriptionClue ,imageClue, riddle_idRiddle) VALUES (:titleClue, :descriptionClue ,:imageClue, :riddle_idRiddle)');
 
         return $req->execute(array(
             'titleClue' => $titleClue,

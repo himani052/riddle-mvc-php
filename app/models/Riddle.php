@@ -6,12 +6,12 @@ use Model;
 
 class Riddle extends Model {
 
-    protected $table = '`Riddle`';
+    protected $table = '`RIDDLE`';
     protected $id = '`idRiddle`';
 
     public function create( $titleRiddle, $descriptionRiddle, $imageRiddle, $solutionRiddle, $idLocation)
     {
-        $req = $this->db->getPDO()->prepare('INSERT INTO `Riddle` (titleRiddle, descriptionRiddle,imageRiddle, solutionRiddle, location_idLocation) VALUES (:titleRiddle, :descriptionRiddle,:imageRiddle, :solutionRiddle, :location_idLocation)');
+        $req = $this->db->getPDO()->prepare('INSERT INTO `RIDDLE` (titleRiddle, descriptionRiddle,imageRiddle, solutionRiddle, location_idLocation) VALUES (:titleRiddle, :descriptionRiddle,:imageRiddle, :solutionRiddle, :location_idLocation)');
 
         return $req->execute(array(
             'titleRiddle' => $titleRiddle,

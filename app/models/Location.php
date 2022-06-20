@@ -33,7 +33,7 @@ class Location extends Model {
     }
 
     public function findLastLocationId(){
-        $stmt = $this->db->getPDO()->query("SELECT MAX(idLocation) AS idLocation FROM `Location`;");
+        $stmt = $this->db->getPDO()->query("SELECT MAX(idLocation) AS idLocation FROM `LOCATION`;");
         return $stmt->fetch();
     }
 
