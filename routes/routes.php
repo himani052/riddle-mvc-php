@@ -28,6 +28,9 @@ Route::get('/logout','App\controllers\UserController@logout')->name('user.logout
 Route::get('/register','App\controllers\UserController@register')->name('user.register') ;
 Route::post('/new/user','App\controllers\UserController@create')->name('user.create') ;
 
+Route::get('/password_forget', 'App\controllers\UserController@index')->name('user.password');
+Route::post('/password_forget/post', 'App\controllers\UserController@password')->name('user.send');
+
 
 //User:account:profile
 Route::get('/account/profile','App\controllers\Account\AccountProfileController@index')->name('account.profile.index') ;
