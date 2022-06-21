@@ -7,22 +7,20 @@
         <a href="{{ route('account.course.index') }}" class="btn btn-yellow-square text-decoration-none"><i class="fa fa-arrow-left"></i> Retour</a>
         <div class="card card-account mt-4">
             <div class="card-title p-4">
-               <div class="row">
-                   <div class="col-8">
-                       <h2 class="m-0"><span class="font-weight-bold">ID : {{ courseGeneral.idCourse }}</span> - {{ courseGeneral.titleCourse }}</h2>
-                   </div>
-                   <div class="col-4">
-                       <em><i class="fa fa-calendar mr-2"></i> Parcours créé le {{ courseGeneral.creationDateCourse | date('d-m-y')}}</em>
-                   </div>
-               </div>
+                <h2 class="m-0"><span class="font-weight-bold">ID : {{ courseGeneral.idCourse }}</span> - {{ courseGeneral.titleCourse }}
+
+                    <a href="{{ route('account.course.update',{'id':courseGeneral.idCourse}) }}"><i class="fa fa-edit mr-2 float-right"></i></a>
+                </h2>
             </div>
             <hr class="text-black-50">
             <div class="card-body mr-4 ml-4 mb-4">
 
-                    {% if courseGeneral.distanceCourse == NULL %}
+                <em class="mt-4 mb-3"><i class="fa fa-calendar mr-2"></i> Parcours créé le {{ courseGeneral.creationDateCourse | date('d-m-y')}}</em><br>
+
+                {% if courseGeneral.distanceCourse == NULL %}
                         <span class="text-danger">Distance du parcours : ( valeur nulle )</span>
                     {% else %}
-                        <em class="">Distance du parcours : {{ courseGeneral.distanceCourse }}</em>
+                        <em class=""><i class="fa-solid fa-person-running mr-2"></i> Distance du parcours : {{ courseGeneral.distanceCourse }} km</em>
                     {% endif %}
                     <br><br>
 
@@ -43,8 +41,11 @@
             {% if location.idLocation != NULL %}
                 <!-- Ajouter un lieu -->
                 <div class="card card-account mt-4">
-                    <div class="card-title p-4 pb-0">
-                        <h2 class="m-0"><i class="fa fa-map"></i> {{ location.idLocation }} - {{ location.titleLocation }}</h2>
+                    <div class="card-title pt-4 pl-4 pr-4 pb-0">
+                        <h2 class="m-0"><i class="fa fa-map"></i> {{ location.idLocation }} - {{ location.titleLocation }}
+                            <a href="{{ route('account.location.update',{'idCourse':courseGeneral.idCourse, 'idLocation':location.idLocation}) }}"><i class="fa fa-edit float-right align-middle"></i></a>
+
+                        </h2>
                     </div>
                     <hr class="text-black-50">
                     <div class="card-body mr-4 ml-4 mb-4">
@@ -66,6 +67,7 @@
                                             <h2 class="mb-0">
                                                 <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                                     {{ riddle.titleRiddle }}
+                                                    <a href="{{ route('account.riddle.update',{'idCourse':courseGeneral.idCourse, 'idLocation':location.idLocation, 'idRiddle':riddle.idRiddle}) }}"><i class="fa fa-edit mr-2 float-right"></i></a>
                                                 </button>
                                             </h2>
                                         </div>
@@ -82,6 +84,7 @@
                                             <!-- Clues -->
                                             <div class="alert alert-warning" role="alert">
                                                 {{ clue.titleClue }} - {{ clue.descriptionClue }}
+                                                <a href="{{ route('account.clue.update',{'idCourse':courseGeneral.idCourse, 'idLocation':location.idLocation, 'idRiddle':riddle.idRiddle, 'idClue':clue.idClue}) }}"><i class="fa fa-edit mr-2 float-right"></i></a>
                                             </div>
                                             <!-- Clues -->
                                             {% endfor %}

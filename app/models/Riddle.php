@@ -22,6 +22,19 @@ class Riddle extends Model {
         ));
     }
 
+    public function update( $titleRiddle, $descriptionRiddle, $imageRiddle, $solutionRiddle, $idRiddle)
+    {
+        $req = $this->db->getPDO()->prepare('UPDATE `RIDDLE` SET titleRiddle = :titleRiddle, descriptionRiddle = :descriptionRiddle,imageRiddle = :imageRiddle, solutionRiddle = :solutionRiddle WHERE idRiddle = :idRiddle');
+
+        return $req->execute(array(
+            'idRiddle' => $idRiddle,
+            'titleRiddle' => $titleRiddle,
+            'descriptionRiddle' => $descriptionRiddle ,
+            'imageRiddle' => $imageRiddle,
+            'solutionRiddle' => $solutionRiddle,
+        ));
+    }
+
     public function findLocationRiddle($idLocation){
         $stmt = $this->db->getPDO()->prepare("SELECT DISTINCT idRiddle, titleRiddle, descriptionRiddle, imageRiddle, solutionRiddle FROM `COURSES_DETAILS` WHERE idLocation = ?;");
         $stmt->execute([$idLocation]);

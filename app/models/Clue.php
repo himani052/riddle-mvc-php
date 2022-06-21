@@ -22,6 +22,18 @@ class Clue extends Model {
         ));
     }
 
+    public function update( $titleClue, $descriptionClue, $imageClue, $idClue)
+    {
+        $req = $this->db->getPDO()->prepare('UPDATE `CLUE` SET titleClue = :titleClue, descriptionClue = :descriptionClue ,imageClue = :imageClue WHERE idClue = :idClue');
+
+        return $req->execute(array(
+            'idClue' => $idClue,
+            'titleClue' => $titleClue,
+            'descriptionClue' => $descriptionClue ,
+            'imageClue' => $imageClue,
+        ));
+    }
+
     public function findClueRiddle($idRiddle){
         $stmt = $this->db->getPDO()->prepare("SELECT DISTINCT idClue, titleClue, descriptionClue, imageClue FROM `COURSES_DETAILS` WHERE idRiddle = ?;");
         $stmt->execute([$idRiddle]);

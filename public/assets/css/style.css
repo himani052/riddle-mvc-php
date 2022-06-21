@@ -102,7 +102,13 @@ iframe{
 }
 
 
-
+.container-min{
+    padding-top: 6%;
+    padding-bottom: 6%;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 
 /******* navbar *********************************************************/
@@ -273,6 +279,31 @@ iframe{
     font-size: 0.8em;
 }
 
+/*************************** Play **********************/
+
+.play-location-image{
+    height: 40vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+
+.play-location-address span{
+    margin: 1em auto 1em auto;
+    font-size: 0.9em;
+    padding: 0.3em 1.5em;
+    border: 1px solid black;
+    border-radius: 50px;
+    color: black;
+    font-weight: 500;
+}
+
+.play-box-riddle h1{
+    font-size: 1.5em;
+}
+
 /*********** Login/logout ****************************/
 
 /** general **/
@@ -436,11 +467,15 @@ iframe{
     }
 
 
-
 }
 
 
 @media (max-width: 995px) {
+
+    .container-min{
+        padding-top: 12%;
+        width: 100%;
+    }
 
     .parcours-fixed{
         width: 100%;

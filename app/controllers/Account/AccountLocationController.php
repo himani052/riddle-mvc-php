@@ -64,4 +64,58 @@ class AccountLocationController extends Controller
 
     }
 
+    public function update($idCourse,$idLocation){
+
+        if(isAuth() != true){
+            return redirect('user.connect');
+        }
+
+        $location = new Location($this->getDB());
+        $location = $location->findById($idLocation);
+
+        return $this->view('account/location/update.twig', ['idCourse' => $idCourse, 'location' => $location ]);
+
+    }
+
+    public function updatepost(HttpRequest $request){
+
+        if(isAuth() != true){
+            return redirect('user.connect');
+        }
+
+        //Télécharger l'image
+        //LoaderFile prendre en paramètre : nom de l'imput + addresse de destination + type de fichier
+        $image = $request->loaderFiles('locationImage', 'assets/img/loaders/', ['.png', '.PNG', '.jpg', '.JPG', '.jpeg', '.JPEG'] );
+
+        //Récupération de nos champs
+        $value = $request->validator([
+            'idLocation',
+            'idCourse',
+            'locationTitle' => ['required'],
+            'locationDescription' => ['required'],
+            'locationAddress' => ['required'],
+        ]);
+
+
+        $location = new Location($this->getDB());
+        $location = $location->findById($value['idLocation']);
+
+        //fusionner tableau de valeur et images
+        //image => champs img bdd
+        if(!empty($image)){
+            $data = array_merge_recursive($value, ['image' => '/public/'.$image]);
+        }else{
+            $data = array_merge_recursive($value, ['image' => $location->imageLocation]);
+        }
+
+
+        $update_location = new Location($this->getDB());
+        $update_location->update($data['locationTitle'], $data['locationDescription'], $data['image'], $data['locationAddress'],83000, 83,$data['idLocation'] );
+
+
+        return redirect('account.course.show', ['id' => $data['idCourse']]);
+
+    }
+
+
 }

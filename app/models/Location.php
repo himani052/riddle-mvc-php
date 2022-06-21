@@ -26,6 +26,21 @@ class Location extends Model {
         ));
     }
 
+    public function update($titleLocation, $descriptionLocation, $imageLocation, $addressLocation, $codeCity, $codeDepartment,$idLocation)
+    {
+        $req = $this->db->getPDO()->prepare('UPDATE `LOCATION` SET titleLocation = :titleLocation, descriptionLocation = :descriptionLocation , imageLocation = :imageLocation, addressLocation = :addressLocation, department_codeDepartment = :department_codeDepartment, city_codeCity = :city_codeCity WHERE idLocation = :idLocation');
+
+        return $req->execute(array(
+            'titleLocation' => $titleLocation,
+            'descriptionLocation' => $descriptionLocation ,
+            'imageLocation' => $imageLocation,
+            'addressLocation' => $addressLocation,
+            'department_codeDepartment' => $codeDepartment,
+            'city_codeCity' => $codeCity,
+            'idLocation' => $idLocation,
+        ));
+    }
+
     public function findCourseLocations($idCourse){
         $stmt = $this->db->getPDO()->prepare("SELECT DISTINCT idLocation, titleLocation, descriptionLocation, imageLocation, addressLocation, city_codeCity, department_codeDepartment FROM `COURSES_DETAILS` WHERE idCourse = ?;");
         $stmt->execute([$idCourse]);

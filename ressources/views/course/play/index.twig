@@ -2,6 +2,56 @@
 
 {% block content %}
 
+
+    <div class="container">
+        <div class="container-min">
+            <div class="play-location-image position-relative" style="background-image: url('{{ course.imageCourse }}')">
+                <div class="position-absolute bg-dark font-weight-bold text-white pl-4 pr-4 pt-2 pb-2">{{ course.titleCourse }}</div>
+            </div>
+
+            <div class="mt-3 mb-3">
+                <div class="row">
+                    <div class="col-9 play-location-address">
+                        <span class="mt-3"><i class="fa-solid fa-location-dot mr-2"></i>Toulon, FRANCE</span>
+                    </div>
+                    <div class="col-3">
+                        02: 02: 45
+                    </div>
+                </div>
+
+                {% for location in courseLocations %}
+                    {% if location.idLocation != NULL %}
+                        <div class="play-box-riddle mt-5 mb-4" id="location-{{ location.id }}">
+                            <h2><i class="fa-solid fa-hourglass mr-2"></i>{{ location.titleLocation }}</h2>
+                            <p>{{ location.descriptionLocation }}</p>
+                            <form  action="">
+                                <div class="form-group">
+                                    <label class="font-weight-bold" for="solutionRiddle">Entrez la solution de l'énigme</label>
+                                    <input type="text" name="solutionRiddle" id="solutionRiddle" placeholder="Réponse de l'énigme" class="form-control"/><br>
+                                    <input type="submit" class="btn btn-yellow-square float-right" value="Valider">
+                                </div>
+                            </form>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+
+{% block js%}
+    <script>
+        let locationBlocks = {{ location.id }} ;
+
+        for(let i=0; i<= locationBlocks.length; i++){
+            alert('hellooo block'+locationBlocks[i]);
+        }
+
+    </script>
+{% endblock %}
+
+    {#
     <script type="text/javascript" src="/public/assets/js/stopwatch/stopWatch.js"></script>
 
     <div class="container">
@@ -26,6 +76,10 @@
         <input type="submit" name="terminer" value="stop" onclick="Stop()"/>
 
     </form>
+    #}
+
+
+
 
 {% endblock %}
 

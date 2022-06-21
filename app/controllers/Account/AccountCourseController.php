@@ -106,7 +106,6 @@ class AccountCourseController extends Controller
             'courseDistance' => ['required'],
         ]);
 
-        $request->validator(['couseTitle']);
 
         //fusionner tableau de valeur et images
         //image => champs img bdd
@@ -115,6 +114,8 @@ class AccountCourseController extends Controller
         }else{
             $data = array_merge_recursive($value, ['image' => '/public/assets/img/jpg/courses/default.png']);
         }
+
+        //var_dump($_POST['courseImage']);
 
         //Insérer les données dans la table course
         var_dump($data);
@@ -129,6 +130,60 @@ class AccountCourseController extends Controller
         $idCourse = $new_course->findLastCourse($_SESSION['email'])->idCourse;
 
         return redirect('account.location.create', ['id' => $idCourse]);
+
+    }
+
+
+    public function updatepost(HttpRequest $request){
+
+        if(isAuth() != true){
+            return redirect('home.index');
+        }
+
+        //Télécharger l'image
+        //LoaderFile prendre en paramètre : nom de l'imput + addresse de destination + type de fichier
+        $image = $request->loaderFiles('courseImage', 'assets/img/loaders/', ['.png', '.PNG', '.jpg', '.JPG', '.jpeg', '.JPEG'] );
+
+        //Récupération de nos champs
+        $value = $request->validator([
+            'courseId',
+            'courseTitle' => ['required'],
+            'courseDescription' => ['required'],
+            'courseDistance' => ['required'],
+        ]);
+
+
+        $course = new Course($this->getDB());
+        $course = $course->findById($value['courseId']);
+
+        //fusionner tableau de valeur et images
+        //image => champs img bdd
+        if(!empty($image)){
+            $data = array_merge_recursive($value, ['image' => '/public/'.$image]);
+        }else{
+            $data = array_merge_recursive($value, ['image' => $course->imageCourse]);
+        }
+
+        //Mise à jour du parcours
+        $update_course = new Course($this->getDB());
+        $update_course->update($data['courseId'], $data['courseTitle'], $data['courseDescription'],$data['image'],$data['courseDistance']);
+
+        return redirect('account.course.show', ['id' => $data['courseId']]);
+
+    }
+
+    public function update($id){
+
+        if(isAuth() != true){
+            return redirect('home.index');
+        }
+
+        $course = new Course($this->getDB());
+        $course = $course->findById($id);
+
+
+
+        return $this->view('account/course/update.twig', compact('course'));
 
     }
 

@@ -22,6 +22,20 @@ class Course extends Model {
         ));
     }
 
+    public function update($idCourse,$titleCourse,$descriptionCourse,$imageCourse,$distanceCourse){
+
+        $req = $this->db->getPDO()->prepare('UPDATE `COURSE` SET titleCourse = :titleCourse, descriptionCourse = :descriptionCourse, imageCourse = :imageCourse, distanceCourse = :distanceCourse WHERE idCourse = :idcourse');
+
+        return $req->execute(array(
+            'idcourse' => $idCourse,
+            'titleCourse' => $titleCourse,
+            'descriptionCourse' => $descriptionCourse ,
+            'imageCourse' => $imageCourse,
+            'distanceCourse' => $distanceCourse,
+        ));
+
+    }
+
     /*public function findLastCourse(){
         $req = $this->db->getPDO()->query("SELECT * FROM `COURSE` ORDER BY `creationDateCourse` DESC LIMIT 1");
         return $req->fetch();
