@@ -86,8 +86,7 @@ class Request
         if (is_string($this->action)) {
             $action = explode('@', $this->action);
             $controller = $action[0];
-            //$controller = new $controller(new DBConnection('test', 'localhost', 'root', ''));
-            $controller = new $controller(new DBConnection('riddle_test', 'mysql-riddle.alwaysdata.net', 'riddle', 'azert123&'));
+            $controller = new $controller(new DBConnection('test', 'localhost', 'root', ''));
             $method = $action[1];
             call_user_func_array([$controller, $method], $this->params);
             //return isset($this->params) ? $controller->$method(implode($this->params)) : $controller->$method(); isset($this->params) ? $controller->method(implode($this->params)) : $controller->method();
@@ -102,8 +101,7 @@ class Request
         if (is_string($this->action)) {
             $action = explode('@', $this->action);
             $controller = $action[0];
-            //$controller = new $controller(new DBConnection('test', 'localhost', 'root', ''));
-            $controller = new $controller(new DBConnection('riddle_test', 'mysql-riddle.alwaysdata.net', 'riddle', 'azert123&'));
+            $controller = new $controller(new DBConnection('test', 'localhost', 'root', ''));
             $method = $action[1];
             //on ajoute l'object request dans le tableau de paramètres
             array_unshift($this->params, $this->request);

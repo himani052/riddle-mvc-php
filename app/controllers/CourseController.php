@@ -44,32 +44,20 @@ class CourseController extends Controller
     }
 
 
-
     public function play(HttpRequest $request){
-        $date = date("Y-m-d H:i:s");
-        $mail = $request->session('email');
-        // $req = $this->db->getPDO()->query("INSERT INTO `SCORE_USER_COURSE` (`scoreUser`, `user_emailUser`,`course_idCourse`, `timeStartCourseUser`, `timeEndCourseUser`) VALUES (DEFAULT, $mail, 'id', DEFAULT, DEFAULT");
-        // $users =  $req->fetchAll();
-        if (isset($_POST['commencer'])) {
-            $req = $this->db->getPDO()->prepare('UPDATE SCORE_USER_COURSE SET timeStartCourseUser =:timeStartCourseUser WHERE course_idCourse =:course_idCourse');
-            $req->execute(array(
-                'timeStartCourseUser' => $date,
-                'course_idCourse' => (int)($_POST['idCourse'])
-            ));
-        }
-        if (isset($_POST['terminer'])) {
-            $req = $this->db->getPDO()->prepare('UPDATE SCORE_USER_COURSE SET timeEndCourseUser =:timeStartCourseUser WHERE course_idCourse =:course_idCourse');
-            $req->execute(array(
-                'timeStartCourseUser' => $date,
-                'course_idCourse' => (int)($_POST['idCourse'])
-            ));
-            
-        }
-        return redirect('course.show.play', ['id' => $_POST['idCourse']]);
+
+        return redirect('course.show.play');
+
     }
 
     public function playshow($id){
+
+
         return $this->view('course/play/index.twig', ['id' => $id]);
+
     }
+
+
+
 
 }

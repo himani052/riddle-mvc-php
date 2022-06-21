@@ -68,9 +68,9 @@ CREATE TABLE `CITY` (
 
 CREATE TABLE `LOCATION` (
                             idLocation INT NOT NULL AUTO_INCREMENT,
-                            titleLocation VARCHAR(249) NOT NULL,
+                            titleLocation VARCHAR(255) NOT NULL,
                             descriptionLocation TEXT NOT NULL,
-                            imageLocation VARCHAR(249),
+                            imageLocation VARCHAR(255),
                             addressLocation TEXT NOT NULL,
                             department_codeDepartment INT NOT NULL,
                             city_codeCity INT NOT NULL,
@@ -86,10 +86,8 @@ CREATE TABLE `LOCATION` (
 
 CREATE TABLE `SCORE_USER_COURSE` (
                                      scoreUser INT DEFAULT 0,
-                                     user_emailUser VARCHAR(249) NOT NULL,
+                                     user_emailUser VARCHAR(255) NOT NULL,
                                      course_idCourse INT NOT NULL,
-                                     timeStartCourseUser TIME DEFAULT NULL ,
-                                     timeEndCourseUser TIME DEFAULT NULL,
                                      PRIMARY KEY (user_emailUser,course_idCourse)
 );
 
@@ -99,11 +97,11 @@ CREATE TABLE `SCORE_USER_COURSE` (
 
 
 CREATE TABLE `USER` (
-                        emailUser VARCHAR(249) NOT NULL,
-                        pseudoUser VARCHAR(249) NOT NULL,
-                        passwordUser VARBINARY(249) NOT NULL,
+                        emailUser VARCHAR(255) NOT NULL,
+                        pseudoUser VARCHAR(255) NOT NULL,
+                        passwordUser VARCHAR(255) NOT NULL,
                         birthdateUser DATE NOT NULL,
-                        photoUser VARCHAR(249) DEFAULT '/public/assets/img/jpg/users/default.png',
+                        photoUser VARCHAR(255) DEFAULT '/public/assets/img/jpg/users/default.png',
                         registrationDateUser DATETIME DEFAULT CURRENT_TIMESTAMP,
                         levelUser INT DEFAULT 0,
                         totalScoreUser INT DEFAULT 0,
@@ -232,9 +230,9 @@ ALTER TABLE `CLUE` ADD CONSTRAINT fk_riddle FOREIGN KEY(riddle_idRiddle)  REFERE
 
 -- Création des utilisateurs
 INSERT INTO `USER` (emailUser, pseudoUser,passwordUser,photoUser, birthdateUser,`admin`)
-VALUES ('houssam.imani@gmail.com', 'hortalia', AES_ENCRYPT('1234', 'secret'),'/public/assets/img/jpg/users/portrait-1.jpg','2000-03-17', 1),
-       ('hissani.imani@gmail.com', 'mlsni', AES_ENCRYPT('1234', 'secret'),'/public/assets/img/jpg/users/portrait-2.jpg','1998-11-29', 0),
-       ('tom.orhon@gmail.com', 'araschi', AES_ENCRYPT('1234', 'secret'),'/public/assets/img/jpg/users/portrait-3.jpg', '1998-07-25',0);
+VALUES ('houssam.imani@gmail.com', 'hortalia', '1234','/public/assets/img/jpg/users/portrait-1.jpg','2000-03-17', 1),
+       ('hissani.imani@gmail.com', 'mlsni', '1234','/public/assets/img/jpg/users/portrait-2.jpg','1998-11-29', 0),
+       ('tom.orhon@gmail.com', 'araschi', '1234','/public/assets/img/jpg/users/portrait-3.jpg', '1998-07-25',0);
 
 
 -- Création des departements
@@ -334,8 +332,8 @@ CREATE VIEW `COURSE_BY_CREATOR` AS
 SELECT *
 FROM  COURSE
           INNER JOIN `USER`
-                    ON COURSE.creatorCourse = USER.emailUser
-ORDER BY COURSE.idCourse ASC;
+                    ON COURSE.creatorCourse = user.emailUser
+ORDER BY course.idCourse ASC;
 
 
 
@@ -354,7 +352,7 @@ CREATE VIEW `COURSES_DETAILS` AS
 SELECT *
 FROM  COURSE
           LEFT JOIN `USER`
-                    ON COURSE.creatorCourse = USER.emailUser
+                    ON COURSE.creatorCourse = user.emailUser
           LEFT JOIN `LOCATION`
                     ON COURSE.idCourse = LOCATION.course_idCourse
           LEFT JOIN `DEPARTMENT`
@@ -365,7 +363,7 @@ FROM  COURSE
                     ON LOCATION.idLocation = RIDDLE.location_idLocation
           LEFT JOIN `CLUE`
                     ON CLUE.riddle_idRiddle = RIDDLE.idRiddle
-ORDER BY COURSE.idCourse ASC;
+ORDER BY course.idCourse ASC;
 
 
 
@@ -375,9 +373,9 @@ CREATE VIEW `COURSE_PARTICIPANT` AS
 SELECT *
 FROM `SCORE_USER_COURSE`
          INNER JOIN `USER`
-                    ON USER.emailUser = SCORE_USER_COURSE.user_emailUser
+                    ON user.emailUser = SCORE_USER_COURSE.user_emailUser
          INNER JOIN `COURSE`
-                    ON COURSE.idCourse = SCORE_USER_COURSE.course_idCourse
+                    ON course.idCourse = SCORE_USER_COURSE.course_idCourse
 /*GROUP BY `user`.emailUser*/
-ORDER BY COURSE.idCourse ASC;
+ORDER BY course.idCourse ASC;
 
