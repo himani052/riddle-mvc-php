@@ -9,6 +9,8 @@
             <div class="card-title p-4">
                 <h2 class="m-0"><span class="font-weight-bold">ID : {{ courseGeneral.idCourse }}</span> - {{ courseGeneral.titleCourse }}
 
+                    <a href="{{ route('account.course.delete',{'id':courseGeneral.idCourse}) }}" class="text-danger"><i class="fa-solid fa-trash-can float-right"></i></a>
+
                     <a href="{{ route('account.course.update',{'id':courseGeneral.idCourse}) }}"><i class="fa fa-edit mr-2 float-right"></i></a>
                 </h2>
             </div>
@@ -43,8 +45,8 @@
                 <div class="card card-account mt-4">
                     <div class="card-title pt-4 pl-4 pr-4 pb-0">
                         <h2 class="m-0"><i class="fa fa-map"></i> {{ location.idLocation }} - {{ location.titleLocation }}
-                            <a href="{{ route('account.location.update',{'idCourse':courseGeneral.idCourse, 'idLocation':location.idLocation}) }}"><i class="fa fa-edit float-right align-middle"></i></a>
-
+                            <a href="{{ route('account.location.delete',{'idCourse':courseGeneral.idCourse,'idLocation':location.idLocation}) }}" class="text-danger"><i class="fa-solid fa-trash-can float-right"></i></a>
+                            <a href="{{ route('account.location.update',{'idCourse':courseGeneral.idCourse, 'idLocation':location.idLocation}) }}"><i class="fa fa-edit float-right align-middle mr-2"></i></a>
                         </h2>
                     </div>
                     <hr class="text-black-50">
@@ -63,10 +65,12 @@
                         <div class="accordion" id="accordionExample">
                                 <div class="card">
                                     {% for riddle in location.riddles  %}
+                                        {% if riddle.idRiddle != null %}
                                         <div class="card-header" id="headingThree">
                                             <h2 class="mb-0">
                                                 <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                                     {{ riddle.titleRiddle }}
+                                                    <a href="{{ route('account.riddle.delete',{'idCourse':courseGeneral.idCourse,'idRiddle':riddle.idRiddle}) }}" class="text-danger"><i class="fa-solid fa-trash-can float-right"></i></a>
                                                     <a href="{{ route('account.riddle.update',{'idCourse':courseGeneral.idCourse, 'idLocation':location.idLocation, 'idRiddle':riddle.idRiddle}) }}"><i class="fa fa-edit mr-2 float-right"></i></a>
                                                 </button>
                                             </h2>
@@ -81,14 +85,18 @@
                                             </a>
                                             <br><br>
                                             {% for clue in riddle.clues %}
-                                            <!-- Clues -->
-                                            <div class="alert alert-warning" role="alert">
-                                                {{ clue.titleClue }} - {{ clue.descriptionClue }}
-                                                <a href="{{ route('account.clue.update',{'idCourse':courseGeneral.idCourse, 'idLocation':location.idLocation, 'idRiddle':riddle.idRiddle, 'idClue':clue.idClue}) }}"><i class="fa fa-edit mr-2 float-right"></i></a>
-                                            </div>
-                                            <!-- Clues -->
+                                                {% if clue.idClue != NULL %}
+                                                    <!-- Clues -->
+                                                    <div class="alert alert-warning" role="alert">
+                                                        {{ clue.titleClue }} - {{ clue.descriptionClue }}
+                                                        <a href="{{ route('account.clue.delete',{'idCourse':courseGeneral.idCourse,'idClue':clue.idClue}) }}" class="text-danger"><i class="fa-solid fa-trash-can float-right"></i></a>
+                                                        <a href="{{ route('account.clue.update',{'idCourse':courseGeneral.idCourse, 'idLocation':location.idLocation, 'idRiddle':riddle.idRiddle, 'idClue':clue.idClue}) }}"><i class="fa fa-edit mr-2 float-right"></i></a>
+                                                    </div>
+                                                    <!-- Clues -->
+                                                {% endif %}
                                             {% endfor %}
                                         </div>
+                                        {% endif %}
                                     {% endfor %}
                                 </div>
                         </div>

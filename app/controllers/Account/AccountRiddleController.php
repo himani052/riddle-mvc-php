@@ -125,4 +125,17 @@ class AccountRiddleController extends Controller
 
     }
 
+    public function delete($idCourse,$idRiddle){
+
+        if(isAuth()){
+            //Si administrateur supprimer course
+            $riddle = new Riddle($this->getDB());
+            $riddle->removeById($idRiddle);
+            return redirect('account.course.show', ['id' => $idCourse]);
+        }else{
+            //Sinon renvoyer vers la page de login
+            return redirect('user.connect');
+        }
+
+    }
 }

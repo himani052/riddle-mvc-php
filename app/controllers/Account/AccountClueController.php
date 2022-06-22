@@ -106,8 +106,22 @@ class AccountClueController extends Controller
         $update_clue = new Clue($this->getDB());
         $update_clue->update($data['clueTitle'], $data['clueDescription'], $data['image'], $data['idClue']);
 
-        return redirect('account.course.show', ['id' => $data['idLocation']]);
+        return redirect('account.course.show', ['id' => $data['idCourse']]);
 
+
+    }
+
+    public function delete($idCourse,$idClue){
+
+        if(isAuth()){
+            //Si administrateur supprimer course
+            $clue = new Clue($this->getDB());
+            $clue->removeById($idClue);
+            return redirect('account.course.show', ['id' => $idCourse]);
+        }else{
+            //Sinon renvoyer vers la page de login
+            return redirect('user.connect');
+        }
 
     }
 

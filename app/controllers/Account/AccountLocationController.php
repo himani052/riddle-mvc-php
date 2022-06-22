@@ -117,5 +117,19 @@ class AccountLocationController extends Controller
 
     }
 
+    public function delete($idCourse,$idLocation){
+
+        if(isAuth()){
+            //Si administrateur supprimer course
+            $location = new Location($this->getDB());
+            $location->removeById($idLocation);
+            return redirect('account.course.show', ['id' => $idCourse]);
+        }else{
+            //Sinon renvoyer vers la page de login
+            return redirect('user.connect');
+        }
+
+    }
+
 
 }

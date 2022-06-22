@@ -48,6 +48,7 @@ Route::get('/account/course/{id}/location/create','App\controllers\Account\Accou
 Route::post('/account/location/new','App\controllers\Account\AccountLocationController@create')->name('account.location.new') ;
 Route::get('/account/course/{idCourse}/location/update/{idLocation}','App\controllers\Account\AccountLocationController@update')->name('account.location.update') ;
 Route::post('/account/location/updatepost','App\controllers\Account\AccountLocationController@updatepost')->name('account.location.updatepost') ;
+Route::get('/account/course/{idCourse}/location/{idLocation}/delete','App\controllers\Account\AccountLocationController@delete')->name('account.location.delete') ;
 
 
 //User:account:riddle
@@ -55,6 +56,7 @@ Route::get('/account/location/{id}/riddle/create','App\controllers\Account\Accou
 Route::post('/account/riddle/new','App\controllers\Account\AccountRiddleController@create')->name('account.riddle.new') ;
 Route::get('/account/course/{idCourse}/location/{idLocation}/riddle/update/{idRiddle}','App\controllers\Account\AccountRiddleController@update')->name('account.riddle.update') ;
 Route::post('/account/riddle/updatepost','App\controllers\Account\AccountRiddleController@updatepost')->name('account.riddle.updatepost') ;
+Route::get('/account/course/{idCourse}/riddle/delete/{idRiddle}','App\controllers\Account\AccountRiddleController@delete')->name('account.riddle.delete') ;
 
 
 //User:account:clue
@@ -62,6 +64,7 @@ Route::get('/account/riddle/{id}/clue/create','App\controllers\Account\AccountCl
 Route::post('/account/clue/new','App\controllers\Account\AccountClueController@create')->name('account.clue.new') ;
 Route::get('/account/course/{idCourse}/location/{idLocation}/riddle/{idRiddle}/clue/update/{idClue}','App\controllers\Account\AccountClueController@update')->name('account.clue.update') ;
 Route::post('/account/clue/updatepost','App\controllers\Account\AccountClueController@updatepost')->name('account.clue.updatepost') ;
+Route::get('/account/course/{idCourse}/clue/update/{idClue}','App\controllers\Account\AccountClueController@delete')->name('account.clue.delete') ;
 
 
 //Admin:account:admin:user
