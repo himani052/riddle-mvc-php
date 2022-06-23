@@ -1,0 +1,71 @@
+{% extends "account/layouts/default.twig" %}
+
+
+{% block account %}
+
+    <div class="m-5">
+        <form id="loginForm" method="POST" action="{{ route('account.riddle.new') }}" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="hidden" class="form-control" id="idLocation" name="idLocation" value="{{ idLocation }}">
+                <label for="riddleTitle">Titre de l'énigme</label>
+                <input type="text" name="riddleTitle" id="riddleTitle"
+                       class="form-control  {% if error.riddleTitle %}input-error{% endif %}"
+                       placeholder="Quelle est le titre de l'énigme ?"
+                       value="{{ post.riddleTitle }}"
+                >
+                {% if error.riddleTitle %}
+                    <span class="text-danger">
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ error.riddleTitle }}
+                    </span>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="riddleDescription">Description de l'énigme</label>
+                <textarea
+                        name="riddleDescription"
+                        id="riddleDescription"
+                        class="form-control {% if error.riddleDescription %}input-error{% endif %}">
+                        {{ post.riddleDescription }}
+                </textarea>
+                {% if error.riddleDescription %}
+                    <span class="text-danger">
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ error.riddleDescription }}
+                    </span>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="riddleImage">Image de l'énigme</label>
+                <input type="file" name="riddleImage" id="riddleImage"
+                       class="form-control {% if error.riddleDescription %}input-error{% endif %}"
+                       placeholder="Image de l'énigme"
+                       value="{{ post.riddleImage }}"
+                >
+                {% if error.riddleImage %}
+                    <span class="text-danger">
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ error.riddleImage }}
+                    </span>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="riddleAddress">Solution de l'énigme</label>
+                <input type=text name="riddleSolution" id="riddleSolution"
+                       class="form-control  {% if error.riddleAddress %}input-error{% endif %}"
+                       placeholder="Quelle est la solution de l'énigme ?"
+                       value="{{ post.riddleSolution }}"
+                >
+                {% if error.riddleSolution%}
+                    <span class="text-danger">
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ error.riddleSolution }}
+                    </span>
+                {% endif %}
+            </div>
+            <div class="mt-4 submit-box">
+                <button type="submit" class="btn btn-yellow-square mx-auto d-block">C'est parti !</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

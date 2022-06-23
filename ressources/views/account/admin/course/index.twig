@@ -24,9 +24,9 @@
                         <tr>
                             <th scope="row">{{ course.idCourse }}</th>
                             <td>{{ course.titleCourse }}</td>
-                            <td>{{ course.user_emailUser }}</td>
+                            <td>{{ course.creatorCourse }}</td>
                             <td>
-                                <a href="#" class="text-black-50"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="{{ route('account.course.show', {'id':course.idCourse}) }}" class="text-black-50"><i class="fa-solid fa-pen-to-square"></i></a>
                                 <a href="{{ route('admin.course.delete', {'id':course.idCourse}) }}" class="text-danger "><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         </tr>

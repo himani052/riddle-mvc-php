@@ -5,7 +5,7 @@
     <section id="parcours-account-box">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-5 col-md-3 collapse show width m-0 p-0 h-100 bg-white " id="collapseExample" >
+                <div class="col-5 col-md-3 sidebar-responsive collapse show width m-0 p-0 h-100 bg-white " id="collapseExample" >
                    <div class="menu-account-parcours p-4 position-fixed shadow">
                        <ul>
                            <li><a href="{{ route('account.course.create') }}"><i class="fa-solid fa-plus"></i> Créer un parcours</a></li>
@@ -21,12 +21,34 @@
                 <div class="col">
                     <div class="row">
                         <div class="col-12">
+                            <br>
                             <button class="btn sticky-top" data-toggle="collapse" href="#collapseExample" role="button">
                                 <i class="fa-solid fa-bars"></i>
                             </button>
                         </div>
                         <div class="col-12 mb-5">
+                            <div id="responsive-account-sidemenu">
+                                <p>
+                                    <a class="shadow-sm mt-5 p-4 text-black bg-white font-weight-bold" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        Actions du compte
+                                    </a>
+                                </p>
+                                <div class="collapse" id="collapseExample">
+                                    <div class="card card-body">
+                                        <ul>
+                                            <li><a href="{{ route('account.course.create') }}"><i class="fa-solid fa-plus"></i> Créer un parcours</a></li>
+                                            <li><a href="{{ route('account.course.index') }}"><i class="fa-solid fa-list"></i>Liste de mes parcours</a></li>
+                                            <li><a href="#"><i class="fa-solid fa-chart-area"></i>Statistiques</a></li>
+                                            {% if auth.admin == 1 %}
+                                                <li><a href="{{ route('admin.user.index') }}"><i class="fa-solid fa-users"></i>Utilisateurs</a></li>
+                                                <li><a href="{{ route('admin.course.index') }}"><i class="fa-solid fa-map"></i>Tous les parcours</a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                             {% block account %}
+
 
                             {% endblock %}
                         </div>

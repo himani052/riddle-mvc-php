@@ -70,6 +70,16 @@ function Auth(){
     );
 }
 
+//vérifier si utilisateur est authentifié
+function isAuth(){
+    $request = request();
+    if($request->session('email') != NULL){
+        return true;
+    }else{
+        return redirect('home.index');
+    }
+}
+
 //Fonction qui verifie s'il s'agit d'un administrateur
 function isAdmin(){
     $request = request();

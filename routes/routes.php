@@ -1,19 +1,17 @@
 <?php
 
-
 //Homepage
 Route::get('/', 'App\controllers\HomeController@index')->name('home.index');
 Route::get('/home/show/{id}', 'App\controllers\HomeController@show')->name('home.show');
 
 
 //Course (list & show)
-Route::get('/course', 'App\controllers\CourseController@index')->name('course.index');
+Route::get('/courses', 'App\controllers\CourseController@index')->name('course.index');
 Route::get('/course/show/{id}', 'App\controllers\CourseController@show')->name('course.show');
 
 //Course play
 Route::post('/course/play/post', 'App\controllers\CourseController@play')->name('course.play');
 Route::get('/course/play/course/{id}', 'App\controllers\CourseController@playshow')->name('course.show.play');
-
 
 
 //Commentaires Course
@@ -30,6 +28,10 @@ Route::get('/register','App\controllers\UserController@register')->name('user.re
 Route::post('/new/user','App\controllers\UserController@create')->name('user.create') ;
 
 
+//User:account:profile
+Route::get('/account/profile','App\controllers\Account\AccountProfileController@index')->name('account.profile.index') ;
+
+
 //User:account:course
 Route::get('/account/courses/','App\controllers\Account\AccountCourseController@index')->name('account.course.index') ;
 Route::get('/account/courses/list/','App\controllers\Account\AccountCourseController@list')->name('account.course.list') ;
@@ -37,6 +39,32 @@ Route::get('/account/course/delete/{id}','App\controllers\Account\AccountCourseC
 Route::get('/account/course/create','App\controllers\Account\AccountCourseController@createForm')->name('account.course.create') ;
 Route::post('/account/course/new','App\controllers\Account\AccountCourseController@create')->name('account.course.new') ;
 Route::get('/account/course/show/{id}','App\controllers\Account\AccountCourseController@show')->name('account.course.show') ;
+Route::get('/account/course/update/{id}','App\controllers\Account\AccountCourseController@update')->name('account.course.update') ;
+Route::post('/account/course/updatepost/{id}','App\controllers\Account\AccountCourseController@updatepost')->name('account.course.updatepost') ;
+
+
+//User:account:location
+Route::get('/account/course/{id}/location/create','App\controllers\Account\AccountLocationController@createForm')->name('account.location.create') ;
+Route::post('/account/location/new','App\controllers\Account\AccountLocationController@create')->name('account.location.new') ;
+Route::get('/account/course/{idCourse}/location/update/{idLocation}','App\controllers\Account\AccountLocationController@update')->name('account.location.update') ;
+Route::post('/account/location/updatepost','App\controllers\Account\AccountLocationController@updatepost')->name('account.location.updatepost') ;
+Route::get('/account/course/{idCourse}/location/{idLocation}/delete','App\controllers\Account\AccountLocationController@delete')->name('account.location.delete') ;
+
+
+//User:account:riddle
+Route::get('/account/location/{id}/riddle/create','App\controllers\Account\AccountRiddleController@createForm')->name('account.riddle.create') ;
+Route::post('/account/riddle/new','App\controllers\Account\AccountRiddleController@create')->name('account.riddle.new') ;
+Route::get('/account/course/{idCourse}/location/{idLocation}/riddle/update/{idRiddle}','App\controllers\Account\AccountRiddleController@update')->name('account.riddle.update') ;
+Route::post('/account/riddle/updatepost','App\controllers\Account\AccountRiddleController@updatepost')->name('account.riddle.updatepost') ;
+Route::get('/account/course/{idCourse}/riddle/delete/{idRiddle}','App\controllers\Account\AccountRiddleController@delete')->name('account.riddle.delete') ;
+
+
+//User:account:clue
+Route::get('/account/riddle/{id}/clue/create','App\controllers\Account\AccountClueController@createForm')->name('account.clue.create') ;
+Route::post('/account/clue/new','App\controllers\Account\AccountClueController@create')->name('account.clue.new') ;
+Route::get('/account/course/{idCourse}/location/{idLocation}/riddle/{idRiddle}/clue/update/{idClue}','App\controllers\Account\AccountClueController@update')->name('account.clue.update') ;
+Route::post('/account/clue/updatepost','App\controllers\Account\AccountClueController@updatepost')->name('account.clue.updatepost') ;
+Route::get('/account/course/{idCourse}/clue/update/{idClue}','App\controllers\Account\AccountClueController@delete')->name('account.clue.delete') ;
 
 
 //Admin:account:admin:user
@@ -57,4 +85,16 @@ Route::get('/account/admin/courses/edit/{id}','App\controllers\Account\Admin\Adm
 Route::get('/contact', 'App\controllers\ContactController@index')->name('contact.index');
 Route::post('/contact/post', 'App\controllers\ContactController@send')->name('contact.send');
 
+<<<<<<< HEAD
 ?>
+=======
+
+//About
+Route::get('/about', 'App\controllers\AboutController@index')->name('about.index');
+//StopWatch test
+Route::get('/stopwatch', 'App\controllers\StopwatchController@index')->name('stopwatch.index');
+
+
+//Riddle API
+Route::get('/userlist', 'App\controllers\API\RiddleApi@index');
+>>>>>>> origin/houssam

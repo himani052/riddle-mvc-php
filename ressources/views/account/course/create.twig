@@ -2,7 +2,6 @@
 
 
 {% block account %}
-    <div class="m-5">
         <form id="loginForm" method="POST" action="{{ route('account.course.new') }}" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="courseTitle">Titre</label>
@@ -23,7 +22,7 @@
                 <textarea
                         name="courseDescription"
                         id="courseDescription"
-                        class="form-control {% if error.password %}input-error{% endif %}">
+                        class="form-control {% if error.courseDescription %}input-error{% endif %}">
                         {{ post.courseDescription }}
                 </textarea>
                 {% if error.courseDescription %}
@@ -36,9 +35,9 @@
             <div class="form-group">
                 <label for="courseImage">Image</label>
                 <input type="file" name="courseImage" id="courseImage"
-                       class="form-control {% if error.password %}input-error{% endif %}"
+                       class="form-control {% if error.courseDescription %}input-error{% endif %}"
                        placeholder="Image d'illustration du parcours"
-                       value="{{ post.courseImage }}"
+                       {# value="{{ post.courseImage }}" #}
                 >
                 {% if error.courseImage %}
                     <span class="text-danger">
@@ -65,8 +64,6 @@
                 <button type="submit" class="btn btn-yellow-square mx-auto d-block">C'est parti !</button>
             </div>
         </form>
-    </div>
-
 {%endblock %}
 
 

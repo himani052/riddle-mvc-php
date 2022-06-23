@@ -76,7 +76,9 @@
 
                                     </div>
                                     <span>{{ comment.creationDate }}</span>
-                                    <a href="{{ route('course.comment.delete', {'idComment':comment.idComment ,'idCourse':parc.idCourse})}}" class="text-black-50">Supprimer</a>
+                                    {%  if auth.admin == 1 %}
+                                        <a href="{{ route('course.comment.delete', {'idComment':comment.idComment ,'idCourse':parc.idCourse})}}" class="text-black-50">Supprimer</a>
+                                    {% endif %}
                                 </div>
                             </div>
                             {% endfor %}
@@ -88,11 +90,14 @@
                             <h2>Ajouter un commentaire</h2>
 
                             <form method="post" action="{{ route('course.comment.create') }}">
+
+                                {% if auth.email == null %}
                                 <div class="form-group">
                                     <label for="pseudo">Pseudo</label>
                                     <input type="pseudo" class="form-control" id="pseudo" name="pseudo" {% if auth.status == null %}placeholder="Entrez votre pseudo" {% else %}  placeholder="{{ auth.pseudo }}"  disabled{% endif %}  >
-                                    <input type="hidden" class="form-control" id="idCourse" name="idCourse" value="{{ parc.idCourse }}">
                                 </div>
+                                {% endif %}
+                                <input type="hidden" class="form-control" id="idCourse" name="idCourse" value="{{ parc.idCourse }}">
                                 <div class="form-group">
                                     <label for="usercomment">Commentaire</label>
                                     <textarea id="description" class="form-control" name="usercomment"></textarea>

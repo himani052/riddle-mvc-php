@@ -1,0 +1,31 @@
+{% extends "layouts/default.twig" %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="mt-5 form-box">
+        <div class="card card-account mt-4 border-0 shadow-sm" >
+            <div class="card-title pt-4  text-center">
+                <h2>Mon profile</h2>
+            </div>
+            <hr class="text-black-50">
+            <div class="card-body m-auto">
+                <div class="row">
+                    <div class="col-12 col-lg-4">
+                        <span>
+                        <img class="rounded-circle mr-2 " width="150px" alt="100x100" src="{{ auth.photo }}" data-holder-rendered="true">
+                        </span>
+                    </div>
+                    <div class="col-12 col-lg-8 pl-5">
+                        <h2 class="m-0"><span class="font-weight-bold">{{ auth.pseudo }}</h2>
+                        <br>
+
+                        <em class="font-weight-bold"><i class="fa fa-calendar mr-2"></i> Date d'inscription : </em><br>
+                        {{ auth.registrationDate }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

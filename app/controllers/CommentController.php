@@ -10,10 +10,11 @@ use Controller;
 class CommentController extends Controller {
 
     public function index(){
-        echo "default controller";
+
     }
 
     public function create(HttpRequest $request){
+
 
         //récupération du champ post idparcours
         $idCourse = $request->name('idCourse');
@@ -50,6 +51,10 @@ class CommentController extends Controller {
     }
 
     public function delete($idComment, $idCourse){
+
+        if(isAdmin() != true){
+            return redirect('home.index');
+        }
 
         $comment = new Comment($this->getDB());
         $comment->removeById($idComment);

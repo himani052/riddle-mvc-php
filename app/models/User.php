@@ -26,7 +26,7 @@ class User extends Model {
 
     public function changeRole($emailUser, int $role){
 
-        $req = $this->db->getPDO()->prepare("UPDATE `user` SET admin = :role WHERE emailUser = :emailUser");
+        $req = $this->db->getPDO()->prepare("UPDATE `USER` SET admin = :role WHERE emailUser = :emailUser");
 
         return $req->execute(array(
             'role' => $role,
@@ -43,7 +43,7 @@ class User extends Model {
     }
 
     public function findMdp($emailUser) {
-        $stmt = $this->db->getPDO()->prepare("SELECT `USER` FROM `passwordUser` WHERE `emailUser` = :emailUser ");
+        $stmt = $this->db->getPDO()->prepare("SELECT `passwordUser` FROM `USER` WHERE `emailUser` = :emailUser ");
         $stmt->execute(array(
             'emailUser' => $emailUser
         ));

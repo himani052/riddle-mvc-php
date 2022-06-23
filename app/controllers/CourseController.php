@@ -3,7 +3,16 @@
 namespace App\controllers;
 
 use App\https\HttpRequest;
+<<<<<<< HEAD
 use App\models\Course;
+=======
+use App\models\Clue;
+use App\models\Comment;
+use App\models\Course;
+use App\models\Location;
+use App\models\Riddle;
+use App\models\User;
+>>>>>>> origin/houssam
 use Controller;
 
 
@@ -28,11 +37,16 @@ class CourseController extends Controller
         $parc = $parc->findById($id);
 
         //users
+<<<<<<< HEAD
         $req = $this->db->getPDO()->query("SELECT * FROM user LIMIT 3");
         $users = $req->fetchAll();
+=======
+        $req = $this->db->getPDO()->query("SELECT * FROM USER LIMIT 3");
+        $users =  $req->fetchAll();
+>>>>>>> origin/houssam
 
         //comments
-        $req = $this->db->getPDO()->prepare("SELECT * FROM comment WHERE course_idCourse = ? ");
+        $req = $this->db->getPDO()->prepare("SELECT * FROM COMMENT WHERE course_idCourse = ? ");
         $req->execute([$id]);
         $comments = $req->fetchAll();
 
@@ -42,8 +56,14 @@ class CourseController extends Controller
     }
 
 
+<<<<<<< HEAD
     public function play(HttpRequest $request)
     {
+=======
+    public function play(HttpRequest $request){
+
+
+>>>>>>> origin/houssam
         $date = date("Y-m-d H:i:s");
         $mail = $request->session('email');
         // $req = $this->db->getPDO()->query("INSERT INTO `SCORE_USER_COURSE` (`scoreUser`, `user_emailUser`,`course_idCourse`, `timeStartCourseUser`, `timeEndCourseUser`) VALUES (DEFAULT, $mail, 'id', DEFAULT, DEFAULT");
@@ -66,9 +86,41 @@ class CourseController extends Controller
         return redirect('course.show.play', ['id' => $_POST['idCourse']]);
     }
 
+<<<<<<< HEAD
     public function playshow($id)
     {
         return $this->view('course/play/index.twig', ['id' => $id]);
+=======
+
+
+    public function playshow($id){
+
+
+        //Récupération des informations du parcours
+        $course = new Course($this->getDB());
+        $course = $course->findById($id);
+
+        $courseLocations = new Location($this->getDB());
+        $courseLocations = $courseLocations->findCourseLocations($id);
+
+        foreach ($courseLocations as $courseLocation){
+
+            //Affichage des énigmes du parcours
+            $locationRiddle = new Riddle($this->getDB());
+            $courseLocation->riddles = $locationRiddle->findLocationRiddle($courseLocation->idLocation);
+
+            foreach ($courseLocation->riddles as $riddle) {
+
+                //Affichage des indices des énigmes
+                $clueRiddle = new Clue($this->getDB());
+                $riddle->clues = $clueRiddle->findClueRiddle($riddle->idRiddle);
+
+            }
+
+        }
+
+        return $this->view('course/play/index.twig',compact('id','course', 'courseLocations'));
+>>>>>>> origin/houssam
     }
 
 }
