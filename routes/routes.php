@@ -85,16 +85,11 @@ Route::get('/account/admin/courses/edit/{id}','App\controllers\Account\Admin\Adm
 Route::get('/contact', 'App\controllers\ContactController@index')->name('contact.index');
 Route::post('/contact/post', 'App\controllers\ContactController@send')->name('contact.send');
 
-<<<<<<< HEAD
-?>
-=======
+
 
 //About
 Route::get('/about', 'App\controllers\AboutController@index')->name('about.index');
 //StopWatch test
 Route::get('/stopwatch', 'App\controllers\StopwatchController@index')->name('stopwatch.index');
-
-
 //Riddle API
 Route::get('/userlist', 'App\controllers\API\RiddleApi@index');
->>>>>>> origin/houssam
