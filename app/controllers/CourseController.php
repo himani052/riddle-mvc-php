@@ -2,7 +2,6 @@
 
 namespace App\controllers;
 
-use App\functions\Timer;
 use App\https\HttpRequest;
 use App\models\Clue;
 use App\models\Comment;
@@ -12,6 +11,7 @@ use App\models\Riddle;
 use App\models\User;
 use Controller;
 use Database\DBConnection;
+use DateTime;
 
 
 class CourseController extends Controller
@@ -29,12 +29,36 @@ class CourseController extends Controller
     public function show($id){
 
         //course
-        $parc = new Course($this->getDB());
-        $parc = $parc->findById($id);
+        $course = new Course($this->getDB());
+        $course = $course->findById($id);
 
-        //users
-        $req = $this->db->getPDO()->query("SELECT * FROM USER LIMIT 3");
-        $users =  $req->fetchAll();
+        //Afficher la liste des participants au parcours classés par meilleures score (limité à 3)
+        $user = new Course($this->getDB());
+        $users = $user->classementUsersParcoursShow($id);
+
+        foreach ($users as $user){
+            $firstDate  = $user->timeStartCourseUser;
+            $secondDate = $user->timeEndCourseUser;
+
+            //$user->interval = $this->dateDiff($firstDate,$secondDate);
+
+            date_default_timezone_set('Europe/London');
+            $date1 = DateTime::createFromFormat('Y-m-d H:i:s', $firstDate);
+            $date2 = DateTime::createFromFormat('Y-m-d H:i:s', $secondDate);
+
+            $interval = $date1->diff($date2);
+
+            //interval en jour, min, heures
+            if($interval->days != null){
+                $user->interval = $interval->days.' jours, '.$interval->h.' h '.$interval->i.' min '.$interval->s.' s';
+            }else{
+                $user->interval = $interval->h.' h '.$interval->i.' min '.$interval->s.' s';
+            }
+
+            //interval en heures
+            //$user->interval = $interval->days*24 + $interval->h;
+
+        }
 
         //comments
         $req = $this->db->getPDO()->prepare("SELECT * FROM COMMENT WHERE course_idCourse = ? ");
@@ -42,9 +66,11 @@ class CourseController extends Controller
         $comments = $req->fetchAll();
 
 
-        return $this->view('course/show.twig', compact('parc', 'users', 'comments'));
+
+        return $this->view('course/show.twig', compact('course', 'users', 'comments'));
 
     }
+
 
 
     public function play(HttpRequest $request){
@@ -67,7 +93,7 @@ class CourseController extends Controller
                 'timeStartCourseUser' => $date,
                 'course_idCourse' => (int)($_POST['idCourse'])
             ));
-            
+
         }
         return redirect('course.show.play', ['id' => $_POST['idCourse']]);
     }

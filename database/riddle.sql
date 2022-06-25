@@ -16,16 +16,13 @@ ALTER DATABASE
     `riddle-test`
     CHARACTER SET = utf8mb4
     COLLATE = utf8mb4_unicode_ci;
-
 ALTER DATABASE `riddle-test` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE `comment` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
 set global character_set_client='utf8mb4'
 set global character_set_connection='utf8mb4';
 set global character_set_database='utf8mb4';
 set global character_set_results='utf8mb4';
 set global character_set_server='utf8mb4';
-
 */
 
 
@@ -88,8 +85,8 @@ CREATE TABLE `SCORE_USER_COURSE` (
                                      scoreUser INT DEFAULT 0,
                                      user_emailUser VARCHAR(249) NOT NULL,
                                      course_idCourse INT NOT NULL,
-                                     timeStartCourseUser TIME DEFAULT NULL ,
-                                     timeEndCourseUser TIME DEFAULT NULL,
+                                     timeStartCourseUser DATETIME DEFAULT NULL ,
+                                     timeEndCourseUser DATETIME DEFAULT NULL,
                                      PRIMARY KEY (user_emailUser,course_idCourse)
 );
 
@@ -101,7 +98,7 @@ CREATE TABLE `SCORE_USER_COURSE` (
 CREATE TABLE `USER` (
                         emailUser VARCHAR(249) NOT NULL,
                         pseudoUser VARCHAR(249) NOT NULL,
-                        passwordUser VARBINARY(249) NOT NULL,
+                        passwordUser VARCHAR(249) NOT NULL,
                         birthdateUser DATE NOT NULL,
                         photoUser VARCHAR(249) DEFAULT '/public/assets/img/jpg/users/default.png',
                         registrationDateUser DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -232,9 +229,9 @@ ALTER TABLE `CLUE` ADD CONSTRAINT fk_riddle FOREIGN KEY(riddle_idRiddle)  REFERE
 
 -- Création des utilisateurs
 INSERT INTO `USER` (emailUser, pseudoUser,passwordUser,photoUser, birthdateUser,`admin`)
-VALUES ('houssam.imani@gmail.com', 'hortalia', AES_ENCRYPT('1234', 'secret'),'/public/assets/img/jpg/users/portrait-1.jpg','2000-03-17', 1),
-       ('hissani.imani@gmail.com', 'mlsni', AES_ENCRYPT('1234', 'secret'),'/public/assets/img/jpg/users/portrait-2.jpg','1998-11-29', 0),
-       ('tom.orhon@gmail.com', 'araschi', AES_ENCRYPT('1234', 'secret'),'/public/assets/img/jpg/users/portrait-3.jpg', '1998-07-25',0);
+VALUES ('super.admin@gmail.com', 'hortalia', '$2y$10$koF22fs264nd0h1eXuv.IOwwNkpTct6KcoNYJ2cyN7ZwAZ9s0Gr3.','/public/assets/img/jpg/users/portrait-1.jpg','2000-03-17', 1),
+       ('user.one@gmail.com', 'mlsni', '$2y$10$NsaZyuX/4JVIbrcUcK24heDiko1NmakMCbKyirGjo8bguiYV4.rLy','/public/assets/img/jpg/users/portrait-2.jpg','1998-11-29', 0),
+       ('user.two@gmail.com', 'araschi', '$2y$10$NsaZyuX/4JVIbrcUcK24heDiko1NmakMCbKyirGjo8bguiYV4.rLy','/public/assets/img/jpg/users/portrait-3.jpg', '1998-07-25',0);
 
 
 -- Création des departements
@@ -274,12 +271,12 @@ INSERT INTO `CITY` (`codeCity`, `titleCity`) VALUES (13000, 'Marseille'),
 
 
 INSERT INTO `COURSE` (`idCourse`, `titleCourse`,`descriptionCourse`, `imageCourse`, `creatorCourse`) VALUES
-(1, 'Le monument oublié', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis tellus sed libero iaculis, a dignissim lacus blandit. Praesent lacinia ligula dui', '/public/assets/img/jpg/courses/image-1.jpg','houssam.imani@gmail.com'),
-(2, 'En route vers le lac salé','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis tellus sed libero iaculis, a dignissim lacus blandit. Praesent lacinia ligula dui', '/public/assets/img/jpg/courses/image-2.jpg','houssam.imani@gmail.com'),
-(3, 'Fin des cours !', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis tellus sed libero iaculis, a dignissim lacus blandit. Praesent lacinia ligula dui', '/public/assets/img/jpg/courses/image-3.jpg','hissani.imani@gmail.com'),
-(4, 'la forêt enchanté', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis tellus sed libero iaculis, a dignissim lacus blandit. Praesent lacinia ligula dui', '/public/assets/img/jpg/courses/image-4.jpg','hissani.imani@gmail.com'),
-(5, 'Afterwork mouvementé', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a laoreet dolor. Phasellus ullamcorper neque eget ante dapibus varius sed in lectus. Praesent et arcu et lorem convallis aliquam ac et dui. Vestibulum ullamcorper velit lectus,\r\n<br><br> et luctus massa vulputate sed. Quisque dignissim metus nisl, non finibus felis feugiat nec. In rhoncus ante ac urna venenatis sodales. Curabitur velit magna, facilisis sit amet mattis in, blandit non urna. Sed ac risus ac tortor semper malesuada non in augue. Fusce luctus lobortis ipsum ac blandit. Vivamus nunc ex, auctor vitae nunc ac, feugiat tincidunt arcu. Nullam iaculis tellus eget enim laoreet, sagittis aliquam risus blandit.<br><br>Aliquam elementum mauris vel lorem iaculis, quis ultricies augue facilisis. Integer egestas suscipit leo, molestie elementum nisl feugiat at. Proin sagittis varius massa ut malesuada. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.\r\n', '/public/assets/img/jpg/courses/image-5.jpg','tom.orhon@gmail.com'),
-(6, 'La bibliothèque ensorcelée ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis tellus sed libero iaculis, a dignissim lacus blandit. Praesent lacinia ligula dui', '/public/assets/img/jpg/courses/image-6.jpg','tom.orhon@gmail.com');
+(1, 'Le monument oublié', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis tellus sed libero iaculis, a dignissim lacus blandit. Praesent lacinia ligula dui', '/public/assets/img/jpg/courses/image-1.jpg','super.admin@gmail.com'),
+(2, 'En route vers le lac salé','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis tellus sed libero iaculis, a dignissim lacus blandit. Praesent lacinia ligula dui', '/public/assets/img/jpg/courses/image-2.jpg','super.admin@gmail.com'),
+(3, 'Fin des cours !', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis tellus sed libero iaculis, a dignissim lacus blandit. Praesent lacinia ligula dui', '/public/assets/img/jpg/courses/image-3.jpg','user.one@gmail.com'),
+(4, 'la forêt enchanté', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis tellus sed libero iaculis, a dignissim lacus blandit. Praesent lacinia ligula dui', '/public/assets/img/jpg/courses/image-4.jpg','user.one@gmail.com'),
+(5, 'Afterwork mouvementé', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a laoreet dolor. Phasellus ullamcorper neque eget ante dapibus varius sed in lectus. Praesent et arcu et lorem convallis aliquam ac et dui. Vestibulum ullamcorper velit lectus,\r\n<br><br> et luctus massa vulputate sed. Quisque dignissim metus nisl, non finibus felis feugiat nec. In rhoncus ante ac urna venenatis sodales. Curabitur velit magna, facilisis sit amet mattis in, blandit non urna. Sed ac risus ac tortor semper malesuada non in augue. Fusce luctus lobortis ipsum ac blandit. Vivamus nunc ex, auctor vitae nunc ac, feugiat tincidunt arcu. Nullam iaculis tellus eget enim laoreet, sagittis aliquam risus blandit.<br><br>Aliquam elementum mauris vel lorem iaculis, quis ultricies augue facilisis. Integer egestas suscipit leo, molestie elementum nisl feugiat at. Proin sagittis varius massa ut malesuada. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.\r\n', '/public/assets/img/jpg/courses/image-5.jpg','user.two@gmail.com'),
+(6, 'La bibliothèque ensorcelée ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis tellus sed libero iaculis, a dignissim lacus blandit. Praesent lacinia ligula dui', '/public/assets/img/jpg/courses/image-6.jpg','user.two@gmail.com');
 
 
 
@@ -313,15 +310,24 @@ VALUES (1, 'indice 1','Demandez aux étudiants si vous voulez en avoir le coeur 
 
 -- Utilisateurs ayant joué aux parcours
 
-INSERT INTO `SCORE_USER_COURSE` (user_emailUser, course_idCourse)
-VALUES  ('houssam.imani@gmail.com', 1),
-        ('houssam.imani@gmail.com', 2),
-        ('hissani.imani@gmail.com', 3),
-        ('tom.orhon@gmail.com', 4),
-        ('tom.orhon@gmail.com', 5),
-        ('tom.orhon@gmail.com', 6)
+INSERT INTO `SCORE_USER_COURSE` (scoreUser,user_emailUser, course_idCourse, timeStartCourseUser, timeEndCourseUser)
+VALUES  (700, 'super.admin@gmail.com', 1, STR_TO_DATE('2022:05:01 01:30','%Y:%m:%d %h:%i'), STR_TO_DATE('2022:05:01 12:57','%Y:%m:%d %h:%i')),
+        (500, 'super.admin@gmail.com', 2, STR_TO_DATE('2022:05:24 09:12','%Y:%m:%d %h:%i'), STR_TO_DATE('2022:05:25 10:13','%Y:%m:%d %h:%i')),
+        (50, 'super.admin@gmail.com', 3, STR_TO_DATE('2022:05:24 05:12','%Y:%m:%d %h:%i'), STR_TO_DATE('2022:05:25 10:13','%Y:%m:%d %h:%i')),
+        (120, 'super.admin@gmail.com', 4, STR_TO_DATE('2022:06:24 01:23','%Y:%m:%d %h:%i'), STR_TO_DATE('2022:06:25 10:13','%Y:%m:%d %h:%i')),
+        (230, 'super.admin@gmail.com', 5, STR_TO_DATE('2022:07:24 02:19','%Y:%m:%d %h:%i'), STR_TO_DATE('2022:07:25 12:23','%Y:%m:%d %h:%i')),
+        (500, 'super.admin@gmail.com', 6, STR_TO_DATE('2022:08:24 01:12','%Y:%m:%d %h:%i'), STR_TO_DATE('2022:08:25 11:13','%Y:%m:%d %h:%i')),
+        (100, 'user.one@gmail.com', 1, STR_TO_DATE('2022:05:01 09:30','%Y:%m:%d %h:%i'), STR_TO_DATE('2022:05:02 12:59','%Y:%m:%d %h:%i')),
+        (800, 'user.one@gmail.com', 2, STR_TO_DATE('2022:06:02 09:30','%Y:%m:%d %h:%i'), STR_TO_DATE('2022:06:02 12:59','%Y:%m:%d %h:%i')),
+        (900, 'user.one@gmail.com', 3, STR_TO_DATE('2022:06:03 09:30','%Y:%m:%d %h:%i'), STR_TO_DATE('2022:06:03 12:59','%Y:%m:%d %h:%i')),
+        (750, 'user.one@gmail.com', 4, STR_TO_DATE('2022:06:04 09:30','%Y:%m:%d %h:%i'), STR_TO_DATE('2022:06:04 12:59','%Y:%m:%d %h:%i')),
+        (450, 'user.one@gmail.com', 5, STR_TO_DATE('2022:06:05 09:30','%Y:%m:%d %h:%i'), STR_TO_DATE('2022:06:05 12:59','%Y:%m:%d %h:%i')),
+        (678, 'user.two@gmail.com', 1, STR_TO_DATE('2022:06:20 08:30','%Y:%m:%d %h:%i'), STR_TO_DATE('2022:06:20 10:12','%Y:%m:%d %h:%i')),
+        (279, 'user.two@gmail.com', 2, STR_TO_DATE('2022:06:21 07:30','%Y:%m:%d %h:%i'), STR_TO_DATE('2022:06:21 11:45','%Y:%m:%d %h:%i')),
+        (450, 'user.two@gmail.com', 4, STR_TO_DATE('2022:06:12 06:30','%Y:%m:%d %h:%i'), STR_TO_DATE('2022:06:12 11:12','%Y:%m:%d %h:%i')),
+        (200, 'user.two@gmail.com', 5, STR_TO_DATE('2022:06:17 04:06','%Y:%m:%d %h:%i'), STR_TO_DATE('2022:06:17 10:32','%Y:%m:%d %h:%i')),
+        (900, 'user.two@gmail.com', 6, STR_TO_DATE('2022:06:20 10:46','%Y:%m:%d %h:%i'), STR_TO_DATE('2022:06:20 12:04','%Y:%m:%d %h:%i'))
 ;
-
 
 
 
@@ -380,4 +386,3 @@ FROM `SCORE_USER_COURSE`
                     ON COURSE.idCourse = SCORE_USER_COURSE.course_idCourse
 /*GROUP BY `user`.emailUser*/
 ORDER BY COURSE.idCourse ASC;
-

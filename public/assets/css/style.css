@@ -456,6 +456,61 @@ iframe{
 }
 
 
+/********************************* Mot de passe oublié *************************************/
+
+#forgotten-password{
+    padding-top: 2%;
+}
+
+#forgotten-password h2{
+    font-size: 1.3em;
+    margin-bottom: 1em;
+}
+
+#forgotten-password img{
+    margin-top: 5%;
+    width: 80%;
+}
+
+/*************************** Contact *****************************************************/
+
+#contact h2{
+    font-size: 1.3em;
+    margin-bottom: 1em;
+}
+
+#contact img{
+    margin-top: 25%;
+    width: 90%;
+}
+
+/***************************** Classement Joueurs *****************************************/
+
+.general-ranking-box{
+    margin: 5% 5% 5% 5%;
+    padding: 2% 5% 5% 5%;
+}
+
+.general-ranking-box h1{
+    font-size: 1.6em;
+}
+
+/******************* Responsive side menu ************************************************/
+
+#responsive-account-sidemenu ul{
+    list-style: none;
+}
+
+#responsive-account-sidemenu a{
+    color: black;
+    padding: 10%;
+}
+
+
+#responsive-account-sidemenu i{
+    margin-right: 5%;
+}
+
 
 /************************************* Responsive *****************************************/
 

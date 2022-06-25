@@ -74,8 +74,28 @@ class Course extends Model {
     }
 
 
+    public function classementUsersParcoursShow($idParcours){
+        $req = $this->db->getPDO()->prepare("SELECT * FROM COURSE_PARTICIPANT WHERE course_idCourse = ? ORDER BY scoreUser LIMIT 3");
+        $req->execute([$idParcours]);
+        return $req->fetchAll();
+    }
 
+    public function findAllCourseFromPlayer($emailUser){
+        $req = $this->db->getPDO()->prepare("SELECT * FROM COURSE_PARTICIPANT WHERE emailUser = ? ");
+        $req->execute([$emailUser]);
+        return $req->fetchAll();
+    }
 
+    public function findAllCoursesPlayed(){
+        $req = $this->db->getPDO()->query("SELECT * FROM COURSE_PARTICIPANT ORDER BY scoreUser DESC LIMIT 15");
+        return $req->fetchAll();
+    }
+
+    public function countPlayerByCourse($idCourse){
+        $req = $this->db->getPDO()->prepare("SELECT COUNT(emailUser) AS count FROM COURSE_PARTICIPANT WHERE course_idCourse = ? ");
+        $req->execute([$idCourse]);
+        return $req->fetchAll();
+    }
 
 }
 

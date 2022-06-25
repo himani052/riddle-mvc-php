@@ -1,23 +1,23 @@
 $(document).ready(function() {
     $('#submit').click(function(){
-        var email = $('#emailUser').val();
-        var pass = $('#passwordUser').val();
-        var pseudo = $('#pseudo').val();
-        var bdu = $('#birthdateUser').val();
-        var passConf = $('#passwordUserConfirmation').val();
+        let email = $('#emailUser').val();
+        let pass = $('#passwordUser').val();
+        let pseudo = $('#pseudo').val();
+        let bdu = $('#birthdateUser').val();
+        let passConf = $('#passwordUserConfirmation').val();
 
-        var emailOK = false;
-        var passOK = false;
-        var pseudoOK =false;
-        var bduOK = false;
-        var passConfOK = false;
+        let emailOK = false;
+        let passOK = false;
+        let pseudoOK =false;
+        let bduOK = false;
+        let passConfOK = false;
 
         $("#span").remove();
         $("#span2").remove();
         $("#span3").remove();
         $("#span4").remove();
         $("#span5").remove();
-        
+
         //verif mail
         if(IsEmail(email)==false){
             $("#emailUser").after("<span class='text-danger' id='span'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> Email incorrect</span>");

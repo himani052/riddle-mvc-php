@@ -23,7 +23,7 @@
                        <div class="row">
                            <div class="col-8">
                                <a class="text-yellow" href="{{ route('account.course.show', {'id':course.idCourse}) }}" target="_parent"><i class="fa-solid fa-eye"></i></a>
-                               <i class="fa-solid fa-user text-black-50"></i> <span class="text-black-50">12</span>
+                               <i class="fa-solid fa-user text-black-50"></i> <span class="text-black-50">{{ course.count[0].count }}</span>
                            </div>
                            <div class="col-4">
                                <a href="{{ route('account.course.show', {'id':course.idCourse}) }}" class="text-black-50" target="_parent"><i class="fa-solid fa-pen-to-square"></i></a>

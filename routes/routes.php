@@ -27,6 +27,9 @@ Route::get('/logout','App\controllers\UserController@logout')->name('user.logout
 Route::get('/register','App\controllers\UserController@register')->name('user.register') ;
 Route::post('/new/user','App\controllers\UserController@create')->name('user.create') ;
 
+Route::get('/password_forget', 'App\controllers\UserController@index')->name('user.password');
+Route::post('/password_forget/post', 'App\controllers\UserController@password')->name('user.send');
+
 
 //User:account:profile
 Route::get('/account/profile','App\controllers\Account\AccountProfileController@index')->name('account.profile.index') ;
@@ -65,6 +68,12 @@ Route::post('/account/clue/new','App\controllers\Account\AccountClueController@c
 Route::get('/account/course/{idCourse}/location/{idLocation}/riddle/{idRiddle}/clue/update/{idClue}','App\controllers\Account\AccountClueController@update')->name('account.clue.update') ;
 Route::post('/account/clue/updatepost','App\controllers\Account\AccountClueController@updatepost')->name('account.clue.updatepost') ;
 Route::get('/account/course/{idCourse}/clue/update/{idClue}','App\controllers\Account\AccountClueController@delete')->name('account.clue.delete') ;
+
+//User:account:courses_started
+Route::get('/courses-started','App\controllers\Account\AccountCourseController@courseStarted')->name('account.course.started') ;
+
+//User:account:courses_ranking
+Route::get('/courses-ranking','App\controllers\Account\AccountCourseController@courseRanking')->name('account.course.ranking') ;
 
 
 //Admin:account:admin:user

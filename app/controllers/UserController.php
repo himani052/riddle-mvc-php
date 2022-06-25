@@ -5,6 +5,7 @@ namespace App\controllers;
 use App\https\HttpRequest;
 use App\models\User;
 use Controller;
+use Database\DBConnection;
 
 class UserController extends Controller {
 
@@ -83,8 +84,31 @@ class UserController extends Controller {
         return redirect('user.connect');
     }
 
+    public function index(){
+        return $this->view('security/password.twig');
+    }
 
+    public function password(HttpRequest $request){
+        $values = $request->validator(
+            [
+                'mail'  => ['required'],
+            ]
+        );
+        $password = uniqid();
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    
+        $subject = 'Mot de passe oublié';
+        $message = "Bonjour, voici votre nouveau mot de passe : $password";
+        $headers = 'Content-Type: text/plain; charset="UTF-8"';
+        
+        if (mail($values['mail'], $subject, $message, $headers)) {
+            $req = $this->db->getPDO()->prepare("UPDATE USER SET passwordUser = ? WHERE emailUser = ?");
+            $req->execute([$hashedPassword, $values['mail']]);
+            echo "E-mail envoyé";
+        } else {
+            echo "Une erreur est survenue";
+        }
 
-
+    }
 
 }

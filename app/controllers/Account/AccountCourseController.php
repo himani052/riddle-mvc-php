@@ -10,6 +10,7 @@ use App\models\Riddle;
 use App\models\User;
 use Controller;
 use Database\DBConnection;
+use DateTime;
 
 
 class AccountCourseController extends Controller
@@ -36,6 +37,13 @@ class AccountCourseController extends Controller
 
         $course = new Course($this->getDB());
         $courses = $course->findCourseByUser($_SESSION['email']);
+
+        //Nombre de participants par parcours
+        $count = new Course($this->getDB());
+
+        foreach ($courses as $cours){
+            $cours->count = $count->countPlayerByCourse($cours->idCourse);
+        }
 
 
         return $this->view('account/course/list.twig', compact('courses'));
@@ -199,6 +207,72 @@ class AccountCourseController extends Controller
             return redirect('user.connect');
         }
 
+    }
+
+    public function courseStarted(){
+
+        $course = new Course($this->getDB());
+        $courses = $course->findAllCourseFromPlayer($_SESSION['email']);
+
+        foreach ($courses as $c){
+            $firstDate  = $c->timeStartCourseUser;
+            $secondDate = $c->timeEndCourseUser;
+
+            //$user->interval = $this->dateDiff($firstDate,$secondDate);
+
+            date_default_timezone_set('Europe/London');
+            $date1 = DateTime::createFromFormat('Y-m-d H:i:s', $firstDate);
+            $date2 = DateTime::createFromFormat('Y-m-d H:i:s', $secondDate);
+
+            $interval = $date1->diff($date2);
+
+            //interval en jour, min, heures
+            if($interval->days != null){
+                $c->interval = $interval->days.' jours, '.$interval->h.' h '.$interval->i.' min '.$interval->s.' s';
+            }else{
+                $c->interval = $interval->h.' h '.$interval->i.' min '.$interval->s.' s';
+            }
+
+            //interval en heures
+            //$user->interval = $interval->days*24 + $interval->h;
+
+        }
+
+        return $this->view('account/course/play/started.twig', compact('courses'));
+
+    }
+
+    public function courseRanking(){
+
+        $user = new Course($this->getDB());
+        $users = $user->findAllCoursesPlayed();
+
+        foreach ($users as $user){
+            $firstDate  = $user->timeStartCourseUser;
+            $secondDate = $user->timeEndCourseUser;
+
+            //$user->interval = $this->dateDiff($firstDate,$secondDate);
+
+            date_default_timezone_set('Europe/London');
+            $date1 = DateTime::createFromFormat('Y-m-d H:i:s', $firstDate);
+            $date2 = DateTime::createFromFormat('Y-m-d H:i:s', $secondDate);
+
+            $interval = $date1->diff($date2);
+
+            //interval en jour, min, heures
+            if($interval->days != null){
+                $user->interval = $interval->days.' jours, '.$interval->h.' h '.$interval->i.' min '.$interval->s.' s';
+            }else{
+                $user->interval = $interval->h.' h '.$interval->i.' min '.$interval->s.' s';
+            }
+
+            //interval en heures
+            //$user->interval = $interval->days*24 + $interval->h;
+
+        }
+
+
+        return $this->view('account/course/play/ranking.twig', compact('users'));
     }
 
 

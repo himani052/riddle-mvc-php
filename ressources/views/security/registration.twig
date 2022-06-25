@@ -62,12 +62,12 @@
                         <div class="form-group">
                             <label for="passwordUserConfirmation">Confirmation de mot de passe</label>
                             <input type="password" name="passwordUserConfirmation" id="passwordUserConfirmation" value="{{ post.passwordUserConfirmation }}" class="form-control {% if error.passwordUserConfirmation %}input-error{% endif %}" placeholder="Confirme ton mot de passe">
-                        {% if error.passwordUserConfirmation %}
-                            <span class="text-danger">
+                            {% if error.passwordUserConfirmation %}
+                                <span class="text-danger">
                                 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                 {{ error.passwordUserConfirmation }}
                             </span>
-                         {% endif %}
+                            {% endif %}
                         </div>
                         <div class="mt-4 submit-box">
                             <input type="submit" class="btn btn-yellow-square mx-auto d-block" id="submit">
@@ -82,5 +82,5 @@
 {% endblock %}
 
 {% block js %}
-    <script src="public\assets\js\JS.js"></script>
+    <script src="/public/assets/js/form-validator.js"></script>
 {% endblock %}

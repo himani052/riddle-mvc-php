@@ -10,14 +10,13 @@ class User extends Model {
     protected $id = '`emailUser`';
 
 
-
     public function create($emailUser,$pseudoUser, $passwordUser, $birthdateUser, $admin ){
 
         $req = $this->db->getPDO()->prepare("INSERT INTO `USER` (emailUser, pseudoUser, passwordUser, birthdateUser, admin) VALUES  (:emailUser, :pseudoUser , :passwordUser, :birthdateUser, :admin) ");
 
         return $req->execute(array(
-           'emailUser' => $emailUser,
-           'pseudoUser' => $pseudoUser,
+            'emailUser' => $emailUser,
+            'pseudoUser' => $pseudoUser,
             'passwordUser' => $passwordUser,
             'birthdateUser' => $birthdateUser,
             'admin' => $admin
@@ -74,11 +73,10 @@ class User extends Model {
 
 
     public function removeByEmail($email){
-        $stmt = $this->db->getPDO()->prepare("DELETE FROM {$this->table}  WHERE {$email} = ? ");
+        $stmt = $this->db->getPDO()->prepare("DELETE FROM `USER` WHERE emailUser = ? ");
         return $stmt->execute([$email]);
     }
 
 
 
 }
-

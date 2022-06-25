@@ -17,8 +17,8 @@ class ContactController extends Controller
         ini_set("smpt_port", 1025);
         $values = $request->validator(
             [
-                'mail'  => ['required'],
-                'message'  => ['required'],
+                'mail'  => ['requiered'],
+                'message'  => ['requiered'],
             ]
         );
         $destinataire = 'thomas.es13@gmail.com';
@@ -26,10 +26,10 @@ class ContactController extends Controller
         $expediteur = $values['mail'];
         $copie = 'adresse@fai.com';
         $copie_cachee = 'adresse@fai.com';
-        $objet = 'Contact Riddle'; // Objet du message
+        $objet = 'Test'; // Objet du message
         $headers  = 'MIME-Version: 1.0' . "\n"; // Version MIME
         $headers .= 'Reply-To: '.$expediteur."\n"; // Mail de reponse
-        $headers .= 'From: "<'.$expediteur.'>"'."\n"; // Expediteur
+        $headers .= 'From: "Nom_de_expediteur"<'.$expediteur.'>'."\n"; // Expediteur
         $headers .= 'Delivered-to: '.$destinataire."\n"; // Destinataire
         $headers .= 'Cc: '.$copie."\n"; // Copie Cc
         $headers .= 'Bcc: '.$copie_cachee."\n\n"; // Copie cachée Bcc        

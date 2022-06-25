@@ -1,0 +1,50 @@
+{% extends "layouts/default.twig" %}
+
+{% block content %}
+
+    <section id="general-ranking" class="bg-light">
+        <div class="container">
+            <div class="card shadow general-ranking-box border-0">
+                <div class="card-body">
+                    <div class="players-ranking">
+                        <h1 class="font-weight-bold mb-2">Classement général des joueurs (Top 15)</h1><br>
+                        <table class="table">
+                            <thead>
+                                <th>#</th>
+                                <th></th>
+                                <th>Utilisateur</th>
+                                <th>Titre du parcours</th>
+                                <th>Score</th>
+                                <th>Durée</th>
+                            </thead>
+                            <tbody>
+
+                            {% set num = 0 %}
+                            {% for user in users %}
+
+                                {% set num = num + 1 %}
+                                <tr>
+                                    <th>{{ num }}</th>
+                                    <th scope="row">
+                                        <img alt="player-1" src="{{ user.photoUser }}"/>
+                                    </th>
+                                    <td>
+                                        <h3>{{ user.pseudoUser }}</h3>
+                                        <h4>{% if user.admin == 0 %}Joueur{% else %}Administrateur{% endif %}</h4>
+                                    </td>
+                                    <td>{{ user.titleCourse }}</td>
+                                    <td>{{ user.scoreUser }} pts</td>
+                                    <td><i class="fa-regular fa-clock"></i> {{ user.interval }}</td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}

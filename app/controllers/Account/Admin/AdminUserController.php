@@ -18,7 +18,7 @@ class AdminUserController extends Controller {
         $users = $user->all();
 
         return $this->view('account/admin/user/index.twig', compact('users'));
-   }
+    }
 
     public function show($emailUser){
 

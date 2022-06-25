@@ -36,12 +36,12 @@
                                 <div class="collapse" id="collapseExample">
                                     <div class="card card-body">
                                         <ul>
-                                            <li><a href="{{ route('account.course.create') }}"><i class="fa-solid fa-plus"></i> Créer un parcours</a></li>
-                                            <li><a href="{{ route('account.course.index') }}"><i class="fa-solid fa-list"></i>Liste de mes parcours</a></li>
-                                            <li><a href="#"><i class="fa-solid fa-chart-area"></i>Statistiques</a></li>
+                                            <a href="{{ route('account.course.create') }}"><li><i class="fa-solid fa-plus"></i> Créer un parcours</li></a>
+                                            <a href="{{ route('account.course.index') }}"><li><i class="fa-solid fa-list"></i>Liste de mes parcours</li></a>
+                                            <a href="#"><li><i class="fa-solid fa-chart-area"></i>Statistiques</li></a>
                                             {% if auth.admin == 1 %}
-                                                <li><a href="{{ route('admin.user.index') }}"><i class="fa-solid fa-users"></i>Utilisateurs</a></li>
-                                                <li><a href="{{ route('admin.course.index') }}"><i class="fa-solid fa-map"></i>Tous les parcours</a></li>
+                                                <a href="{{ route('admin.user.index') }}"><li><i class="fa-solid fa-users"></i>Utilisateurs</li></a>
+                                                <a href="{{ route('admin.course.index') }}"><li><i class="fa-solid fa-map"></i>Tous les parcours</li></a>
                                             {% endif %}
                                         </ul>
                                     </div>
