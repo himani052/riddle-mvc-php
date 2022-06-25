@@ -234,6 +234,7 @@ VALUES ('super.admin@gmail.com', 'hortalia', '$2y$10$koF22fs264nd0h1eXuv.IOwwNkp
        ('user.two@gmail.com', 'araschi', '$2y$10$NsaZyuX/4JVIbrcUcK24heDiko1NmakMCbKyirGjo8bguiYV4.rLy','/public/assets/img/jpg/users/portrait-3.jpg', '1998-07-25',0);
 
 
+
 -- Création des departements
 INSERT INTO `DEPARTMENT` (`codeDepartment`, `titleDepartment`)
 VALUES ('04', 'Alpes de Haute Provence'),
